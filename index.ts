@@ -1,14 +1,13 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
+import apiRoutes from './api/routes';
 import "dotenv/config";
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.use(express.json());
 
-app.get('/api', (req: Request, res: Response) => {
-    res.json('holis');
-});
+app.use('/api', apiRoutes);
 app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
