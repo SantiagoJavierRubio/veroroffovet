@@ -1,3 +1,12 @@
+.dietList {
+    @apply flex flex-col gap-4
+}
+.dietList::after {
+    content: "";
+    width: 50%;
+    margin: 1.75rem auto;
+    border-bottom: 1px solid gray;
+}
 .listElement {
     @apply w-full text-lg
 }
@@ -5,18 +14,27 @@
     animation: appear 0.1s ease-in-out;
     @apply px-12 text-primary font-semibold
 }
+.dietDescription {
+    padding-top: 0.75rem;
+}
 .dietDetails > ul {
     @apply px-8 list-disc
 }
 .dietDetails > h4 {
     @apply underline mt-4
 }
-
 .price {
     @apply text-center font-bold text-xl mb-4
 }
 .priceDetail {
     @apply px-4 my-2 italic
+}
+.generalRemarks {
+    @apply text-primary flex flex-col gap-4 px-4 font-semibold text-lg
+}
+.generalRemarks > p::before {
+    content: ">";
+    margin-right: .75rem;
 }
 
 @keyframes appear {

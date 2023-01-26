@@ -11,7 +11,7 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
   return (
     <div className='transition-all'>
         <button 
-            className='w-full py-2 bg-secondary rounded-sm'
+            className='w-full py-2 bg-primary rounded-sm font-bold text-xl'
             onClick={toggleOpen}
         >
             {props.title}
