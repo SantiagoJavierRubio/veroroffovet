@@ -1,6 +1,7 @@
 .navbar {
     @apply w-full flex items-stretch justify-center 
-        gap-4 min-h-[4rem] bg-primary p-4
+        gap-4 min-h-[4rem] bg-primary p-4  border-b-2 border-secondary
+        shadow-lg
 }
 
 .linkBtn {
@@ -12,5 +13,5 @@
 }
 
 .selected {
-    @apply underline
+    @apply underline underline-offset-4
 }

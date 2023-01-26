@@ -1,5 +1,4 @@
 import NextHead from "next/head"
-import { FC } from "react"
 
 interface HeadProps {
     title?: string;

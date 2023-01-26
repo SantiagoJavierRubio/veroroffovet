@@ -1,13 +1,37 @@
 import Layout from "@/components/Layout/Layout"
 import Expandable from "@/components/Expandable"
 import styles from "../../styles/Asesorias.module.css";
+import Link from "next/link";
+
+const CommonDetails = () => {
+  return(
+    <>
+      <p className="px-4 text-red-500 my-4 italic text-base">
+        * En pacientes con patologias se aconsejan controles periodicos hasta la estabilizacion de la misma.
+        La frecuencia dependera de cada caso.
+      </p>
+      <p className="px-4 text-red-500 my-4 italic text-base">* Para cachorros, debido a su velocidad de crecimiento muy rapida, 
+        es necesario hacer reformulaciones de la dieta hasta que lleguen a edad adulta. 
+        La frecuencia de las mismas dependera de la edad y tala del animal (sera evaluado en la consulta)
+      </p>
+    </>
+  )
+}
+
+const BottomLink = () => (
+  <div className="flex justify-center">
+    <a href="#bottom-remarks" className="underline font-bold text-blue-500">
+      Me interesa {">"}
+    </a>
+  </div>
+)
 
 export default function Asesorias() {
   return (
     <Layout title="Asesorias nutricionales">
         <h1 className="text-primary text-6xl mt-8 text-center font-extrabold">Asesorias nutricionales</h1>
         <h2 className="text-black text-2xl px-4 mt-6 font-bold">Tipos de dietas para caninos y felinos:</h2>
-        <ul className="flex flex-col gap-4">
+        <ul className={styles.dietList}>
           <li className={styles.listElement}>
             <Expandable title="Dieta BARF">
               <p className={styles.dietDescription}>
@@ -30,7 +54,9 @@ export default function Asesorias() {
                 <p className={styles.price}>$6500</p>
                 <p className={styles.priceDetail}>Si por algun motivo el acompanamiento inicial supera el mes, se debera abonar un control de $3000</p>
                 <p className={styles.priceDetail}>En pacientes sanos se aconseja un control a los 6 meses y luego controles anuales</p>
+                <CommonDetails />
               </div>
+              <BottomLink />
             </Expandable>
           </li>
           <li className={styles.listElement}>
@@ -53,7 +79,9 @@ export default function Asesorias() {
                 <p className={styles.price}>$6500</p>
                 <p className={styles.priceDetail}>Si por algun motivo el acompanamiento inicial supera el mes, se debera abonar un control de $3000</p>
                 <p className={styles.priceDetail}>En pacientes sanos se aconseja un control a los 6 meses y luego controles anuales</p>
+                <CommonDetails />
               </div>
+              <BottomLink />
             </Expandable>
           </li>
           <li className={styles.listElement}>
@@ -78,7 +106,9 @@ export default function Asesorias() {
                 <p className={styles.price}>$6500</p>
                 <p className={styles.priceDetail}>Si por algun motivo el acompanamiento inicial supera el mes, se debera abonar un control de $3000</p>
                 <p className={styles.priceDetail}>En pacientes sanos se aconseja un control a los 6 meses y luego controles anuales</p>
+                <CommonDetails />
               </div>
+              <BottomLink />
             </Expandable>
           </li>
           <li className={styles.listElement}>
@@ -102,9 +132,45 @@ export default function Asesorias() {
                 <p className={styles.price}>$4500</p>
                 <p className={styles.priceDetail}>Si por algun motivo el acompanamiento inicial supera los 7 dias, se debera abonar un control de $2000</p>
               </div>
+              <BottomLink />
             </Expandable>
           </li>
         </ul>
+        <h3 id="bottom-remarks" className="text-primary font-bold text-4xl text-center underline my-6">
+          Consideraciones generales
+        </h3>
+        <div className={styles.generalRemarks}>
+          <p>
+            Si bien para los pacientes con patologías contar con análisis complementarios es una condición, es 
+            aconsejable realizar en todos los pacientes un chequeo sanguíneo y de orina básicos previos a la consulta
+          </p>
+          <p>
+            El plan nutricional elegido será entregado vía mail dentro de los 7 días hábiles luego de la consulta. A partir 
+            de que se entrega el material, corren los días de seguimiento correspondientes al plan.
+          </p>
+          <p>
+            En caso que prefieras una consulta presencial y residas en Capital Federal (consultar barrios), Vicente López
+            o Florida, la visita a domicilio posee un costo adicional de $1000
+          </p>
+          <p>
+            Los honorarios establecidos son por animal. En caso de más de uno, se realiza un descuento que se 
+            establece según cada situación (especies, edades, estados de salud, etc.).
+          </p>
+          <p>
+            Medios de pago: Transferencia bancaria o Mercadopago. En caso de consulta a domicilio, se acepta 
+            también efectivo
+          </p>
+          <p>
+            Días y horarios para las consultas durante el seguimiento: de lunes a viernes de 9 a 19 hs
+          </p>
+        </div>
+        <div className="w-full flex justify-center mt-6">
+          <Link href="/asesorias/formulario" className="m-auto">
+            <button className="p-6 bg-primary text-2xl font-bold rounded-lg max-w-full">
+              Solicitar una asesoria
+            </button>
+          </Link>
+        </div>
     </Layout>
   )
 }
