@@ -1,0 +1,16 @@
+.navbar {
+    @apply w-full flex items-stretch justify-center 
+        gap-4 min-h-[4rem] bg-secondary p-4
+}
+
+.linkBtn {
+    @apply h-full py-4 px-8 hover:shadow-xl transition-all flex items-center justify-center gap-4
+}
+
+.linkBtn > h4 {
+    @apply font-semibold text-lg
+}
+
+.selected {
+    @apply underline
+}
