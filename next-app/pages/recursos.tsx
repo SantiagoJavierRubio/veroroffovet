@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout/Layout"
 
-export default function recursos() {
+export default function Recursos() {
   return (
     <Layout title="Recursos">
         recursos

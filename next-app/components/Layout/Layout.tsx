@@ -16,7 +16,7 @@ export default function Layout(props: PropsWithChildren<LayoutProps>) {
                 description={props.description}
             />
             <NavBar />
-            <main className="w-full h-screen text-primary">
+            <main className="w-full min-h-screen">
                 {props.children}
             </main>
             <Footer />

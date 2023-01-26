@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link"
 import Image from "next/image";
 import styles from "../../styles/NavBar.module.css"
@@ -35,7 +36,10 @@ function setCurrentPage() {
 }
 
 export default function NavBar() {
-    const current = setCurrentPage()
+    const [current, setCurrent] = useState(LOCATIONS.INICIO)
+    useEffect(() => {
+        setCurrent(setCurrentPage)
+    }, [])
   return (
     <nav className={styles.navbar}>
         <Link href="/">

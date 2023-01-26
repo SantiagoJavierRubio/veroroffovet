@@ -1,0 +1,29 @@
+.listElement {
+    @apply w-full text-lg
+}
+.dietDescription, .dietDetails {
+    animation: appear 0.1s ease-in-out;
+    @apply px-12 text-primary font-semibold
+}
+.dietDetails > ul {
+    @apply px-8 list-disc
+}
+.dietDetails > h4 {
+    @apply underline mt-4
+}
+
+.price {
+    @apply text-center font-bold text-xl mb-4
+}
+.priceDetail {
+    @apply px-4 my-2 italic
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
