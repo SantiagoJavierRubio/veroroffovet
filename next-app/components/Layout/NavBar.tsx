@@ -10,11 +10,12 @@ interface LinkBtnProps {
 }
 
 const LinkButton = (props: LinkBtnProps) => {
+    const { icon, title, selected } = props
     return(
         <div className={styles.linkBtn}>
-            <Image src={props.icon} width={30} height={30} alt={props.title} />
-            <h4 className={props.selected ? styles.selected : ''}>
-                {props.title}
+            <Image src={icon} width={30} height={30} alt={title} />
+            <h4 className={selected ? styles.selected : ''}>
+                {title}
             </h4>
         </div>
     )

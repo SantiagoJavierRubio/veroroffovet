@@ -6,7 +6,8 @@ interface ExpandableProps {
 }
 
 export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
-    const [open, setOpen] = useState(props.startOpen || false)
+    const { startOpen, title, children } = props
+    const [open, setOpen] = useState(startOpen || false)
     const toggleOpen = () => setOpen(prev => !prev)
   return (
     <div className='transition-all'>
@@ -14,10 +15,10 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
             className='w-full py-2 bg-primary rounded-sm font-bold text-xl'
             onClick={toggleOpen}
         >
-            {props.title}
+            {title}
         </button>
         <div className='flex flex-col align-top justify-center'>
-            {open && props.children}
+            {open && children}
         </div>
     </div>
   )

@@ -9,15 +9,16 @@ interface LayoutProps {
 }
 
 export default function Layout(props: PropsWithChildren<LayoutProps>) {
+    const { title, description, children } = props
     return(
         <>
             <Head 
-                title={props.title}
-                description={props.description}
+                title={title}
+                description={description}
             />
             <NavBar />
             <main className="w-full min-h-screen">
-                {props.children}
+                {children}
             </main>
             <Footer />
         </>
