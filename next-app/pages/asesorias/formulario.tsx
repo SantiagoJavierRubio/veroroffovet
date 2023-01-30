@@ -6,6 +6,7 @@ import MultiStepForm from "@/components/MultiStepForm/MultiStepForm"
 import Tutor from "@/components/Formulario/Tutor"
 import PacienteBase from "@/components/Formulario/PacienteBase"
 import PacienteCondicion from "@/components/Formulario/PacienteCondicion"
+import Adjuntos from "@/components/Formulario/Adjuntos"
 
 import type { FormularioData } from "@/components/Formulario/formularioHelpers"
 import { DEFAULT_VALUES } from "@/components/Formulario/formularioHelpers"
@@ -29,6 +30,7 @@ export default function Formulario() {
               <Tutor data={data} update={update} />,
               <PacienteBase data={data} update={update} />,
               <PacienteCondicion data={data} update={update} />,
+              <Adjuntos data={data} update={update} />
             ]}
             submitFunction={submit}
           />
