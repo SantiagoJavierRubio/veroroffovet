@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react"
 import FormStep from "../MultiStepForm/FormStep"
 import type { FormularioData } from "./formularioHelpers"
+import styles from "../../styles/MultistepForm.module.css";
 
 interface TutorData {
    nombreTutor: FormularioData["nombreTutor"]
@@ -22,58 +23,68 @@ export default function Tutor(props: TutorProps) {
     }
   return (
     <FormStep title="Datos del tutor">
-        <label htmlFor="nombreTutor">Nombre</label>
-        <input 
-            type="text"
-            id="nombreTutor"
-            value={data.nombreTutor}
-            required
-            autoFocus
-            onChange={handleChange} 
-        />
-        <label htmlFor="apellidoTutor">Apellido</label>
-        <input 
-            type="text"
-            id="apellidoTutor"
-            value={data.apellidoTutor}
-            required
-            onChange={handleChange}
-        />
-        <label htmlFor="mail">Mail</label>
-        <input 
-            type="text"
-            id="mail"
-            value={data.mail}
-            required 
-            onChange={handleChange}
-        />
-        <label htmlFor="celular">Celular</label>
-        <input 
-            type="text"
-            id="celular"
-            value={data.celular} 
-            onChange={handleChange}
-        />
-        <label htmlFor="dietaElegida">Dieta elegida</label>
-        <select 
-            id="dietaElegida" 
-            value={data.dietaElegida} 
-            required 
-            onChange={handleChange}
-        >
-            <option value="barf">
-                BARF
-            </option>
-            <option value="cocida">
-                Natural cocida
-            </option>
-            <option value="mixta">
-                Mixta
-            </option>
-            <option value="suplementada">
-                Suplementacion de ultraprocesados
-            </option>
-        </select>
+        <div className={styles.labeledInput}>
+            <label htmlFor="nombreTutor">Nombre</label>
+            <input 
+                type="text"
+                id="nombreTutor"
+                value={data.nombreTutor}
+                required
+                autoFocus
+                onChange={handleChange} 
+            />
+        </div>
+        <div className={styles.labeledInput}>
+            <label htmlFor="apellidoTutor">Apellido</label>
+            <input 
+                type="text"
+                id="apellidoTutor"
+                value={data.apellidoTutor}
+                required
+                onChange={handleChange}
+            />
+        </div>
+        <div className={styles.labeledInput}>
+            <label htmlFor="mail">Mail</label>
+            <input 
+                type="text"
+                id="mail"
+                value={data.mail}
+                required 
+                onChange={handleChange}
+            />
+        </div>
+        <div className={styles.labeledInput}>
+            <label htmlFor="celular">Celular</label>
+            <input 
+                type="text"
+                id="celular"
+                value={data.celular} 
+                onChange={handleChange}
+            />
+        </div>
+        <div className={styles.labeledInput}>
+            <label htmlFor="dietaElegida">Dieta elegida</label>
+            <select 
+                id="dietaElegida" 
+                value={data.dietaElegida} 
+                required 
+                onChange={handleChange}
+            >
+                <option value="barf">
+                    BARF
+                </option>
+                <option value="cocida">
+                    Natural cocida
+                </option>
+                <option value="mixta">
+                    Mixta
+                </option>
+                <option value="suplementada">
+                    Suplementacion de ultraprocesados
+                </option>
+            </select>
+        </div>
     </FormStep>
   )
 }

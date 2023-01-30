@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react"
 import FormStep from "../MultiStepForm/FormStep"
 import { FormularioData, ESPECIES, SEXOS } from "./formularioHelpers"
+import styles from "../../styles/MultistepForm.module.css"
 
 interface PacienteBaseData {
     nombrePaciente: FormularioData["nombrePaciente"]
@@ -26,7 +27,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
     }
   return (
     <FormStep title="Datos del paciente">
-        <div>
+        <div className={styles.labeledInput}>
             <label htmlFor="nombrePaciente">Nombre</label>
             <input
                 type="text"
@@ -36,7 +37,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
                 required
             />
         </div>
-        <div>
+        <div className={styles.labeledInput}>
             <label htmlFor="especie">Especie</label>
             <select
                 id="especie"
@@ -44,11 +45,11 @@ export default function PacienteBase(props: PacienteBaseProps) {
                 onChange={handleChange}
                 required
             >
-                <option value={ESPECIES.GATO}>Gato</option>
-                <option value={ESPECIES.PERRO}>Perro</option>
+                <option value={ESPECIES.GATO}>{ESPECIES.GATO}</option>
+                <option value={ESPECIES.PERRO}>{ESPECIES.PERRO}</option>
             </select>
         </div>
-        <div>
+        <div className={styles.labeledInput}>
             <label htmlFor="raza">Raza</label>
             <input
                 type="text"
@@ -58,7 +59,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
                 required
             />
         </div>
-        <div>
+        <div className={styles.labeledInput}>
             <label htmlFor="sexo">Sexo</label>
             <select
                 id="sexo"
@@ -70,14 +71,20 @@ export default function PacienteBase(props: PacienteBaseProps) {
                 <option value={SEXOS.HEMBRA}>Hembra</option>
             </select>
         </div>
-        <div>
+        <div className={styles.labeledInput}>
             <label htmlFor="castrado">Esta castrad{data.sexo === SEXOS.MACHO ? "o" : "a"}?</label>
-            <label>Si</label>
-            <input type="radio" name="castrado" id="true" onChange={handleCheckboxToggle} checked={data.castrado} />
-            <label>No</label>
-            <input type="radio" name="castrado" id="false" onChange={handleCheckboxToggle} checked={!data.castrado}/>
+            <div className="flex justify-around">
+                <div className={styles.radioOption}>
+                    <label>Si</label>
+                    <input type="radio" name="castrado" id="true" onChange={handleCheckboxToggle} checked={data.castrado} />
+                </div>
+                <div className={styles.radioOption}>
+                    <label>No</label>
+                    <input type="radio" name="castrado" id="false" onChange={handleCheckboxToggle} checked={!data.castrado}/>
+                </div>
+            </div>
         </div>
-        <div>
+        <div className={styles.labeledInput}>
             <label htmlFor="edad">Edad</label>
             <input 
                 type="text"

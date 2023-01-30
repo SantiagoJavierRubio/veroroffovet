@@ -1,0 +1,33 @@
+.form > form {
+    @apply  p-6 m-auto rounded-md border-primary border-2 max-w-full w-4/5
+}
+.labeledInput {
+    @apply text-primary grid auto-cols-auto max-w-full w-3/5 m-auto my-2
+}
+.form > form > h3 {
+    @apply text-primary font-bold text-center text-4xl
+}
+.form button {
+    @apply font-bold border-2 rounded-lg py-2 px-4 text-stone-50
+}
+.labeledInput label {
+    @apply font-bold
+}
+.labeledInput input, .labeledInput select, .labeledInput textarea {
+    @apply p-2 rounded-sm
+}
+.labeledInput > select {
+    @apply max-w-full
+}
+.radioOption {
+    @apply flex flex-col items-center gap-2 p-2 font-semibold
+}
+.aclaracion {
+    @apply italic text-base ml-1
+}
+.condicionGraficoOption {
+    @apply p-4 min-w-[126px] h-[136px] relative border-4 border-transparent rounded-sm
+}
+.condicionChecked {
+    @apply border-primary
+}

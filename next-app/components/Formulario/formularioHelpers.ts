@@ -6,14 +6,21 @@ export const DIET_TYPES = {
 }
 
 export const ESPECIES = {
-    PERRO: "perro",
-    GATO: "gato"
+    PERRO: "canino",
+    GATO: "felino"
 }
 
 export const SEXOS = {
     MACHO: "macho",
     HEMBRA: "hembra"
 }
+
+export const COSTILLAS_TEXT = [
+    "Es imposible contarle las costillas",
+    "Pude contarlas pero tuve que hacer mucha presion para sentirlas",
+    "Las conte con facilidad",
+    "Ni necesite palpar, se ven a simple vista"
+]
 
 export type FormularioData = {
     nombreTutor: string

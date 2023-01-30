@@ -7,9 +7,11 @@ interface FormStepProps {
 export default function FormStep(props: PropsWithChildren<FormStepProps>) {
     const { title, children } = props
   return (
-    <div>
+    <>
         <h3>{title}</h3>
-        {children}
-    </div>
+        <div className='flex flex-col'>
+          {children}
+        </div>
+    </>
   )
 }

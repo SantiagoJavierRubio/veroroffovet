@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Layout from "@/components/Layout/Layout"
+import styles from "../../styles/MultistepForm.module.css"
 
 import MultiStepForm from "@/components/MultiStepForm/MultiStepForm"
 import Tutor from "@/components/Formulario/Tutor"
@@ -21,15 +22,17 @@ export default function Formulario() {
 
   return (
     <Layout title="Asesorias nutricionales - Formulario">
-        <h1>Solicitar asesoria nutricional</h1>
-        <MultiStepForm 
-          pages={[
-            <Tutor data={data} update={update} />,
-            <PacienteBase data={data} update={update} />,
-            <PacienteCondicion data={data} update={update} />,
-          ]}
-          submitFunction={submit}
-        />
+        <h1 className="text-center my-4 text-primary font-bold text-4xl">Solicitar asesoria nutricional</h1>
+        <div className={styles.form}>
+          <MultiStepForm 
+            pages={[
+              <Tutor data={data} update={update} />,
+              <PacienteBase data={data} update={update} />,
+              <PacienteCondicion data={data} update={update} />,
+            ]}
+            submitFunction={submit}
+          />
+        </div>
     </Layout>
   )
 }

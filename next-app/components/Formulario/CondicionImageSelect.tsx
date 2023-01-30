@@ -1,6 +1,7 @@
 import { ESPECIES, SEXOS, FormularioData } from "./formularioHelpers"
 import Image from "next/image"
 import { ChangeEvent } from "react"
+import styles from "../../styles/MultistepForm.module.css";
 
 interface CondicionImageSelectProps {
     graficoPeso: FormularioData["graficoPeso"]
@@ -11,7 +12,8 @@ interface CondicionImageSelectProps {
 
 export default function CondicionImageSelect(props: CondicionImageSelectProps) {
     const { graficoPeso, especie, sexo, update } = props
-    const especieSexada = sexo === SEXOS.MACHO ? especie : especie.replace("o", "a")
+    const especieVulgar = especie === ESPECIES.GATO ? "gato" : "perro"
+    const especieSexada = sexo === SEXOS.MACHO ? especieVulgar : especieVulgar.replace("o", "a")
 
     const folderName = especie === ESPECIES.PERRO ? "DogProfiles" : "CatProfiles"
 
@@ -19,10 +21,12 @@ export default function CondicionImageSelect(props: CondicionImageSelectProps) {
         update({ graficoPeso: parseInt(e.target.value) })
     }
   return (
-    <div>
-        <label htmlFor="graficoPeso">En que numero te parece que esta tu {especieSexada}</label>
-        <div className="flex items-center p-4 g-4">
-            <label htmlFor="valor1" className={`p-4 min-w-[126px] max-w-1/5 h-[136px] relative ${graficoPeso === 1 ? "border-4" : "border-none"}`}>
+    <div className="text-primary grid auto-cols-auto max-w-full w-3/5 m-auto my-2">
+        <label htmlFor="graficoPeso" className="font-semibold">
+            En que numero te parece que esta tu {especieSexada}
+        </label>
+        <div className="flex items-center gap-2 mt-4 flex-wrap">
+            <label htmlFor="valor1" className={`${styles.condicionGraficoOption} ${graficoPeso === 1 && styles.condicionChecked}`}>
                 <input 
                     type="radio"
                     id="valor1"
@@ -39,7 +43,7 @@ export default function CondicionImageSelect(props: CondicionImageSelectProps) {
                     className="cursor-pointer"
                 />
             </label>
-            <label htmlFor="valor2" className={`p-4 min-w-[126px] max-w-1/5 h-[136px] relative ${graficoPeso === 2 ? "border-4" : "border-none"}`}>
+            <label htmlFor="valor2" className={`${styles.condicionGraficoOption} ${graficoPeso === 2 && styles.condicionChecked}`}>
             <input 
                     type="radio"
                     id="valor2"
@@ -56,7 +60,7 @@ export default function CondicionImageSelect(props: CondicionImageSelectProps) {
                     className="cursor-pointer"
                 />
             </label>
-            <label htmlFor="valor3" className={`p-4 min-w-[126px] max-w-1/5 h-[136px] relative ${graficoPeso === 3 ? "border-4" : "border-none"}`}>
+            <label htmlFor="valor3" className={`${styles.condicionGraficoOption} ${graficoPeso === 3 && styles.condicionChecked}`}>
             <input 
                     type="radio"
                     id="valor3"
@@ -73,7 +77,7 @@ export default function CondicionImageSelect(props: CondicionImageSelectProps) {
                     className="cursor-pointer"
                 />
             </label>
-            <label htmlFor="valor4" className={`p-4 min-w-[126px] max-w-1/5 h-[136px] relative ${graficoPeso === 4 ? "border-4" : "border-none"}`}>
+            <label htmlFor="valor4" className={`${styles.condicionGraficoOption} ${graficoPeso === 4 && styles.condicionChecked}`}>
             <input 
                     type="radio"
                     id="valor4"
@@ -90,7 +94,7 @@ export default function CondicionImageSelect(props: CondicionImageSelectProps) {
                     className="cursor-pointer"
                 />
             </label>
-            <label htmlFor="valor5" className={`p-4 min-w-[126px] max-w-1/5 h-[136px] relative ${graficoPeso === 5 ? "border-4" : "border-none"}`}>
+            <label htmlFor="valor5" className={`${styles.condicionGraficoOption} ${graficoPeso === 5 && styles.condicionChecked}`}>
             <input 
                     type="radio"
                     id="valor5"
