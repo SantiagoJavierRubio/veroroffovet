@@ -57,6 +57,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           capture="environment"
           onChange={handleFileChange}
           required
+          autoFocus
         />
       </div>
       <div className={styles.labeledInput}>

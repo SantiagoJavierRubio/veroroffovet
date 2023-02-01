@@ -49,9 +49,17 @@ export type FormularioData = {
   fotoPerfil: attachment | null
   fotoArriba: attachment | null
   estudios: attachment[]
+  disponibilidad: {
+    [key: string]: string | undefined
+    lunes: string | undefined
+    martes: string | undefined
+    miercoles: string | undefined
+    jueves: string | undefined
+    viernes: string | undefined
+  }
 }
 
-export const DEFAULT_VALUES = {
+export const DEFAULT_VALUES: FormularioData = {
   nombreTutor: '',
   apellidoTutor: '',
   mail: '',
@@ -72,5 +80,12 @@ export const DEFAULT_VALUES = {
   costillas: 0,
   fotoPerfil: null,
   fotoArriba: null,
-  estudios: []
+  estudios: [],
+  disponibilidad: {
+    lunes: undefined,
+    martes: undefined,
+    miercoles: undefined,
+    jueves: undefined,
+    viernes: undefined
+  }
 }

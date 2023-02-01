@@ -7,6 +7,7 @@ import Tutor from '@/components/Formulario/Tutor'
 import PacienteBase from '@/components/Formulario/PacienteBase'
 import PacienteCondicion from '@/components/Formulario/PacienteCondicion'
 import Adjuntos from '@/components/Formulario/Adjuntos'
+import Disponibilidad from '@/components/Formulario/Disponibilidad'
 
 import type { FormularioData } from '@/components/Formulario/formularioHelpers'
 import { DEFAULT_VALUES } from '@/components/Formulario/formularioHelpers'
@@ -43,7 +44,8 @@ export default function Formulario() {
               update={update}
               key="pacienteCondicion"
             />,
-            <Adjuntos update={update} key="adjuntos" />
+            <Adjuntos update={update} key="adjuntos" />,
+            <Disponibilidad data={data} update={update} key="disponibilidad" />
           ]}
           submitFunction={submit}
         />

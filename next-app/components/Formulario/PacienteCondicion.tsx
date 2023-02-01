@@ -43,6 +43,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
             value={data.peso}
             onChange={handleChange}
             required
+            autoFocus
             className="grow basis-5/6"
           />
           <span className="mt-2 ml-1 font-bold">Kg</span>
