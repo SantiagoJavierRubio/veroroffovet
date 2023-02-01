@@ -30,7 +30,7 @@ export default function Formulario() {
 
   return (
     <Layout title="Asesorias nutricionales - Formulario">
-      <h1 className="my-4 text-center text-4xl font-bold text-primary">
+      <h1 className="text-primary my-4 text-center text-4xl font-bold">
         Solicitar asesoria nutricional
       </h1>
       <div className={styles.form}>

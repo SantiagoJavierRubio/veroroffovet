@@ -31,7 +31,7 @@ const BottomLink = () => (
 export default function Asesorias() {
   return (
     <Layout title="Asesorias nutricionales">
-      <h1 className="mt-8 text-center text-6xl font-extrabold text-primary">
+      <h1 className="text-primary mt-8 text-center text-6xl font-extrabold">
         Asesorias nutricionales
       </h1>
       <h2 className="mt-6 px-4 text-2xl font-bold text-black">
@@ -198,7 +198,7 @@ export default function Asesorias() {
       </ul>
       <h3
         id="bottom-remarks"
-        className="my-6 text-center text-4xl font-bold text-primary underline"
+        className="text-primary my-6 text-center text-4xl font-bold underline"
       >
         Consideraciones generales
       </h3>
@@ -235,7 +235,7 @@ export default function Asesorias() {
       </div>
       <div className="mt-6 flex w-full justify-center">
         <Link href="/asesorias/formulario" className="m-auto">
-          <button className="max-w-full rounded-lg bg-primary p-6 text-2xl font-bold">
+          <button className="bg-primary max-w-full rounded-lg p-6 text-2xl font-bold">
             Solicitar una asesoria
           </button>
         </Link>
