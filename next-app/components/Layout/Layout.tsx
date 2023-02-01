@@ -1,26 +1,21 @@
-import Head from "./Head";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
-import { PropsWithChildren } from "react";
+import Head from './Head'
+import Footer from './Footer'
+import NavBar from './NavBar'
+import { PropsWithChildren } from 'react'
 
 interface LayoutProps {
-    title?: string;
-    description?: string;
+  title?: string
+  description?: string
 }
 
 export default function Layout(props: PropsWithChildren<LayoutProps>) {
-    const { title, description, children } = props
-    return(
-        <>
-            <Head 
-                title={title}
-                description={description}
-            />
-            <NavBar />
-            <main className="w-full min-h-screen">
-                {children}
-            </main>
-            <Footer />
-        </>
-    )
+  const { title, description, children } = props
+  return (
+    <>
+      <Head title={title} description={description} />
+      <NavBar />
+      <main className="min-h-screen w-full">{children}</main>
+      <Footer />
+    </>
+  )
 }

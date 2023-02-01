@@ -1,9 +1,5 @@
-import Layout from "@/components/Layout/Layout"
+import Layout from '@/components/Layout/Layout'
 
 export default function Recursos() {
-  return (
-    <Layout title="Recursos">
-        recursos
-    </Layout>
-  )
+  return <Layout title="Recursos">recursos</Layout>
 }

@@ -4,6 +4,9 @@
 .labeledInput {
     @apply text-primary grid auto-cols-auto max-w-full w-3/5 m-auto my-2
 }
+.form > form > div {
+    @apply text-primary font-bold
+}
 .form > form > h3 {
     @apply text-primary font-bold text-center text-4xl
 }
