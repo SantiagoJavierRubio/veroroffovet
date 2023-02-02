@@ -29,15 +29,8 @@ export default function FileUploader({
   multiple = false
 }: FileUploaderProps) {
   const inputRef = useRef<HTMLInputElement>(null)
-  useEffect(() => {
-    if (!inputRef.current) return
-    window.addEventListener('drop', e => e.preventDefault())
-    window.addEventListener('dragOver', e => e.preventDefault())
-    return () => {
-      window.removeEventListener('drop', e => e.preventDefault())
-      window.removeEventListener('dragOver', e => e.preventDefault())
-    }
-  }, [inputRef])
+  // TODO: Edit to handle new change function
+  // TODO: Add a separate function to send files to new change func
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     if (!inputRef.current) return

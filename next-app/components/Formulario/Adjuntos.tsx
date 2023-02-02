@@ -19,6 +19,7 @@ function convertToBase64(file: File) {
 
 export default function Adjuntos(props: AdjuntosProps) {
   const { update, data } = props
+  // TODO: Create a version to send to new FileUploader element
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return
     if (e.target.files.length > 1 || e.target.id === 'estudios') {
