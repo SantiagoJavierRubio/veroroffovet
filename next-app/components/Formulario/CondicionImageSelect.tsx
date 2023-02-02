@@ -22,11 +22,11 @@ export default function CondicionImageSelect(props: CondicionImageSelectProps) {
     update({ graficoPeso: parseInt(e.target.value) })
   }
   return (
-    <div className="m-auto my-2 grid w-3/5 max-w-full auto-cols-auto text-primary">
+    <div className="text-primary m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
       <label htmlFor="graficoPeso" className="font-semibold">
         En que numero te parece que esta tu {especieSexada}
       </label>
-      <div className="mt-4 flex flex-wrap items-center gap-2">
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
         <label
           htmlFor="valor1"
           className={`${styles.condicionGraficoOption} ${

@@ -31,7 +31,7 @@ export default function Formulario() {
 
   return (
     <Layout title="Asesorias nutricionales - Formulario">
-      <h1 className="text-primary my-4 text-center text-4xl font-bold">
+      <h1 className="text-secondary my-4 text-center text-4xl font-bold">
         Solicitar asesoria nutricional
       </h1>
       <div className={styles.form}>
@@ -44,7 +44,7 @@ export default function Formulario() {
               update={update}
               key="pacienteCondicion"
             />,
-            <Adjuntos update={update} key="adjuntos" />,
+            <Adjuntos update={update} data={data} key="adjuntos" />,
             <Disponibilidad data={data} update={update} key="disponibilidad" />
           ]}
           submitFunction={submit}

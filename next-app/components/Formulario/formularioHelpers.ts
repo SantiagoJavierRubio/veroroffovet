@@ -57,6 +57,7 @@ export type FormularioData = {
     jueves: string | undefined
     viernes: string | undefined
   }
+  aclaraciones: string | undefined
 }
 
 export const DEFAULT_VALUES: FormularioData = {
@@ -87,5 +88,6 @@ export const DEFAULT_VALUES: FormularioData = {
     miercoles: undefined,
     jueves: undefined,
     viernes: undefined
-  }
+  },
+  aclaraciones: undefined
 }

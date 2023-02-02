@@ -1,9 +1,10 @@
 import FormStep from '../MultiStepForm/FormStep'
 import { FormularioData } from './formularioHelpers'
-import styles from '../../styles/MultistepForm.module.css'
+import FileUploader from '../FileUploader'
 import { ChangeEvent } from 'react'
 
 interface AdjuntosProps {
+  data: FormularioData
   update: (newData: Partial<FormularioData>) => void
 }
 
@@ -17,7 +18,7 @@ function convertToBase64(file: File) {
 }
 
 export default function Adjuntos(props: AdjuntosProps) {
-  const { update } = props
+  const { update, data } = props
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return
     if (e.target.files.length > 1 || e.target.id === 'estudios') {
@@ -59,7 +60,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           capture="environment"
           onChange={handleFileChange}
           required
-          className="m-4 rounded-sm"
+          className="m-4 rounded-sm font-normal"
           autoFocus
         />
       </div>
@@ -73,23 +74,37 @@ export default function Adjuntos(props: AdjuntosProps) {
           accept="image/*"
           capture="environment"
           onChange={handleFileChange}
-          className="m-4 rounded-sm"
+          className="m-4 rounded-sm font-normal"
           required
         />
       </div>
       <div className="m-auto my-2 grid w-3/5 max-w-full auto-cols-auto">
         <label htmlFor="estudios" className="text-xl font-bold">
-          Estudios, informes, etc
+          Estudios, informes, etc.{' '}
+          <span className="text-base font-normal italic">
+            (opcional)
+            <br />
+            Tambien podes mandarme alguna foto de su carita para que lo vaya
+            conociendo
+          </span>
         </label>
         <input
           id="estudios"
           type="file"
           accept="image/*,.pdf,.docx,.doc,application/msword,.xml,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           onChange={handleFileChange}
-          className="m-4 rounded-sm"
+          className="m-4 rounded-sm font-normal"
           multiple
         />
       </div>
+      <FileUploader
+        dropInstruction="Arrastra tu archivo aqui"
+        id="holis"
+        required={true}
+        capture="environment"
+        accept="image/*"
+        onChange={handleFileChange}
+      />
     </FormStep>
   )
 }

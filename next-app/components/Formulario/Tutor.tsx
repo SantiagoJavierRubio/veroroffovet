@@ -57,7 +57,9 @@ export default function Tutor(props: TutorProps) {
         />
       </div>
       <div className={styles.labeledInput}>
-        <label htmlFor="celular">Celular</label>
+        <label htmlFor="celular">
+          Celular <span className="font-normal italic">(opcional)</span>
+        </label>
         <input
           type="text"
           id="celular"

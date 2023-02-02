@@ -6,11 +6,11 @@ import Link from 'next/link'
 const CommonDetails = () => {
   return (
     <>
-      <p className="my-4 px-4 text-base italic text-red-500">
+      <p className="my-4 px-4 text-base italic text-red-400">
         * En pacientes con patologias se aconsejan controles periodicos hasta la
         estabilizacion de la misma. La frecuencia dependera de cada caso.
       </p>
-      <p className="my-4 px-4 text-base italic text-red-500">
+      <p className="my-4 px-4 text-base italic text-red-400">
         * Para cachorros, debido a su velocidad de crecimiento muy rapida, es
         necesario hacer reformulaciones de la dieta hasta que lleguen a edad
         adulta. La frecuencia de las mismas dependera de la edad y tala del

@@ -52,12 +52,16 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           />
           <span className="mt-2 ml-1 font-bold">Kg</span>
         </div>
-        <p className="ml-2 mt-2 text-base italic">
+        <p className="ml-2 mt-2 font-normal italic">
           * Para pesarlo en casa con balanza de piso: pesarse con el animal
-          alzado, luego sin el y hacer la resta.
+          alzado, luego sin el y hacer la resta. Por ejemplo:
           <br />
-          Por ejemplo: humano + animal = 70kg; humano = 60kg; Peso del animal =
-          {'>'} 70kg - 60kg = 10Kg
+          <span className="ml-2">
+            {'-'} Humano + animal = 70kg; humano = 60kg; <br />
+          </span>
+          <span className="ml-2">
+            {'-'} Peso del animal ={'>'} 70kg - 60kg = 10Kg
+          </span>
         </p>
       </div>
       <div className={styles.labeledInput}>
@@ -125,7 +129,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           espacio intercostal compuesto por musculo. Que opcion describe mejor
           tu experiencia?
         </p>
-        <div className="mt-4 flex flex-col items-start justify-evenly gap-2">
+        <div className="mt-4 flex flex-col items-start justify-evenly gap-4 pl-4">
           {COSTILLAS_TEXT.map((opt, index) => (
             <div key={index}>
               <input
