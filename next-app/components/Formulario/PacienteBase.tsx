@@ -46,10 +46,15 @@ export default function PacienteBase(props: PacienteBaseProps) {
           id="especie"
           value={data.especie}
           onChange={handleChange}
+          className="capitalize"
           required
         >
-          <option value={ESPECIES.GATO}>{ESPECIES.GATO}</option>
-          <option value={ESPECIES.PERRO}>{ESPECIES.PERRO}</option>
+          <option value={ESPECIES.GATO} className="capitalize">
+            {ESPECIES.GATO}
+          </option>
+          <option value={ESPECIES.PERRO} className="capitalize">
+            {ESPECIES.PERRO}
+          </option>
         </select>
       </div>
       <div className={styles.labeledInput}>
@@ -82,6 +87,10 @@ export default function PacienteBase(props: PacienteBaseProps) {
               id="true"
               onChange={handleCheckboxToggle}
               checked={data.castrado}
+              className="invisible relative after:content-{''}
+              after:rounded-full after:border-2 after:absolute after:top-0 after:left-0
+              after:w-3 after:h-3 after:visible after:border-black after:cursor-pointer
+              after:p-1 checked:after:bg-secondary after:bg-contain after:bg-transparent"
             />
           </div>
           <div className={styles.radioOption}>
@@ -92,6 +101,10 @@ export default function PacienteBase(props: PacienteBaseProps) {
               id="false"
               onChange={handleCheckboxToggle}
               checked={!data.castrado}
+              className="invisible relative after:content-{''}
+              after:rounded-full after:border-2 after:absolute after:top-0 after:left-0
+              after:w-3 after:h-3 after:visible after:border-black after:cursor-pointer
+              after:p-1 checked:after:bg-secondary after:bg-contain after:bg-transparent"
             />
           </div>
         </div>

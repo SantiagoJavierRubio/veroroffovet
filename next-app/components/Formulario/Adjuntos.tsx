@@ -48,8 +48,10 @@ export default function Adjuntos(props: AdjuntosProps) {
   }
   return (
     <FormStep title="Imagenes y archivos">
-      <div className={styles.labeledInput}>
-        <label htmlFor="fotoArriba">Foto desde arriba</label>
+      <div className="m-auto my-2 mt-8 grid w-3/5 max-w-full auto-cols-auto">
+        <label htmlFor="fotoArriba" className="text-xl font-bold">
+          Foto desde arriba
+        </label>
         <input
           id="fotoArriba"
           type="file"
@@ -57,27 +59,34 @@ export default function Adjuntos(props: AdjuntosProps) {
           capture="environment"
           onChange={handleFileChange}
           required
+          className="m-4 rounded-sm"
           autoFocus
         />
       </div>
-      <div className={styles.labeledInput}>
-        <label htmlFor="fotoPerfil">Foto de lado</label>
+      <div className="m-auto my-2 grid w-3/5 max-w-full auto-cols-auto">
+        <label htmlFor="fotoPerfil" className="text-xl font-bold">
+          Foto de lado
+        </label>
         <input
           id="fotoPerfil"
           type="file"
           accept="image/*"
           capture="environment"
           onChange={handleFileChange}
+          className="m-4 rounded-sm"
           required
         />
       </div>
-      <div className={styles.labeledInput}>
-        <label htmlFor="estudios">Estudios, informes, etc</label>
+      <div className="m-auto my-2 grid w-3/5 max-w-full auto-cols-auto">
+        <label htmlFor="estudios" className="text-xl font-bold">
+          Estudios, informes, etc
+        </label>
         <input
           id="estudios"
           type="file"
           accept="image/*,.pdf,.docx,.doc,application/msword,.xml,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           onChange={handleFileChange}
+          className="m-4 rounded-sm"
           multiple
         />
       </div>

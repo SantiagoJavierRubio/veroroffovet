@@ -59,6 +59,7 @@ export default function Disponibilidad(props: DisponibilidadProps) {
               disabled={!checkedDays.includes(day)}
               className="min-h-[3rem] rounded-md p-2"
               placeholder="Horarios"
+              required={checkedDays.includes(day)}
             />
           </div>
         ))}

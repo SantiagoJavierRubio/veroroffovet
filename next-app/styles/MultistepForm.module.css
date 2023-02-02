@@ -2,7 +2,7 @@
     @apply  p-6 m-auto rounded-md border-primary border-2 max-w-full w-4/5
 }
 .labeledInput {
-    @apply text-primary grid auto-cols-auto max-w-full w-3/5 m-auto my-2
+    @apply grid auto-cols-auto max-w-full w-3/5 m-auto my-2
 }
 .form > form > div {
     @apply text-primary font-bold
@@ -14,10 +14,10 @@
     @apply font-bold border-2 rounded-lg py-2 px-4 text-stone-50
 }
 .labeledInput label {
-    @apply font-bold
+    @apply font-bold text-primary 
 }
 .labeledInput input, .labeledInput select, .labeledInput textarea {
-    @apply p-2 rounded-sm
+    @apply p-2 rounded-sm bg-secondary text-white
 }
 .labeledInput > select {
     @apply max-w-full
@@ -26,7 +26,7 @@
     @apply flex flex-col items-center gap-2 p-2 font-semibold
 }
 .aclaracion {
-    @apply italic text-base ml-1
+    @apply italic text-base ml-1 mt-2
 }
 .condicionGraficoOption {
     @apply p-4 min-w-[126px] h-[136px] relative border-4 border-transparent rounded-sm

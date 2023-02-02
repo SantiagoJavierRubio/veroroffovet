@@ -113,9 +113,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       <p>En el grafico elegi la opcion numero ${setBoldText(
         graficoPeso.toString()
       )}</p>
-      <p>Para contarle las costillas ${setBoldText(
-        COSTILLAS_TEXT[costillas]
-      )}</p>
+      <p>Al palparle las costillas ${setBoldText(COSTILLAS_TEXT[costillas])}</p>
       <h3>Foto desde arriba</h3>
       <img src="cid:${fotoArriba?.filename}" style="max-width: 500px" />
       <br />

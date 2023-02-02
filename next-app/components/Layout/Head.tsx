@@ -34,16 +34,6 @@ export default function Head(props: HeadProps) {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin={''}
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap"
-        rel="stylesheet"
-      />
     </NextHead>
   )
 }

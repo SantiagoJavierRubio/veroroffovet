@@ -30,6 +30,10 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
       update({ [e.target.id]: parseFloat(e.target.value) })
     } else update({ [e.target.id]: e.target.value })
   }
+
+  const setCostillasCheck = (index: number) => {
+    update({ costillas: index })
+  }
   return (
     <FormStep title="Condicion del paciente">
       <div className={styles.labeledInput}>
@@ -48,7 +52,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           />
           <span className="mt-2 ml-1 font-bold">Kg</span>
         </div>
-        <p className="ml-4 text-base italic">
+        <p className="ml-2 mt-2 text-base italic">
           * Para pesarlo en casa con balanza de piso: pesarse con el animal
           alzado, luego sin el y hacer la resta.
           <br />
@@ -113,7 +117,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         update={update}
       />
       <div className={styles.labeledInput}>
-        <label htmlFor="costillas">Cuenta de costillas</label>
+        <label htmlFor="costillas">Palpacion de costillas</label>
         <p className={styles.aclaracion}>
           Tocale la zona de las costillas con la yema de los dedos e intenta
           contar las costillas ejerciendo una leve presion: deberias sentir una
@@ -121,13 +125,31 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           espacio intercostal compuesto por musculo. Que opcion describe mejor
           tu experiencia?
         </p>
-        <select id="costillas" value={data.costillas} onChange={handleChange}>
+        <div className="mt-4 flex flex-col items-start justify-evenly gap-2">
           {COSTILLAS_TEXT.map((opt, index) => (
-            <option key={index} value={index}>
-              {opt}
-            </option>
+            <div key={index}>
+              <input
+                type="radio"
+                name="costillas"
+                checked={data.costillas === index}
+                onChange={() => setCostillasCheck(index)}
+                value={index}
+                className="invisible relative mr-2 after:content-{''}
+                after:rounded-full after:border-2 after:absolute after:top-0 after:left-0
+                after:w-3 after:h-3 after:visible after:border-black after:cursor-pointer
+                after:p-1 checked:after:bg-secondary after:bg-contain after:bg-transparent"
+              />
+              <label
+                className={`cursor-pointer ${
+                  data.costillas === index && 'font-extrabold'
+                }`}
+                onClick={() => setCostillasCheck(index)}
+              >
+                {opt}
+              </label>
+            </div>
           ))}
-        </select>
+        </div>
       </div>
     </FormStep>
   )

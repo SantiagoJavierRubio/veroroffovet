@@ -18,7 +18,7 @@ body {
 }
 
 #backBtn {
-  @apply bg-secondary
+  @apply bg-gray-500
 }
 #continueBtn {
   @apply bg-primary
