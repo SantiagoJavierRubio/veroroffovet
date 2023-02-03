@@ -12,7 +12,7 @@
 }
 .dietDescription, .dietDetails {
     animation: appear 0.1s ease-in-out;
-    @apply px-12 text-primary font-semibold
+    @apply px-4 sm:px-12 text-primary font-semibold
 }
 .dietDescription {
     padding-top: 0.75rem;

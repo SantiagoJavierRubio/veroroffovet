@@ -48,9 +48,9 @@ export default function NavBar() {
   }, [])
   return (
     <nav
-      className="bg-primary border-secondary fixed bottom-0 left-0 grid 
-      min-h-fit w-full grid-flow-col grid-cols-4 justify-center gap-4 p-4 shadow-lg sm:absolute
-      sm:top-0 sm:bottom-full sm:border-b-2 md:px-16 lg:px-32"
+      className="bg-primary border-secondary fixed bottom-0 left-0 z-50 
+      grid min-h-fit w-full grid-flow-col grid-cols-4 justify-center gap-4 p-4 shadow-lg
+      sm:absolute sm:top-0 sm:bottom-full sm:border-b-2 md:px-16 lg:px-32"
     >
       <Link href="/">
         <LinkButton

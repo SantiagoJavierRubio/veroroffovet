@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <footer>Links y eso aqui</footer>
+  return <footer className="hidden sm:block">Links y eso aqui</footer>
 }
