@@ -116,9 +116,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       <p>Al palparle las costillas ${setBoldText(COSTILLAS_TEXT[costillas])}</p>
       <h3>Foto desde arriba</h3>
       <img src="cid:${fotoArriba?.filename}" style="max-width: 500px" />
+      <p>${fotoArriba?.filename}</p>
       <br />
       <h3>Foto de perfil</h3>
       <img src="cid:${fotoPerfil?.filename}" style="max-width: 500px" />
+      <p>${fotoPerfil?.filename}</p>
       <div>
         <h3>Disponibilidad horaria:</h3>
         <table style="border: 1px solid;">

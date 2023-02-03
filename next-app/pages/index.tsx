@@ -12,7 +12,7 @@ export default function Home() {
         width={300}
         height={300}
         alt="logo"
-        className="fixed bottom-0 right-0"
+        className="bottom-0 right-0 hidden sm:fixed"
         priority
       />
     </Layout>

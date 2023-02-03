@@ -1,50 +1,65 @@
-import { ChangeEvent, DragEvent, useEffect, useRef } from 'react'
+import { ChangeEvent, DragEvent, useState } from 'react'
 import Image from 'next/image'
 
-interface FileUploaderProps {
+export interface FileInputs {
+  files: FileList
+  fieldId: string
+}
+
+interface MinimalFileData {
+  filename: string
+}
+
+export interface RemoveFileInput {
+  fieldId: string
+  index?: number
+}
+
+interface FileUploaderProps<T> {
   dropInstruction?: string
   accept: string
   required: boolean
   capture: boolean | 'user' | 'environment' | undefined
   logoURL?: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  uploadFiles: (data: FileInputs) => void
+  removeFiles: (data: RemoveFileInput) => void
   id: string
-  value?: {
-    name: string
-    size: string
-    extension: string
-  }
   multiple?: boolean
+  values: T[]
 }
 
-export default function FileUploader({
+export default function FileUploader<T extends MinimalFileData | null>({
   required,
   capture,
   logoURL,
   accept,
-  onChange,
+  uploadFiles,
+  removeFiles,
   id,
-  value,
+  values,
   dropInstruction,
   multiple = false
-}: FileUploaderProps) {
-  const inputRef = useRef<HTMLInputElement>(null)
-  // TODO: Edit to handle new change function
-  // TODO: Add a separate function to send files to new change func
+}: FileUploaderProps<T>) {
+  if (values[0]) values[0].filename
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    if (!e.target.files) return
+    uploadFiles({ fieldId: id, files: e.target.files })
+  }
+
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
-    if (!inputRef.current) return
     if (!multiple && e.dataTransfer.files.length > 1)
       return alert('Too many files for this field')
-    inputRef.current.files = e.dataTransfer.files
+    uploadFiles({ fieldId: id, files: e.dataTransfer.files })
   }
   return (
     <div
-      className="flex flex-col items-center justify-center gap-8 rounded-md border-4 border-dashed border-gray-500/10 bg-transparent p-8"
+      className="flex flex-col items-center justify-center gap-4 rounded-md border-4 border-solid border-gray-500/10 bg-transparent p-8 sm:gap-8 sm:border-dashed"
       onDragOver={e => e.preventDefault()}
       onDrop={handleDrop}
     >
-      <p className="text-center text-xl font-bold">
+      <p className="hidden text-center text-xl font-bold sm:block">
         {dropInstruction
           ? dropInstruction
           : multiple
@@ -58,16 +73,40 @@ export default function FileUploader({
           fill={true}
         />
       </div>
+      <div className="text-center text-base font-normal italic">
+        {values.map(
+          (val, index) =>
+            val && (
+              <div
+                key={`${id}-${index}`}
+                className="flex items-center justify-center"
+              >
+                <p>{val?.filename}</p>
+                <button
+                  onClick={() =>
+                    removeFiles({
+                      fieldId: id,
+                      index: multiple ? index : undefined
+                    })
+                  }
+                  type="button"
+                  className="m-0 flex h-6 w-6 items-center justify-center rounded-sm bg-transparent p-0 text-center text-base font-bold text-red-400"
+                >
+                  X
+                </button>
+              </div>
+            )
+        )}
+      </div>
       <input
         type="file"
         required={required}
         capture={capture}
         accept={accept}
-        onChange={onChange}
+        onChange={handleChange}
         className="hidden"
         id={id}
         multiple={multiple}
-        ref={inputRef}
       />
       <label
         htmlFor={id}

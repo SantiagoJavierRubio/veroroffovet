@@ -10,9 +10,6 @@
 .form > form > h3 {
     @apply text-primary font-bold text-center text-4xl
 }
-.form button {
-    @apply font-bold border-2 rounded-lg py-2 px-4 text-stone-50
-}
 .labeledInput label {
     @apply font-bold text-primary 
 }

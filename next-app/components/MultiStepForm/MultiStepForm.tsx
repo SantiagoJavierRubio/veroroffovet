@@ -18,6 +18,7 @@ export default function MultiStepForm(props: MultiStepFormProps) {
     isLastStep
   } = useMultistepForm(pages)
 
+  // TODO Add some kind of custom validation
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (isLastStep()) return submitFunction()
@@ -26,24 +27,37 @@ export default function MultiStepForm(props: MultiStepFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="relative">
-      <div className="absolute top-2 right-2">
+      <div className="absolute -top-4 right-2 sm:top-2">
         {currentStepIndex + 1}/{steps.length}
       </div>
       {step}
       <div className="m-auto mt-4 flex max-w-4xl justify-between px-8">
         {!isFirstStep() ? (
-          <button type="button" id="backBtn" onClick={back}>
+          <button
+            className="rounded-lg border-2 py-2 px-4 font-bold text-stone-50"
+            type="button"
+            id="backBtn"
+            onClick={back}
+          >
             Atras
           </button>
         ) : (
           <div></div>
         )}
         {isLastStep() ? (
-          <button type="submit" id="finalSubmitBtn">
+          <button
+            type="submit"
+            className="rounded-lg border-2 py-2 px-4 font-bold text-stone-50"
+            id="finalSubmitBtn"
+          >
             Finalizar
           </button>
         ) : (
-          <button type="submit" id="continueBtn">
+          <button
+            type="submit"
+            className="rounded-lg border-2 py-2 px-4 font-bold text-stone-50"
+            id="continueBtn"
+          >
             Seguir
           </button>
         )}

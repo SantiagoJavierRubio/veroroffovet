@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from '../../styles/NavBar.module.css'
 
 interface LinkBtnProps {
   title: string
@@ -12,9 +11,17 @@ interface LinkBtnProps {
 const LinkButton = (props: LinkBtnProps) => {
   const { icon, title, selected } = props
   return (
-    <div className={styles.linkBtn}>
-      <Image src={icon} width={30} height={30} alt={title} />
-      <h4 className={selected ? styles.selected : ''}>{title}</h4>
+    <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md transition-all hover:shadow-xl sm:flex-row sm:gap-4 sm:px-8">
+      <div className="relative h-8 w-8 shrink-0 p-0 sm:h-10 sm:w-10 md:h-12 md:w-12">
+        <Image src={icon} fill alt={title} />
+      </div>
+      <h4
+        className={`hidden text-center font-semibold sm:inline md:text-lg ${
+          selected && 'underline underline-offset-4'
+        }`}
+      >
+        {title}
+      </h4>
     </div>
   )
 }
@@ -40,7 +47,11 @@ export default function NavBar() {
     setCurrent(setCurrentPage)
   }, [])
   return (
-    <nav className={styles.navbar}>
+    <nav
+      className="bg-primary border-secondary fixed bottom-0 left-0 grid 
+      min-h-fit w-full grid-flow-col grid-cols-4 justify-center gap-4 p-4 shadow-lg sm:absolute
+      sm:top-0 sm:bottom-full sm:border-b-2 md:px-16 lg:px-32"
+    >
       <Link href="/">
         <LinkButton
           title="Inicio"

@@ -91,3 +91,5 @@ export const DEFAULT_VALUES: FormularioData = {
   },
   aclaraciones: undefined
 }
+
+export type FormularioKey = keyof typeof DEFAULT_VALUES

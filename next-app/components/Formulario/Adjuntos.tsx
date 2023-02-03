@@ -1,7 +1,6 @@
 import FormStep from '../MultiStepForm/FormStep'
-import { FormularioData } from './formularioHelpers'
-import FileUploader from '../FileUploader'
-import { ChangeEvent } from 'react'
+import { FormularioData, attachment, FormularioKey } from './formularioHelpers'
+import FileUploader, { FileInputs, RemoveFileInput } from '../FileUploader'
 
 interface AdjuntosProps {
   data: FormularioData
@@ -19,67 +18,76 @@ function convertToBase64(file: File) {
 
 export default function Adjuntos(props: AdjuntosProps) {
   const { update, data } = props
-  // TODO: Create a version to send to new FileUploader element
-  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return
-    if (e.target.files.length > 1 || e.target.id === 'estudios') {
-      const base64Promises = Array.from(e.target.files).map(file =>
+  const handleFileChange = async ({ files, fieldId }: FileInputs) => {
+    if (!files) return
+    if (files.length > 1 || fieldId === 'estudios') {
+      const base64Promises = Array.from(files).map(file =>
         convertToBase64(file)
       )
+      const key = fieldId as FormularioKey
+      const currentFiles = data[key] as Array<attachment>
       Promise.all(base64Promises)
         .then(base64files => {
           const formattedFiles = base64files
             .map((data, index) => {
-              if (e.target.files && e.target.files[index]) {
+              if (files && files[index]) {
                 return {
-                  filename: e.target.files[index].name,
+                  filename: files[index].name,
                   data
                 }
               }
             })
             .filter(entry => !!entry)
-          update({ [e.target.id]: formattedFiles })
+          update({ [fieldId]: [...currentFiles, ...formattedFiles] })
         })
         .catch(err => console.log(err))
     } else {
-      const filename = e.target.files[0].name
-      convertToBase64(e.target.files[0])
-        .then(data => update({ [e.target.id]: { data, filename } }))
+      const filename = files[0].name
+      convertToBase64(files[0])
+        .then(data => update({ [fieldId]: { data, filename } }))
         .catch(err => console.log(err))
     }
   }
+  const removeFiles = ({ fieldId, index }: RemoveFileInput) => {
+    if (index === undefined) return update({ [fieldId]: null })
+    const key = fieldId as FormularioKey
+    const newArray = data[key] as Array<attachment>
+    newArray.splice(index, 1)
+    update({ [fieldId]: newArray })
+  }
   return (
     <FormStep title="Imagenes y archivos">
-      <div className="m-auto my-2 mt-8 grid w-3/5 max-w-full auto-cols-auto">
+      <div className="m-auto my-2 mt-8 grid w-full max-w-full auto-cols-auto sm:w-3/5">
         <label htmlFor="fotoArriba" className="text-xl font-bold">
           Foto desde arriba
         </label>
-        <input
+        <FileUploader<attachment | null>
+          dropInstruction="Arrastra tu archivo aqui"
           id="fotoArriba"
-          type="file"
-          accept="image/png image/jpg image/jpeg image/gif"
+          required={false}
           capture="environment"
-          onChange={handleFileChange}
-          required
-          className="m-4 rounded-sm font-normal"
-          autoFocus
+          accept="image/*"
+          uploadFiles={handleFileChange}
+          values={[data.fotoArriba]}
+          removeFiles={removeFiles}
         />
       </div>
-      <div className="m-auto my-2 grid w-3/5 max-w-full auto-cols-auto">
+      <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
         <label htmlFor="fotoPerfil" className="text-xl font-bold">
           Foto de lado
         </label>
-        <input
+        <FileUploader<attachment | null>
+          dropInstruction="Arrastra tu archivo aqui"
           id="fotoPerfil"
-          type="file"
-          accept="image/*"
+          required={false}
           capture="environment"
-          onChange={handleFileChange}
-          className="m-4 rounded-sm font-normal"
-          required
+          accept="image/*"
+          uploadFiles={handleFileChange}
+          values={[data.fotoPerfil]}
+          removeFiles={removeFiles}
         />
       </div>
-      <div className="m-auto my-2 grid w-3/5 max-w-full auto-cols-auto">
+      <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
         <label htmlFor="estudios" className="text-xl font-bold">
           Estudios, informes, etc.{' '}
           <span className="text-base font-normal italic">
@@ -89,23 +97,18 @@ export default function Adjuntos(props: AdjuntosProps) {
             conociendo
           </span>
         </label>
-        <input
+        <FileUploader<attachment | null>
+          dropInstruction="Arrastra tus archivos aqui"
           id="estudios"
-          type="file"
+          required={false}
+          capture={undefined}
           accept="image/*,.pdf,.docx,.doc,application/msword,.xml,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-          onChange={handleFileChange}
-          className="m-4 rounded-sm font-normal"
           multiple
+          uploadFiles={handleFileChange}
+          values={data.estudios}
+          removeFiles={removeFiles}
         />
       </div>
-      <FileUploader
-        dropInstruction="Arrastra tu archivo aqui"
-        id="holis"
-        required={true}
-        capture="environment"
-        accept="image/*"
-        onChange={handleFileChange}
-      />
     </FormStep>
   )
 }
