@@ -14,7 +14,9 @@ export default function Layout(props: PropsWithChildren<LayoutProps>) {
     <>
       <Head title={title} description={description} />
       <NavBar />
-      <main className="mb-32 min-h-screen w-full sm:mb-0">{children}</main>
+      <main className="mb-32 min-h-screen w-full sm:mt-32 sm:mb-0">
+        {children}
+      </main>
       <Footer />
     </>
   )

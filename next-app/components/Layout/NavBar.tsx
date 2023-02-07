@@ -16,7 +16,7 @@ const LinkButton = (props: LinkBtnProps) => {
         <Image src={icon} fill alt={title} />
       </div>
       <h4
-        className={`hidden text-center font-semibold sm:inline md:text-lg ${
+        className={`hidden text-center font-semibold sm:inline md:text-left md:text-lg ${
           selected && 'underline underline-offset-4'
         }`}
       >

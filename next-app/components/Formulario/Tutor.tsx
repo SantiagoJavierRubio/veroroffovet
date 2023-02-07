@@ -49,7 +49,7 @@ export default function Tutor(props: TutorProps) {
       <div className={styles.labeledInput}>
         <label htmlFor="mail">Mail</label>
         <input
-          type="text"
+          type="email"
           id="mail"
           value={data.mail}
           required
@@ -61,7 +61,7 @@ export default function Tutor(props: TutorProps) {
           Celular <span className="font-normal italic">(opcional)</span>
         </label>
         <input
-          type="text"
+          type="tel"
           id="celular"
           value={data.celular}
           onChange={handleChange}

@@ -12,10 +12,17 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
   return (
     <div className="transition-all">
       <button
-        className="w-full rounded-sm bg-primary py-2 text-xl font-bold"
+        className="bg-primary relative w-full py-2 text-2xl font-bold lg:rounded-md"
         onClick={toggleOpen}
       >
         {title}
+        <span
+          className={`text-secondary/50 absolute right-4 text-xl font-light ${
+            open ? '-rotate-90' : 'rotate-90'
+          }`}
+        >
+          {'>'}
+        </span>
       </button>
       <div className="flex flex-col justify-center align-top">
         {open && children}
