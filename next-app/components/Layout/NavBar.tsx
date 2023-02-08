@@ -11,12 +11,12 @@ interface LinkBtnProps {
 const LinkButton = (props: LinkBtnProps) => {
   const { icon, title, selected } = props
   return (
-    <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md transition-all hover:shadow-xl sm:flex-row sm:gap-4 sm:px-8">
-      <div className="relative h-8 w-8 shrink-0 p-0 sm:h-10 sm:w-10 md:h-12 md:w-12">
+    <div className="flex h-full max-w-full flex-col items-center justify-around rounded-md px-0 transition-all hover:shadow-xl sm:flex-row sm:gap-4 lg:px-8">
+      <div className="relative h-8 w-8 shrink-0 p-0 sm:h-9 sm:w-9 md:h-10 md:w-10">
         <Image src={icon} fill alt={title} />
       </div>
       <h4
-        className={`hidden text-center font-semibold sm:inline md:text-left md:text-lg ${
+        className={`hidden text-center font-semibold md:inline md:text-left md:text-xs lg:text-base ${
           selected && 'underline underline-offset-4'
         }`}
       >
@@ -30,7 +30,8 @@ const LOCATIONS = {
   INICIO: '/',
   ASESORIAS: 'asesorias',
   CLINICA: 'clinica',
-  RECURSOS: 'recursos'
+  RECURSOS: 'recursos',
+  ABOUT: 'about'
 }
 
 function setCurrentPage() {
@@ -38,6 +39,7 @@ function setCurrentPage() {
   if (loc.includes(LOCATIONS.ASESORIAS)) return LOCATIONS.ASESORIAS
   else if (loc.includes(LOCATIONS.CLINICA)) return LOCATIONS.CLINICA
   else if (loc.includes(LOCATIONS.RECURSOS)) return LOCATIONS.RECURSOS
+  else if (loc.includes(LOCATIONS.ABOUT)) return LOCATIONS.ABOUT
   else return LOCATIONS.INICIO
 }
 
@@ -46,11 +48,12 @@ export default function NavBar() {
   useEffect(() => {
     setCurrent(setCurrentPage)
   }, [])
+  const gridCols = `grid-cols-${Object.keys(LOCATIONS).length}`
   return (
     <nav
-      className="bg-primary border-secondary fixed bottom-0 left-0 z-50 
-      grid min-h-fit w-full grid-flow-col grid-cols-4 justify-center gap-4 p-4 shadow-lg
-      sm:absolute sm:top-0 sm:bottom-full sm:border-b-2 md:px-16 lg:px-32"
+      className={`bg-primary border-secondary fixed bottom-0 left-0 z-50 
+      grid min-h-fit w-full grid-flow-col  gap-4 p-4 shadow-lg ${gridCols}
+      sm:absolute sm:top-0 sm:bottom-full sm:border-b-2 md:px-16 lg:px-32`}
     >
       <Link href="/">
         <LinkButton
@@ -71,6 +74,13 @@ export default function NavBar() {
           title="Clinica a domicilio"
           icon="/svgs/veterinarian.svg"
           selected={current === LOCATIONS.CLINICA}
+        />
+      </Link>
+      <Link href="/about">
+        <LinkButton
+          title="Sobre mi"
+          icon="/svgs/stethoscope.svg"
+          selected={current === LOCATIONS.ABOUT}
         />
       </Link>
       <Link href="/recursos">

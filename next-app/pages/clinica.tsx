@@ -43,7 +43,7 @@ export default function Clinica() {
                 />
               </div>
             </div>
-            <div className="w-96 max-w-full grow">
+            <div className="w-96 max-w-full grow" id="zonasClinica">
               <h4 className="text-center text-xl">Buenos Aires</h4>
               <div className="relative m-auto aspect-square w-full">
                 <Image
@@ -127,7 +127,7 @@ const ContactForm = () => {
         />
       </div>
       <div className="m-auto my-2 grid max-w-sm auto-cols-auto text-lg font-semibold">
-        <label htmlFor="consulta">Tu consulta</label>
+        <label htmlFor="consulta">Motivo de consulta</label>
         <textarea
           id="consulta"
           value={data.consulta}
