@@ -199,43 +199,45 @@ export default function Asesorias() {
             </Expandable>
           </li>
         </ul>
-        <h3
-          id="bottom-remarks"
-          className="text-primary my-6 text-center text-4xl font-bold underline"
-        >
-          Consideraciones generales
-        </h3>
-        <div className={styles.generalRemarks}>
-          <p>
-            Si bien para los pacientes con patologías contar con análisis
-            complementarios es una condición, es aconsejable realizar en todos
-            los pacientes un chequeo sanguíneo y de orina básicos previos a la
-            consulta
-          </p>
-          <p>
-            El plan nutricional elegido será entregado vía mail dentro de los 7
-            días hábiles luego de la consulta. A partir de que se entrega el
-            material, corren los días de seguimiento correspondientes al plan.
-          </p>
-          <p>
-            En caso que prefieras una consulta presencial y residas en Capital
-            Federal (consultar barrios), Vicente López o Florida, la visita a
-            domicilio posee un costo adicional de $1000
-          </p>
-          <p>
-            Los honorarios establecidos son por animal. En caso de más de uno,
-            se realiza un descuento que se establece según cada situación
-            (especies, edades, estados de salud, etc.).
-          </p>
-          <p>
-            Medios de pago: Transferencia bancaria o Mercadopago. En caso de
-            consulta a domicilio, se acepta también efectivo
-          </p>
-          <p>
-            Días y horarios para las consultas durante el seguimiento: de lunes
-            a viernes de 9 a 19 hs
-          </p>
-        </div>
+        <article>
+          <h3
+            id="bottom-remarks"
+            className="text-primary my-6 text-center text-4xl font-bold underline"
+          >
+            Consideraciones generales
+          </h3>
+          <div className={styles.generalRemarks}>
+            <p>
+              Si bien para los pacientes con patologías contar con análisis
+              complementarios es una condición, es aconsejable realizar en todos
+              los pacientes un chequeo sanguíneo y de orina básicos previos a la
+              consulta
+            </p>
+            <p>
+              El plan nutricional elegido será entregado vía mail dentro de los
+              7 días hábiles luego de la consulta. A partir de que se entrega el
+              material, corren los días de seguimiento correspondientes al plan.
+            </p>
+            <p>
+              En caso que prefieras una consulta presencial y residas en Capital
+              Federal (consultar barrios), Vicente López o Florida, la visita a
+              domicilio posee un costo adicional de $1000
+            </p>
+            <p>
+              Los honorarios establecidos son por animal. En caso de más de uno,
+              se realiza un descuento que se establece según cada situación
+              (especies, edades, estados de salud, etc.).
+            </p>
+            <p>
+              Medios de pago: Transferencia bancaria o Mercadopago. En caso de
+              consulta a domicilio, se acepta también efectivo
+            </p>
+            <p>
+              Días y horarios para las consultas durante el seguimiento: de
+              lunes a viernes de 9 a 19 hs
+            </p>
+          </div>
+        </article>
         <div className="mt-6 flex w-full justify-center">
           <Link href="/asesorias/formulario" className="m-auto">
             <button className="bg-primary max-w-full rounded-lg p-6 text-2xl font-bold">

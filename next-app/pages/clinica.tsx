@@ -10,7 +10,7 @@ export default function Clinica() {
         Clinica a domicilio
       </h1>
       <Container>
-        <div className="text-primary mb-8 sm:ml-8">
+        <article className="text-primary mb-8 sm:ml-8">
           <h3 className="my-4 text-3xl underline">Servicios</h3>
           <p className="text-primary ml-2 text-base font-normal italic">
             Para felinos y caninos
@@ -26,8 +26,8 @@ export default function Clinica() {
               Certificados de salud
             </li>
           </ul>
-        </div>
-        <div className="text-primary mb-8 sm:mx-8">
+        </article>
+        <article className="text-primary mb-8 sm:mx-8">
           <h3 className="my-4 text-3xl underline">Zonas</h3>
           <div className="flex flex-wrap justify-evenly gap-6">
             <div className="w-96 max-w-full grow">
@@ -56,7 +56,7 @@ export default function Clinica() {
               </div>
             </div>
           </div>
-        </div>
+        </article>
         <ContactForm />
       </Container>
     </Layout>

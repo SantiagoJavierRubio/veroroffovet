@@ -24,9 +24,9 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
           {'>'}
         </span>
       </button>
-      <div className="flex flex-col justify-center align-top">
+      <article className="flex flex-col justify-center align-top">
         {open && children}
-      </div>
+      </article>
     </div>
   )
 }
