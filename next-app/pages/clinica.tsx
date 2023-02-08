@@ -43,7 +43,7 @@ export default function Clinica() {
                 />
               </div>
             </div>
-            <div className="w-96 max-w-full grow" id="zonasClinica">
+            <div className="w-96 max-w-full grow" id="zonas-clinica">
               <h4 className="text-center text-xl">Buenos Aires</h4>
               <div className="relative m-auto aspect-square w-full">
                 <Image
