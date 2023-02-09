@@ -11,8 +11,8 @@ interface LinkBtnProps {
 const LinkButton = (props: LinkBtnProps) => {
   const { icon, title, selected } = props
   return (
-    <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md px-0 transition-all hover:shadow-xl sm:flex-row md:gap-4 lg:gap-8 lg:px-8">
-      <div className="relative h-8 w-8 shrink-0 p-0 sm:h-9 sm:w-9 md:h-10 md:w-10">
+    <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md px-0 transition-all hover:shadow-xl sm:flex-row md:gap-4 lg:px-6">
+      <div className="relative h-8 w-8 shrink-0 p-0 sm:h-9 sm:w-9">
         <Image src={icon} fill alt={title} />
       </div>
       <h4
@@ -52,8 +52,8 @@ export default function NavBar() {
   return (
     <nav
       className={`bg-primary border-secondary fixed bottom-0 left-0 z-50 
-      grid min-h-fit w-full grid-flow-col gap-4 p-4 shadow-lg lg:gap-8 ${gridCols}
-      sm:absolute sm:top-0 sm:bottom-full sm:border-b-2 md:px-16 lg:px-32`}
+      grid min-h-fit w-full grid-flow-col gap-4 p-4 shadow-lg lg:gap-6 ${gridCols}
+      sm:absolute sm:top-0 sm:bottom-full sm:border-b-2 md:px-12 lg:px-20`}
     >
       <Link href="/">
         <LinkButton

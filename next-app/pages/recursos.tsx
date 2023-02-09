@@ -5,7 +5,9 @@ export default function Recursos() {
   return (
     <Layout title="Recursos">
       <Container>
-        <h2 className="text-secondary text-center text-4xl">Proximamente...</h2>
+        <h2 className="text-secondary animate-pulse text-center text-4xl">
+          Proximamente...
+        </h2>
       </Container>
     </Layout>
   )

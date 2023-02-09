@@ -12,7 +12,7 @@ export const data: Testimonio[] = [
       'Verónica es una profesional muy seria, responsable, amorosa y comprensiva. Responde todas las consultas y es súper atenta. Muy recomendable su servicio! Estoy muy agradecida. Y para todas las cosas de mi perrito, en lo clínico y nutricional, lo consulto con ella.'
   },
   {
-    tutor: 'Marta Copola',
+    tutor: 'Marta',
     paciente: 'Tom',
     texto:
       'A Tom nunca le gusto el balanceado, asi que empezamos con dieta casera cocinada hecha por la doc Veronica. Al poco tiempo ya note los cambios! Comia con ganas, hasta pedia comida!!!! Logro subir de peso y ganar musculo. Juega mucho mas. Es otro perro!! En casa estamos felices con este cambio. Muchas gracias vet!!!!!'

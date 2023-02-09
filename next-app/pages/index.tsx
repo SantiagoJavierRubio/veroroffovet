@@ -2,7 +2,11 @@ import Container from '@/components/Container'
 import Layout from '@/components/Layout/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
+import Testimonios from '@/components/Testimonios'
 import { useState, useEffect } from 'react'
+
+// TODO: Handle fixed img overlay with testimonios
+// TODO: Handle mobile or small screen display
 
 const rgb2hex = (rgb: string) =>
   `#${rgb
@@ -110,7 +114,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className="m-auto mt-4 flex max-w-xl flex-col items-stretch justify-start">
+        <div className="m-auto mt-8 flex max-w-xl flex-col items-stretch justify-start">
           <p className="border-secondary/50 text-primary w-fit self-center rounded-md border-2 p-4 text-lg font-bold italic">
             &ldquo;Si te interesa mejorar la vida de tu compa de cuatro patas no
             dudes en contactarme!&ldquo;
@@ -121,7 +125,7 @@ export default function Home() {
             <p>M.N. 10468</p>
           </div>
         </div>
-        <div>TESTIMONIOS</div>
+        <Testimonios />
       </Container>
       <aside className="fixed -right-10 -bottom-8 z-20 hidden rounded-full sm:block md:h-56 md:w-56 lg:-right-8 lg:h-72 lg:w-72 xl:-bottom-4 xl:-right-6">
         <Image

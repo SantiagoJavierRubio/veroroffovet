@@ -6,6 +6,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -ms-overflow-style: none;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
 }
 
 html,
@@ -32,3 +35,17 @@ body {
     color-scheme: dark;
   }
 }
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
