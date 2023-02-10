@@ -27,7 +27,8 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     if (e.target.type === 'number') {
-      update({ [e.target.id]: parseFloat(e.target.value) })
+      if (isNaN(parseFloat(e.target.value))) update({ [e.target.id]: 0 })
+      else update({ [e.target.id]: parseFloat(e.target.value) })
     } else update({ [e.target.id]: e.target.value })
   }
 
@@ -47,7 +48,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
             value={data.peso}
             onChange={handleChange}
             required
-            autoFocus
+            autoFocus={!data.peso}
             className="grow basis-5/6"
           />
           <span className="mt-2 ml-1 font-bold">Kg</span>

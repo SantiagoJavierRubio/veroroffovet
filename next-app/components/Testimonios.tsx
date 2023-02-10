@@ -99,7 +99,7 @@ export default function Testimonios() {
           animate={{ x: 0, opacity: '100%' }}
           transition={{ duration: 0.25 }}
         >
-          <h6 className="font-semibold">{data[currentIndex].paciente}</h6>
+          <h6 className="font-semibold">{data[currentIndex].paciente} 🐾</h6>
           <p className="ml-2 italic">&quot;{data[currentIndex].texto}&quot;</p>
           <h6 className="mt-2 text-right font-semibold">
             {data[currentIndex].tutor}

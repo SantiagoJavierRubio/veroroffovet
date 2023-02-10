@@ -3,7 +3,27 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
-// TODO: Add overlay to maps listing the locations displayed
+const BARRIOS_CABA = [
+  'Almagro',
+  'Balvanera',
+  'Belgrano',
+  'Caballito',
+  'Chacarita',
+  'Coghlan',
+  'Colegiales',
+  'La Paternal',
+  'Nuñez',
+  'Palermo',
+  'Parque Chas',
+  'Recoleta',
+  'Saavedra',
+  'Villa Crespo',
+  'Villa Pueyrredón',
+  'Villa Ortúzar',
+  'Villa Urquiza'
+]
+
+const BARRIOS_BSAS = ['Florida', 'Vicente Lopez']
 
 export default function Clinica() {
   return (
@@ -35,6 +55,13 @@ export default function Clinica() {
             <div className="w-96 max-w-full grow">
               <h4 className="text-center text-xl">Capital Federal</h4>
               <div className="relative m-auto aspect-square w-full">
+                <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">
+                  <ul className="flex-center flex h-full shrink flex-wrap items-center justify-evenly gap-6 text-lg font-bold text-stone-100">
+                    {BARRIOS_CABA.map(barrio => (
+                      <li key={barrio}>{barrio}</li>
+                    ))}
+                  </ul>
+                </div>
                 <Image
                   src="/maps/capital.jpeg"
                   alt="Zonas de C.A.B.A."
@@ -48,6 +75,13 @@ export default function Clinica() {
             <div className="w-96 max-w-full grow" id="zonas-clinica">
               <h4 className="text-center text-xl">Buenos Aires</h4>
               <div className="relative m-auto aspect-square w-full">
+                <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">
+                  <ul className="flex-center flex h-full shrink flex-wrap items-center justify-evenly gap-6 text-lg font-bold text-stone-100">
+                    {BARRIOS_BSAS.map(barrio => (
+                      <li key={barrio}>{barrio}</li>
+                    ))}
+                  </ul>
+                </div>
                 <Image
                   src="/maps/provincia.jpeg"
                   alt="Zonas de C.A.B.A."

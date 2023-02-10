@@ -37,7 +37,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           value={data.nombrePaciente}
           onChange={handleChange}
           required
-          autoFocus
+          autoFocus={!data.nombrePaciente}
         />
       </div>
       <div className={styles.labeledInput}>
