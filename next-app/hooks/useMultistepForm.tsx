@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 
 export function useMultistepForm(steps: ReactNode[]) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
 
   const isLastStep = (): boolean => {
     return currentStepIndex === steps.length - 1

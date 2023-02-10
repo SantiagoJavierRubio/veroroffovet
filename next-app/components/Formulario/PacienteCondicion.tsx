@@ -19,10 +19,11 @@ interface PacienteCondicionData {
 interface PacienteCondicionProps {
   data: PacienteCondicionData
   update: (newData: Partial<PacienteCondicionData>) => void
+  errors: Map<string, string>
 }
 
 export default function PacienteCondicion(props: PacienteCondicionProps) {
-  const { data, update } = props
+  const { data, update, errors } = props
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -31,6 +32,11 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
       else update({ [e.target.id]: parseFloat(e.target.value) })
     } else update({ [e.target.id]: e.target.value })
   }
+  const renderError = (fieldName: string) => (
+    <p className="px-2 text-right text-sm font-normal italic text-red-500">
+      {errors.has(fieldName) && '* ' + errors.get(fieldName)}
+    </p>
+  )
 
   const setCostillasCheck = (index: number) => {
     update({ costillas: index })
@@ -64,6 +70,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
             {'-'} Peso del animal ={'>'} 70kg - 60kg = 10Kg
           </span>
         </p>
+        {renderError('peso')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="otrosAnimales">
@@ -75,6 +82,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           value={data.otrosAnimales}
           onChange={handleChange}
         />
+        {renderError('otrosAnimales')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="dietaActual">
@@ -89,6 +97,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           required
           onChange={handleChange}
         />
+        {renderError('dietaActual')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="actividad">
@@ -104,6 +113,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           required
           onChange={handleChange}
         />
+        {renderError('actividad')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="antecedentes">
@@ -114,6 +124,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
           value={data.antecedentes}
           onChange={handleChange}
         />
+        {renderError('antecedentes')}
       </div>
       <CondicionImageSelect
         graficoPeso={data.graficoPeso}
@@ -121,6 +132,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         sexo={data.sexo}
         update={update}
       />
+      {renderError('graficoPeso')}
       <div className={styles.labeledInput}>
         <label htmlFor="costillas">Palpacion de costillas</label>
         <p className={styles.aclaracion}>
@@ -152,6 +164,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
               >
                 {opt}
               </label>
+              {renderError('costillas')}
             </div>
           ))}
         </div>

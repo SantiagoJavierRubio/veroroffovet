@@ -5,6 +5,7 @@ import FileUploader, { FileInputs, RemoveFileInput } from '../FileUploader'
 interface AdjuntosProps {
   data: FormularioData
   update: (newData: Partial<FormularioData>) => void
+  errors: Map<string, string>
 }
 
 function convertToBase64(file: File) {
@@ -17,7 +18,14 @@ function convertToBase64(file: File) {
 }
 
 export default function Adjuntos(props: AdjuntosProps) {
-  const { update, data } = props
+  const { update, data, errors } = props
+
+  const renderError = (fieldName: string) => (
+    <p className="px-2 text-right text-sm font-normal italic text-red-500">
+      {errors.has(fieldName) && '* ' + errors.get(fieldName)}
+    </p>
+  )
+
   const handleFileChange = async ({ files, fieldId }: FileInputs) => {
     if (!files) return
     if (files.length > 1 || fieldId === 'estudios') {
@@ -71,6 +79,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           values={[data.fotoArriba]}
           removeFiles={removeFiles}
         />
+        {renderError('fotoArriba')}
       </div>
       <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
         <label htmlFor="fotoPerfil" className="text-xl font-bold">
@@ -86,6 +95,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           values={[data.fotoPerfil]}
           removeFiles={removeFiles}
         />
+        {renderError('fotoPerfil')}
       </div>
       <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
         <label htmlFor="estudios" className="text-xl font-bold">
@@ -108,6 +118,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           values={data.estudios}
           removeFiles={removeFiles}
         />
+        {renderError('estudios')}
       </div>
     </FormStep>
   )

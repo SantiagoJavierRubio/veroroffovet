@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
-import type { FormularioData } from './formularioHelpers'
+import { FormularioData, DIET_TYPES } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
 
 interface TutorData {
@@ -14,15 +14,21 @@ interface TutorData {
 interface TutorProps {
   data: TutorData
   update: (newData: Partial<TutorData>) => void
+  errors: Map<string, string>
 }
 
 export default function Tutor(props: TutorProps) {
-  const { data, update } = props
+  const { data, update, errors } = props
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     update({ [e.target.id]: e.target.value })
   }
+  const renderError = (fieldName: string) => (
+    <p className="px-2 text-right text-sm font-normal italic text-red-500">
+      {errors.has(fieldName) && '* ' + errors.get(fieldName)}
+    </p>
+  )
   return (
     <FormStep title="Datos del tutor">
       <div className={styles.labeledInput}>
@@ -35,6 +41,7 @@ export default function Tutor(props: TutorProps) {
           autoFocus
           onChange={handleChange}
         />
+        {renderError('nombreTutor')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="apellidoTutor">Apellido</label>
@@ -45,6 +52,7 @@ export default function Tutor(props: TutorProps) {
           required
           onChange={handleChange}
         />
+        {renderError('apellidoTutor')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="mail">Mail</label>
@@ -55,6 +63,7 @@ export default function Tutor(props: TutorProps) {
           required
           onChange={handleChange}
         />
+        {renderError('mail')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="celular">
@@ -66,6 +75,7 @@ export default function Tutor(props: TutorProps) {
           value={data.celular}
           onChange={handleChange}
         />
+        {renderError('celular')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="dietaElegida">Dieta elegida</label>
@@ -75,13 +85,13 @@ export default function Tutor(props: TutorProps) {
           required
           onChange={handleChange}
         >
-          <option value="barf">BARF</option>
-          <option value="cocida">Natural cocida</option>
-          <option value="mixta">Mixta</option>
-          <option value="suplementada">
-            Suplementacion de ultraprocesados
-          </option>
+          {Object.entries(DIET_TYPES).map(([key, diet]) => (
+            <option key={key} value={diet}>
+              {diet}
+            </option>
+          ))}
         </select>
+        {renderError('dietaElegida')}
       </div>
     </FormStep>
   )

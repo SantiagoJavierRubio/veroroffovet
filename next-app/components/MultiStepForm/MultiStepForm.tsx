@@ -4,10 +4,11 @@ import { useMultistepForm } from '@/hooks/useMultistepForm'
 interface MultiStepFormProps {
   pages: ReactNode[]
   submitFunction: () => void
+  stepValidation: (index: number) => boolean
 }
 
 export default function MultiStepForm(props: MultiStepFormProps) {
-  const { pages, submitFunction } = props
+  const { pages, submitFunction, stepValidation } = props
   const {
     steps,
     step,
@@ -18,11 +19,10 @@ export default function MultiStepForm(props: MultiStepFormProps) {
     isLastStep
   } = useMultistepForm(pages)
 
-  // TODO Add some kind of custom validation
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (isLastStep()) return submitFunction()
-    forward()
+    if (stepValidation(currentStepIndex)) forward()
   }
 
   return (

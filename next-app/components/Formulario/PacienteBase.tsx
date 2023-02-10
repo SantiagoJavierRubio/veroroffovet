@@ -15,10 +15,11 @@ interface PacienteBaseData {
 interface PacienteBaseProps {
   data: PacienteBaseData
   update: (newData: Partial<PacienteBaseData>) => void
+  errors: Map<string, string>
 }
 
 export default function PacienteBase(props: PacienteBaseProps) {
-  const { data, update } = props
+  const { data, update, errors } = props
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -27,6 +28,11 @@ export default function PacienteBase(props: PacienteBaseProps) {
   const handleCheckboxToggle = (e: ChangeEvent<HTMLInputElement>) => {
     update({ castrado: e.target.id === 'true' })
   }
+  const renderError = (fieldName: string) => (
+    <p className="px-2 text-right text-sm font-normal italic text-red-500">
+      {errors.has(fieldName) && '* ' + errors.get(fieldName)}
+    </p>
+  )
   return (
     <FormStep title="Datos del paciente">
       <div className={styles.labeledInput}>
@@ -39,6 +45,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           required
           autoFocus={!data.nombrePaciente}
         />
+        {renderError('nombrePaciente')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="especie">Especie</label>
@@ -56,6 +63,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             {ESPECIES.PERRO}
           </option>
         </select>
+        {renderError('expecie')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="raza">Raza</label>
@@ -66,6 +74,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           onChange={handleChange}
           required
         />
+        {renderError('raza')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="sexo">Sexo</label>
@@ -73,6 +82,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           <option value={SEXOS.MACHO}>Macho</option>
           <option value={SEXOS.HEMBRA}>Hembra</option>
         </select>
+        {renderError('sexo')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="castrado">
@@ -108,6 +118,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
           </div>
         </div>
+        {renderError('castrado')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="edad">Edad</label>
@@ -118,6 +129,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           onChange={handleChange}
           required
         />
+        {renderError('edad')}
       </div>
     </FormStep>
   )
