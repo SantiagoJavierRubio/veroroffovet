@@ -1,13 +1,13 @@
-.form > form {
+.form form {
     @apply p-2 sm:p-6 m-auto rounded-md border-primary border-0 sm:border-2 max-w-full w-full sm:w-4/5
 }
 .labeledInput {
     @apply grid auto-cols-auto max-w-full w-full m-auto my-2 sm:w-3/5
 }
-.form > form > div {
+.form form div {
     @apply text-primary font-bold
 }
-.form > form > h3 {
+.form form h3 {
     @apply text-primary font-bold text-center text-4xl
 }
 .labeledInput label {
@@ -16,7 +16,7 @@
 .labeledInput input, .labeledInput select, .labeledInput textarea {
     @apply p-2 rounded-sm bg-secondary text-white
 }
-.labeledInput > select {
+.labeledInput select {
     @apply max-w-full
 }
 .radioOption {
