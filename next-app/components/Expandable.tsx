@@ -1,4 +1,5 @@
 import { useState, PropsWithChildren } from 'react'
+import { motion } from 'framer-motion'
 
 interface ExpandableProps {
   title: string
@@ -24,9 +25,16 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
           {'>'}
         </span>
       </button>
-      <article className="flex flex-col justify-center align-top">
-        {open && children}
-      </article>
+      <motion.article
+        className="flex origin-top flex-col justify-center align-top"
+        initial={{ scaleY: 0, opacity: 0 }}
+        animate={{ scaleY: 1, opacity: 100, display: open ? 'flex' : 'none' }}
+        exit={{ scaleY: 0, opacity: 0 }}
+        transition={{ ease: 'easeInOut', duration: 0.15 }}
+        key={`${open}`}
+      >
+        {children}
+      </motion.article>
     </div>
   )
 }
