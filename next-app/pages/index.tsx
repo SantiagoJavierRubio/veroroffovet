@@ -16,7 +16,7 @@ const rgb2hex = (rgb: string) =>
     .join('')}`
 
 export default function Home() {
-  const [docBg, setDocBg] = useState<string>('inherit')
+  const [docBg, setDocBg] = useState<string>("'#f6ece3'")
   useEffect(() => {
     const rgb = window.getComputedStyle(document.body)['backgroundColor']
     setDocBg(rgb2hex(rgb))
@@ -33,9 +33,8 @@ export default function Home() {
         <section className="flex flex-col gap-8">
           <div className="border-terciary/75 w-full rounded-md border-2 p-6 pb-8">
             <h3
-              className={`text-primary -mt-10 w-fit px-2 text-xl font-bold ${
-                'bg-[' + docBg + ']'
-              }`}
+              className="text-primary -mt-10 w-fit px-2 text-xl font-bold"
+              style={{ backgroundColor: docBg }}
             >
               Asesorias nutricionales
             </h3>
@@ -72,9 +71,8 @@ export default function Home() {
           </div>
           <div className="border-terciary/75 w-full rounded-md border-2 p-6">
             <h3
-              className={`text-primary -mt-10 w-fit px-2 text-xl font-bold ${
-                'bg-[' + docBg + ']'
-              }`}
+              className="text-primary -mt-10 w-fit px-2 text-xl font-bold"
+              style={{ backgroundColor: docBg }}
             >
               Consultas clinicas
             </h3>
@@ -127,7 +125,7 @@ export default function Home() {
         </div>
         <Testimonios />
       </Container>
-      <aside className="fixed -right-10 -bottom-8 z-20 hidden rounded-full sm:block md:h-56 md:w-56 lg:-right-8 lg:h-72 lg:w-72 xl:-bottom-4 xl:-right-6">
+      <aside className="pointer-events-none fixed -right-10 -bottom-6 z-20 hidden rounded-full sm:block md:h-56 md:w-56 lg:-right-8 lg:h-72 lg:w-72 xl:-bottom-4 xl:-right-6">
         <Image
           src="/VR_logo_noback.png"
           fill

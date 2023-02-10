@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, TouchEvent } from 'react'
 import { data } from './testimonios_data'
 import { motion } from 'framer-motion'
 
@@ -35,17 +35,34 @@ const BallCursor = ({ index, length, setIndex }: BallCursorProps) => {
 export default function Testimonios() {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [isBlocked, setIsBlocked] = useState<boolean>(false)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [isBackwards, setIsBackwards] = useState<boolean>(false)
 
   const forward = useCallback(() => {
+    if (isBackwards) setIsBackwards(false)
     if (currentIndex === data.length - 1) {
       setCurrentIndex(0)
     } else setCurrentIndex(curr => curr + 1)
-  }, [currentIndex])
+  }, [currentIndex, isBackwards])
 
   const backward = () => {
+    setIsBackwards(true)
     if (currentIndex === 0) {
       setCurrentIndex(data.length - 1)
     } else setCurrentIndex(curr => curr - 1)
+  }
+
+  const handleTouchStart = (e: TouchEvent) => {
+    setTouchStart(e.touches[0].screenX)
+  }
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    if (touchStart !== null) {
+      if (touchStart < e.changedTouches[0].screenX) {
+        backward()
+      } else forward()
+      setTouchStart(null)
+    }
   }
 
   useEffect(() => {
@@ -61,6 +78,8 @@ export default function Testimonios() {
       className="relative m-auto mt-2 h-screen w-full overflow-x-hidden sm:h-96 sm:w-4/5"
       onMouseEnter={() => setIsBlocked(true)}
       onMouseLeave={() => setIsBlocked(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <div
         className="absolute left-0 top-0 hidden h-full w-8 cursor-pointer select-none items-center justify-center text-xl  transition-all sm:flex"
@@ -74,13 +93,15 @@ export default function Testimonios() {
         <motion.div
           className="flex h-full grow flex-col justify-center gap-2 sm:px-2"
           key={currentIndex}
-          initial={{ x: '100%', opacity: '20%' }}
+          initial={{ x: isBackwards ? '-100%' : '100%', opacity: '20%' }}
           animate={{ x: 0, opacity: '100%' }}
           transition={{ duration: 0.25 }}
         >
-          <h6>{data[currentIndex].paciente}</h6>
+          <h6 className="font-semibold">{data[currentIndex].paciente}</h6>
           <p className="ml-2 italic">&quot;{data[currentIndex].texto}&quot;</p>
-          <h6 className="mt-2 text-right">{data[currentIndex].tutor}</h6>
+          <h6 className="mt-2 text-right font-semibold">
+            {data[currentIndex].tutor}
+          </h6>
         </motion.div>
         <BallCursor
           index={currentIndex}
