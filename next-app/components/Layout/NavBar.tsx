@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// TODO: Add better styles to nav buttons
+
 interface LinkBtnProps {
   title: string
   icon: string

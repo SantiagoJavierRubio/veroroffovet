@@ -1,5 +1,7 @@
 import Layout from '@/components/Layout/Layout'
 
+// TODO: Complete
+
 export default function about() {
   return (
     <Layout title="Sobre mi">

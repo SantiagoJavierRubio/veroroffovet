@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
+// TODO: Add overlay to maps listing the locations displayed
+
 export default function Clinica() {
   return (
     <Layout title="Clinica a domicilio">
