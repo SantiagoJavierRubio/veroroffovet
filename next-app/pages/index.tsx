@@ -109,12 +109,12 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className="m-auto mt-8 flex max-w-xl flex-col items-stretch justify-start">
+        <div className="m-auto mt-8 flex w-11/12 flex-col items-stretch justify-start sm:max-w-xl">
           <p className="border-secondary/50 text-primary w-fit self-center rounded-md border-2 p-4 text-lg font-bold italic">
             &ldquo;Si te interesa mejorar la vida de tu compa de cuatro patas no
             dudes en contactarme!&ldquo;
           </p>
-          <div className="bg-secondary z-10 -mt-4 mr-0 self-end rounded-lg p-4 text-center text-base italic text-stone-100 sm:-mr-8">
+          <div className="bg-secondary z-10 -mt-4 -mr-2 self-end rounded-lg p-4 text-center text-base italic text-stone-100 sm:-mr-8">
             <p>Veronica Roffo</p>
             <p>Veterinaria - U.B.A.</p>
             <p>M.N. 10468</p>
