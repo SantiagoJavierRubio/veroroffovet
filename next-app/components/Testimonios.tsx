@@ -3,6 +3,7 @@ import { data } from './testimonios_data'
 import { motion } from 'framer-motion'
 
 const CAROUSEL_AUTO_SCROLL_DELAY = 5000
+const TOUCH_SCREEN_SLIDE_TOLERANCE = 35
 
 interface BallCursorProps {
   index: number
@@ -58,9 +59,10 @@ export default function Testimonios() {
 
   const handleTouchEnd = (e: TouchEvent) => {
     if (touchStart !== null) {
-      if (touchStart < e.changedTouches[0].screenX) {
+      const dif = touchStart - e.changedTouches[0].screenX
+      if (dif < 0 && dif < TOUCH_SCREEN_SLIDE_TOLERANCE * -1) {
         backward()
-      } else forward()
+      } else if (dif > TOUCH_SCREEN_SLIDE_TOLERANCE) forward()
       setTouchStart(null)
     }
   }
