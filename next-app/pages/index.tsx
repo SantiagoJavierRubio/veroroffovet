@@ -5,9 +5,6 @@ import Link from 'next/link'
 import Testimonios from '@/components/Testimonios'
 import { useState, useEffect } from 'react'
 
-// TODO: Handle fixed img overlay with testimonios
-// TODO: Handle mobile or small screen display
-
 const rgb2hex = (rgb: string) =>
   `#${rgb
     .match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
@@ -23,17 +20,17 @@ export default function Home() {
   }, [])
   return (
     <Layout>
-      <h1 className="text-primary text-center text-5xl font-bold">
+      <h1 className="text-primary mt-4 text-center text-5xl font-bold sm:mt-0">
         Veronica Roffo
       </h1>
-      <h2 className="text-secondary font-base text-center text-xl">
+      <h2 className="text-secondary font-base p-2 text-center text-lg sm:text-xl">
         Veterinaria orientada a nutricion natural de perros y gatos.
       </h2>
       <Container>
         <section className="flex flex-col gap-8">
-          <div className="border-terciary/75 w-full rounded-md border-2 p-6 pb-8">
+          <div className="border-terciary/75 w-full rounded-md p-6 pb-8 sm:border-2">
             <h3
-              className="text-primary -mt-10 w-fit px-2 text-xl font-bold"
+              className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
               style={{ backgroundColor: docBg }}
             >
               Asesorias nutricionales
@@ -69,9 +66,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="border-terciary/75 w-full rounded-md border-2 p-6">
+          <div className="border-terciary/75 w-full rounded-md p-6 sm:border-2">
             <h3
-              className="text-primary -mt-10 w-fit px-2 text-xl font-bold"
+              className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
               style={{ backgroundColor: docBg }}
             >
               Consultas clinicas
