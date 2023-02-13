@@ -240,7 +240,7 @@ export default function Asesorias() {
         </article>
         <div className="mt-6 flex w-full justify-center">
           <Link href="/asesorias/formulario" className="m-auto">
-            <button className="bg-primary max-w-full rounded-lg p-6 text-2xl font-bold">
+            <button className="bg-secondary active:bg-secondary/90 m-auto max-w-full rounded-lg p-6 text-2xl font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner">
               Solicitar una asesoria
             </button>
           </Link>

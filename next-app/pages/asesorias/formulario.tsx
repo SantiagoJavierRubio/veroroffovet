@@ -30,6 +30,7 @@ export default function Formulario() {
 
   const submit = () => {
     setLoader('loading')
+    window.scrollTo(0, 0)
     if (validateStep(data, Infinity)) {
       fetch('/api/contact', {
         method: 'POST',

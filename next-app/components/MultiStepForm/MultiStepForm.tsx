@@ -34,7 +34,7 @@ export default function MultiStepForm(props: MultiStepFormProps) {
       <div className="m-auto mt-4 flex max-w-4xl justify-between px-8">
         {!isFirstStep() ? (
           <button
-            className="rounded-lg border-2 py-2 px-4 font-bold text-stone-50"
+            className="rounded-lg bg-gray-500 py-2 px-4 font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:bg-gray-500/90 active:shadow-inner"
             type="button"
             id="backBtn"
             onClick={back}
@@ -47,7 +47,7 @@ export default function MultiStepForm(props: MultiStepFormProps) {
         {isLastStep() ? (
           <button
             type="submit"
-            className="rounded-lg border-2 py-2 px-4 font-bold text-stone-50"
+            className=" rounded-lg  bg-green-600 py-2 px-4 font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:bg-green-600/90 active:shadow-inner"
             id="finalSubmitBtn"
           >
             Finalizar
@@ -55,7 +55,7 @@ export default function MultiStepForm(props: MultiStepFormProps) {
         ) : (
           <button
             type="submit"
-            className="rounded-lg border-2 py-2 px-4 font-bold text-stone-50"
+            className="bg-primary active:bg-primary/90 rounded-lg py-2 px-4 font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner"
             id="continueBtn"
           >
             Seguir

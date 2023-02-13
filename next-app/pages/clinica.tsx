@@ -176,7 +176,7 @@ const ContactForm = () => {
       <div className="m-auto my-4 flex max-w-sm justify-center">
         <button
           type="submit"
-          className="bg-primary m-auto w-1/3 rounded-md p-4 text-lg font-bold text-stone-100"
+          className="bg-primary active:bg-primary/90 m-auto w-1/3 rounded-lg py-4 font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner"
         >
           Enviar
         </button>

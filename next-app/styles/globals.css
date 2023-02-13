@@ -20,16 +20,6 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
-#backBtn {
-  @apply bg-gray-500
-}
-#continueBtn {
-  @apply bg-primary
-}
-#finalSubmitBtn {
-  @apply bg-green-600
-}
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
