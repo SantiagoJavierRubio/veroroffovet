@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-// TODO: Add better styles to nav buttons
-
 interface LinkBtnProps {
   title: string
   icon: string
@@ -13,8 +11,13 @@ interface LinkBtnProps {
 const LinkButton = (props: LinkBtnProps) => {
   const { icon, title, selected } = props
   return (
-    <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md px-0 transition-all hover:shadow-xl sm:flex-row md:gap-4 lg:px-6">
-      <div className="relative h-8 w-8 shrink-0 p-0 sm:h-9 sm:w-9">
+    <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md px-0 transition-all hover:scale-105 active:scale-95 sm:flex-row md:gap-4 lg:px-6">
+      <div
+        className={`relative h-8 w-8 shrink-0 p-0 sm:h-9 sm:w-9 sm:bg-transparent sm:ring-0 sm:ring-offset-0 ${
+          selected &&
+          'ring-offset-primary/80 bg-secondary/10 ring-secondary/40 rounded-full ring-1 ring-offset-8'
+        }`}
+      >
         <Image src={icon} fill alt={title} />
       </div>
       <h4
