@@ -86,7 +86,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="castrado">
-          Esta castrad{data.sexo === SEXOS.MACHO ? 'o' : 'a'}?
+          ¿Está castrad{data.sexo === SEXOS.MACHO ? 'o' : 'a'}?
         </label>
         <div className="flex justify-around">
           <div className={styles.radioOption}>

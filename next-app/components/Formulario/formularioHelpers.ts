@@ -5,7 +5,7 @@ export const DIET_TYPES = {
   BARF: 'BARF',
   COCIDA: 'Natural cocida',
   MIXTA: 'Mixta',
-  SUPLEMENTADA: 'Suplementacion de ultraprocesados',
+  SUPLEMENTADA: 'Suplementación de ultraprocesados',
   NSNC: 'No se'
 }
 
@@ -21,9 +21,9 @@ export const SEXOS = {
 
 export const COSTILLAS_TEXT = [
   'Es imposible contarle las costillas',
-  'Pude contarlas pero tuve que hacer mucha presion para sentirlas',
-  'Las conte con facilidad',
-  'Ni necesite palpar, se ven a simple vista'
+  'Pude contarlas pero tuve que hacer mucha presión para sentirlas',
+  'Las conté con facilidad',
+  'Ni necesité palpar, se ven a simple vista'
 ]
 
 export interface attachment {

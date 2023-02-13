@@ -8,14 +8,14 @@ const CommonDetails = () => {
   return (
     <>
       <p className="my-4 px-4 text-base italic text-red-400">
-        * En pacientes con patologias se aconsejan controles periodicos hasta la
-        estabilizacion de la misma. La frecuencia dependera de cada caso.
+        * En pacientes con patologías se aconsejan controles periódicos hasta la
+        estabilización de la misma. La frecuencia dependerá de cada caso.
       </p>
       <p className="my-4 px-4 text-base italic text-red-400">
-        * Para cachorros, debido a su velocidad de crecimiento muy rapida, es
+        * Para cachorros, debido a su velocidad de crecimiento muy rápida, es
         necesario hacer reformulaciones de la dieta hasta que lleguen a edad
-        adulta. La frecuencia de las mismas dependera de la edad y tala del
-        animal (sera evaluado en la consulta)
+        adulta. La frecuencia de las mismas dependerá de la edad y talla del
+        animal (será evaluado en la consulta)
       </p>
     </>
   )
@@ -33,7 +33,7 @@ export default function Asesorias() {
   return (
     <Layout title="Asesorias nutricionales">
       <h1 className="text-primary mt-8 text-center text-6xl font-extrabold">
-        Asesorias nutricionales
+        Asesorías nutricionales
       </h1>
       <Container>
         <h2 className="mt-6 px-4 text-2xl font-bold text-black">
@@ -44,33 +44,33 @@ export default function Asesorias() {
             <Expandable title="Dieta BARF">
               <p className={styles.dietDescription}>
                 Sus siglas significan “Biologically Appropiate Raw Food”, en
-                castellano “Alimentación Cruda Biologicamente Apropiada” (ACBA).
-                <br /> Consiste en una dieta cruda que intenta imitar lo mas
+                castellano “Alimentación Cruda Biológicamente Apropiada” (ACBA).
+                <br /> Consiste en una dieta cruda que intenta imitar lo más
                 posible la presa que nuestros carnívoros a cargo consumirían en
-                la naturaleza. Animales con ciertas patologías diagnosticadas y
-                humanos inmunosuprimidos pueden no ser aptos para una dieta
-                BARF.
+                la naturaleza. Animales con ciertas patologías diagnosticadas o
+                que convivan con humanos inmunosuprimidos pueden no ser aptos
+                para una dieta BARF.
               </p>
               <div className={styles.dietDetails}>
                 <h4>Incluye:</h4>
                 <ul>
                   <li>Consulta por videollamada</li>
                   <li>Archivo PDF con la dieta</li>
-                  <li>Guia de transicion hacia la nueva dieta</li>
+                  <li>Guía de transición hacia la nueva dieta</li>
                   <li>
-                    Recetas utiles, listado de suplementos, cortes de carne
-                    economicos, etc
+                    Recetas útiles, listado de suplementos, cortes de carne
+                    económicos, etc
                   </li>
                   <li>
-                    Seguimiento via mail durante 30 dias para despejar dudas que
+                    Seguimiento vía mail durante 30 días para despejar dudas que
                     surjan durante el proceso
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
                 <p className={styles.price}>$6500</p>
                 <p className={styles.priceDetail}>
-                  Si por algun motivo el acompanamiento inicial supera el mes,
-                  se debera abonar un control de $3000
+                  Si por algún motivo el acompañamiento inicial superara el mes,
+                  se deberá abonar un control de $3000
                 </p>
                 <p className={styles.priceDetail}>
                   En pacientes sanos se aconseja un control a los 6 meses y
@@ -95,21 +95,21 @@ export default function Asesorias() {
                 <ul>
                   <li>Consulta por videollamada</li>
                   <li>Archivo PDF con la dieta</li>
-                  <li>Guia de transicion hacia la nueva dieta</li>
+                  <li>Guía de transición hacia la nueva dieta</li>
                   <li>
-                    Recetas utiles, listado de suplementos, cortes de carne
-                    economicos, etc
+                    Recetas útiles, listado de suplementos, cortes de carne
+                    económicos, etc
                   </li>
                   <li>
-                    Seguimiento via mail durante 30 dias para despejar dudas que
+                    Seguimiento vía mail durante 30 dias para despejar dudas que
                     surjan durante el proceso
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
                 <p className={styles.price}>$6500</p>
                 <p className={styles.priceDetail}>
-                  Si por algun motivo el acompanamiento inicial supera el mes,
-                  se debera abonar un control de $3000
+                  Si por algún motivo el acompanamiento inicial superara el mes,
+                  se deberá abonar un control de $3000
                 </p>
                 <p className={styles.priceDetail}>
                   En pacientes sanos se aconseja un control a los 6 meses y
@@ -127,7 +127,7 @@ export default function Asesorias() {
                 alimentación natural cocida y otra parte en forma de alimento
                 ultraprocesado. Muchas veces se presentan miedos o inseguridades
                 a la hora de cambiar la alimentación de nuestros compañeros
-                carnívoros, esta es una buena forma de empezar y probar cómo se
+                carnívoros, ésta es una buena forma de empezar y probar cómo se
                 sienten durante el proceso.
               </p>
               <div className={styles.dietDetails}>
@@ -135,25 +135,25 @@ export default function Asesorias() {
                 <ul>
                   <li>Consulta por videollamada</li>
                   <li>
-                    Evaluacion del ultraprocesado actual y, de ser necesario,
-                    recomendacion de otras opciones
+                    Evaluación del ultraprocesado actual y, de ser necesario,
+                    recomendación de otras opciones
                   </li>
                   <li>Archivo PDF con la dieta</li>
-                  <li>Guia de transicion hacia la nueva dieta</li>
+                  <li>Guía de transición hacia la nueva dieta</li>
                   <li>
-                    Recetas utiles, listado de suplementos, cortes de carne
-                    economicos, etc
+                    Recetas útiles, listado de suplementos, cortes de carne
+                    económicos, etc
                   </li>
                   <li>
-                    Seguimiento via mail durante 30 dias para despejar dudas que
+                    Seguimiento vía mail durante 30 dias para despejar dudas que
                     surjan durante el proceso
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
                 <p className={styles.price}>$6500</p>
                 <p className={styles.priceDetail}>
-                  Si por algun motivo el acompanamiento inicial supera el mes,
-                  se debera abonar un control de $3000
+                  Si por algún motivo el acompanamiento inicial superara el mes,
+                  se deberá abonar un control de $3000
                 </p>
                 <p className={styles.priceDetail}>
                   En pacientes sanos se aconseja un control a los 6 meses y
@@ -178,21 +178,21 @@ export default function Asesorias() {
                 <ul>
                   <li>Consulta por videollamada</li>
                   <li>
-                    Evaluacion del ultraprocesado actual y, de ser necesario,
-                    recomendacion de otras opciones
+                    Evaluación del ultraprocesado actual y, de ser necesario,
+                    recomendación de otras opciones
                   </li>
                   <li>Listado de suplementos</li>
-                  <li>Recetas utiles</li>
+                  <li>Recetas útiles</li>
                   <li>
-                    Seguimiento via mail por 7 dias para despejar dudas que
+                    Seguimiento vía mail por 7 días para despejar dudas que
                     surjan durante el proceso
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
                 <p className={styles.price}>$4500</p>
                 <p className={styles.priceDetail}>
-                  Si por algun motivo el acompanamiento inicial supera los 7
-                  dias, se debera abonar un control de $2000
+                  Si por algún motivo el acompanamiento inicial superara los 7
+                  días, se deberá abonar un control de $2000
                 </p>
               </div>
               <BottomLink />
@@ -241,7 +241,7 @@ export default function Asesorias() {
         <div className="mt-6 flex w-full justify-center">
           <Link href="/asesorias/formulario" className="m-auto">
             <button className="bg-secondary active:bg-secondary/90 m-auto max-w-full rounded-lg p-6 text-2xl font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner">
-              Solicitar una asesoria
+              Solicitar una asesoría
             </button>
           </Link>
         </div>

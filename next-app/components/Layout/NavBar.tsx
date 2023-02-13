@@ -69,14 +69,14 @@ export default function NavBar() {
       </Link>
       <Link href="/asesorias">
         <LinkButton
-          title="Asesorias nutricionales"
+          title="Asesorías nutricionales"
           icon="/svgs/dog-food.svg"
           selected={current === LOCATIONS.ASESORIAS}
         />
       </Link>
       <Link href="/clinica">
         <LinkButton
-          title="Clinica a domicilio"
+          title="Clínica a domicilio"
           icon="/svgs/veterinarian.svg"
           selected={current === LOCATIONS.CLINICA}
         />

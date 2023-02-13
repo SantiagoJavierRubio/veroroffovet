@@ -61,7 +61,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         </div>
         <p className="ml-2 mt-2 font-normal italic">
           * Para pesarlo en casa con balanza de piso: pesarse con el animal
-          alzado, luego sin el y hacer la resta. Por ejemplo:
+          alzado, luego sin él y hacer la resta. Por ejemplo:
           <br />
           <span className="ml-2">
             {'-'} Humano + animal = 70kg; humano = 60kg; <br />
@@ -74,7 +74,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="otrosAnimales">
-          Convive con otros animales?{' '}
+          ¿Convive con otros animales?{' '}
           <span className={styles.aclaracion}>(especificar)</span>
         </label>
         <textarea
@@ -86,7 +86,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="dietaActual">
-          Que come actualmente?{' '}
+          ¿Qué come actualmente?{' '}
           <span className={styles.aclaracion}>
             (si es un ultraprocesado/balanceado indicar marca y tipo)
           </span>
@@ -103,7 +103,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         <label htmlFor="actividad">
           Nivel de actividad{' '}
           <span className={styles.aclaracion}>
-            (indicar si sale a pasear, cuanto tiempo y frecuencia, si juega en
+            (indicar si sale a pasear, cuánto tiempo y frecuencia, si juega en
             casa, etc)
           </span>
         </label>
@@ -117,7 +117,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="antecedentes">
-          Antecedentes de alguna patologia o algo que creas importante contarme
+          Antecedentes de alguna patología o algo que creas importante contarme
         </label>
         <textarea
           id="antecedentes"
@@ -134,12 +134,12 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
       />
       {renderError('graficoPeso')}
       <div className={styles.labeledInput}>
-        <label htmlFor="costillas">Palpacion de costillas</label>
+        <label htmlFor="costillas">Palpación de costillas</label>
         <p className={styles.aclaracion}>
-          Tocale la zona de las costillas con la yema de los dedos e intenta
-          contar las costillas ejerciendo una leve presion: deberias sentir una
-          parte dura (el hueso) y una depresion mas blanda que corresponde al
-          espacio intercostal compuesto por musculo. Que opcion describe mejor
+          Tocale la zona de las costillas con la yema de los dedos e intentá
+          contar las costillas ejerciendo una leve presión: deberías sentir una
+          parte dura (el hueso) y una depresión más blanda que corresponde al
+          espacio intercostal compuesto por músculo ¿Que opción describe mejor
           tu experiencia?
         </p>
         <div className="mt-4 flex flex-col items-start justify-evenly gap-4 pl-4">

@@ -103,7 +103,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           <span className="text-base font-normal italic">
             (opcional)
             <br />
-            Tambien podes mandarme alguna foto de su carita para que lo vaya
+            También podés mandarme alguna foto de su carita para que lo vaya
             conociendo
           </span>
         </label>

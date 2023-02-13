@@ -25,10 +25,10 @@ export default function Home() {
   return (
     <Layout>
       <h1 className="text-primary mt-4 text-center text-5xl font-bold sm:mt-0">
-        Veronica Roffo
+        Verónica Roffo
       </h1>
       <h2 className="text-secondary font-base p-2 text-center text-lg sm:text-xl">
-        Veterinaria orientada a nutricion natural de perros y gatos.
+        Veterinaria orientada a nutrición natural de perros y gatos.
       </h2>
       <Container>
         <section className="flex flex-col gap-8">
@@ -37,7 +37,7 @@ export default function Home() {
               className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
               style={{ backgroundColor: docBg }}
             >
-              Asesorias nutricionales
+              Asesorías nutricionales
             </h3>
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
               <div className="flex items-center gap-4 pt-4">
@@ -55,7 +55,7 @@ export default function Home() {
                   />
                 </div>
                 <p>
-                  Dietas BARF, natural cocida, mixta y suplementacion de
+                  Dietas BARF, natural cocida, mixta y suplementación de
                   ultraprocesados
                 </p>
               </div>
@@ -63,7 +63,7 @@ export default function Home() {
                 <div className="relative h-8 w-8">
                   <Image src="/svgs/cat.svg" fill alt="consultas online" />
                 </div>
-                <p>Consultas personalizadas, materiales y recursos utiles</p>
+                <p>Consultas personalizadas, materiales y recursos útiles</p>
                 <div className="relative h-8 w-8">
                   <Image src="/svgs/husky.svg" fill alt="consultas online" />
                 </div>
@@ -106,7 +106,7 @@ export default function Home() {
                     />
                   </div>
                   <p>
-                    Diagnosticos, tratamientos, vacunaciones, certificados, etc.
+                    Diagnósticos, tratamientos, vacunaciones, certificados, etc.
                   </p>
                 </div>
               </div>
@@ -115,11 +115,11 @@ export default function Home() {
         </section>
         <div className="m-auto mt-8 flex w-11/12 flex-col items-stretch justify-start sm:max-w-xl">
           <p className="border-secondary/50 text-primary w-fit self-center rounded-md border-2 p-4 text-lg font-bold italic">
-            &ldquo;Si te interesa mejorar la vida de tu compa de cuatro patas no
-            dudes en contactarme!&ldquo;
+            &ldquo;¡Si te interesa mejorar la vida de tu compa de cuatro patas
+            no dudes en contactarme!&ldquo;
           </p>
           <div className="bg-secondary z-10 -mt-4 -mr-2 self-end rounded-lg p-4 text-center text-base italic text-stone-100 sm:-mr-8">
-            <p>Veronica Roffo</p>
+            <p>Verónica Roffo</p>
             <p>Veterinaria - U.B.A.</p>
             <p>M.N. 10468</p>
           </div>

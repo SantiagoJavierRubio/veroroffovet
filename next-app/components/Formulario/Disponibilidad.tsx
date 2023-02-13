@@ -79,7 +79,7 @@ export default function Disponibilidad(props: DisponibilidadProps) {
       </div>
       <div className="m-auto my-4 grid w-full max-w-full auto-cols-auto sm:w-3/5">
         <label htmlFor="aclaraciones" className="font-normal italic">
-          Alguna aclaracion que quieras hacer?
+          ¿Alguna aclaración que quieras hacer?
         </label>
         <textarea
           id="aclaraciones"

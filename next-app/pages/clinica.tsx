@@ -29,7 +29,7 @@ export default function Clinica() {
   return (
     <Layout title="Clinica a domicilio">
       <h1 className="text-primary text-center text-5xl font-bold">
-        Clinica a domicilio
+        Clínica a domicilio
       </h1>
       <Container>
         <article className="text-primary mb-8 sm:ml-8">
@@ -42,7 +42,7 @@ export default function Clinica() {
             <li className="border-primary my-2 text-xl">Tratamientos</li>
             <li className="border-primary my-2 text-xl">Vacunaciones</li>
             <li className="border-primary my-2 text-xl">
-              Analisis de laboratorio
+              Análisis de laboratorio
             </li>
             <li className="border-primary my-2 text-xl">
               Certificados de salud

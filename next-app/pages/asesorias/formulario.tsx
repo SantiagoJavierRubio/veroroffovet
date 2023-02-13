@@ -94,7 +94,7 @@ export default function Formulario() {
             <h4 className="text-3xl font-bold">Listo 🥳</h4>
             <p>Tu solicitud fue enviada correctamente</p>
             <p className="mt-8 italic">
-              A la brevedad te estare escribiendo para poder avanzar
+              A la brevedad te estaré escribiendo para poder avanzar
             </p>
             <div className="mt-8">
               <Link href="/" className="hover:text-secondary underline">
@@ -106,7 +106,7 @@ export default function Formulario() {
       </div>
       <div className={`${loader === 'none' ? 'block' : 'hidden'}`}>
         <h1 className="text-secondary my-4 text-center text-4xl font-bold">
-          Solicitar asesoria nutricional
+          Solicitar asesoría nutricional
         </h1>
         <div className={styles.form}>
           <MultiStepForm
