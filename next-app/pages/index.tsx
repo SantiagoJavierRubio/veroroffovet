@@ -113,7 +113,7 @@ export default function Home() {
           </div>
         </section>
         <div className="m-auto mt-8 flex w-11/12 flex-col items-stretch justify-start sm:max-w-xl">
-          <p className="border-secondary/50 text-primary w-fit self-center rounded-md border-2 p-4 text-lg font-bold italic">
+          <p className="border-secondary/50 text-primary w-fit self-center rounded-md border-2 p-4 text-center text-lg font-bold italic">
             &ldquo;¡Si te interesa mejorar la vida de tu compa de cuatro patas
             no dudes en contactarme!&ldquo;
           </p>

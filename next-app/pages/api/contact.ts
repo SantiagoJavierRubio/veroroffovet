@@ -88,7 +88,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       Tipo de dieta: ${setBoldText(dietaElegida)} <br />
       Tutor: 
       <a href="mailto:${mail}?Subject=Turno%20asesoría%20nutricional%20-%20${nombrePaciente}" style="text-transform: capitalize;">
-        ${setBoldText(nombreTutor + ' ' + apellidoTutor)} (${mail})
+        ${setBoldText(
+          nombreTutor + ' ' + apellidoTutor
+        )} <span style="text-transform: none">(${mail})</span>
       </a> <br />
       ${celular && `Celular: ${setBoldText(celular)}`}
       <h2>Paciente:</h2>

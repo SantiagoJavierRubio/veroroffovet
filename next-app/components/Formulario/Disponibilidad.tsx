@@ -89,6 +89,10 @@ export default function Disponibilidad(props: DisponibilidadProps) {
           className="bg-secondary rounded-sm p-2 text-white"
         />
       </div>
+      <p className="mb-4 text-center text-base font-normal text-red-400">
+        ¿Necesitás asesoría para más de un peludo? Al finalizar podrás llenar
+        otro formulario
+      </p>
     </FormStep>
   )
 }

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Layout from '@/components/Layout/Layout'
 import Image from 'next/image'
 import styles from '../../styles/MultistepForm.module.css'
@@ -27,6 +28,8 @@ export default function Formulario() {
   const [data, setData] = useState<FormularioData>(DEFAULT_VALUES)
   const [errors, setErrors] = useState<Map<string, string>>(new Map())
   const [loader, setLoader] = useState<string>('none')
+
+  const router = useRouter()
 
   const submit = () => {
     setLoader('loading')
@@ -61,6 +64,44 @@ export default function Formulario() {
     return false
   }
 
+  const handleOtherForm = () => {
+    window.localStorage.setItem('nombreTutor', data.nombreTutor)
+    window.localStorage.setItem('apellidoTutor', data.apellidoTutor)
+    window.localStorage.setItem('mail', data.mail)
+    data.celular && window.localStorage.setItem('celular', data.celular)
+    window.localStorage.setItem(
+      'disponibilidad',
+      JSON.stringify(data.disponibilidad)
+    )
+    router.reload()
+  }
+
+  const handleReset = () => {
+    window.localStorage.removeItem('nombreTutor')
+    window.localStorage.removeItem('apellidoTutor')
+    window.localStorage.removeItem('mail')
+    data.celular && window.localStorage.removeItem('celular')
+    window.localStorage.removeItem('disponibilidad')
+  }
+
+  useEffect(() => {
+    const lsDisponibilidad = window.localStorage.getItem('disponibilidad')
+    setData({
+      ...DEFAULT_VALUES,
+      nombreTutor:
+        window.localStorage.getItem('nombreTutor') ||
+        DEFAULT_VALUES.nombreTutor,
+      apellidoTutor:
+        window.localStorage.getItem('apellidoTutor') ||
+        DEFAULT_VALUES.apellidoTutor,
+      mail: window.localStorage.getItem('mail') || DEFAULT_VALUES.mail,
+      celular: window.localStorage.getItem('celular') || DEFAULT_VALUES.celular,
+      disponibilidad: lsDisponibilidad
+        ? JSON.parse(lsDisponibilidad)
+        : DEFAULT_VALUES.disponibilidad
+    })
+  }, [])
+
   return (
     <Layout title="Asesorias nutricionales - Formulario">
       <div
@@ -92,14 +133,27 @@ export default function Formulario() {
         ) : (
           <div className="text-primary text-center text-xl">
             <h4 className="text-3xl font-bold">Listo 🥳</h4>
-            <p>Tu solicitud fue enviada correctamente</p>
-            <p className="mt-8 italic">
+            <p className="text-base italic">
+              Tu solicitud fue enviada correctamente
+            </p>
+            <p className="m-12 italic">
               A la brevedad te estaré escribiendo para poder avanzar
             </p>
-            <div className="mt-8">
-              <Link href="/" className="hover:text-secondary underline">
-                Volver al incio
+            <div className="m-8">
+              <Link
+                href="/"
+                className="hover:text-secondary text-primary"
+                onClick={handleReset}
+              >
+                {'<'} Volver al incio
               </Link>
+            </div>
+            <p>o</p>
+            <div
+              className="bg-primary hover:text-secondary m-auto mt-8 w-fit cursor-pointer rounded-lg p-4 text-stone-200 hover:shadow-xl"
+              onClick={handleOtherForm}
+            >
+              Llenar otro formulario {'>'}
             </div>
           </div>
         )}
