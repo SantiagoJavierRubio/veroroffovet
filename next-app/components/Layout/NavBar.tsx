@@ -13,7 +13,7 @@ const LinkButton = (props: LinkBtnProps) => {
   return (
     <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md px-0 transition-all hover:scale-105 active:scale-95 active:delay-200 sm:flex-row md:gap-4 lg:px-6">
       <div
-        className={`relative h-8 w-8 shrink-0 p-0 sm:h-9 sm:w-9 sm:bg-transparent sm:ring-0 sm:ring-offset-0 ${
+        className={`relative aspect-square w-8 shrink-0 p-0 sm:h-9 sm:w-9 sm:bg-transparent sm:ring-0 sm:ring-offset-0 ${
           selected &&
           'ring-offset-primary/80 bg-secondary/10 ring-secondary/40 rounded-full ring-1 ring-offset-8'
         }`}

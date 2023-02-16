@@ -117,7 +117,20 @@ const ContactForm = () => {
   const [data, setData] = useState<ContactForm>(INITIAL_DATA)
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    console.log(data)
+    fetch('/api/clinica', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        if (res.ok) console.log('sent')
+      })
+      .catch(err => {
+        alert(err)
+      })
   }
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -133,7 +146,7 @@ const ContactForm = () => {
         <input
           type="text"
           id="nombre"
-          value={data.nombre}
+          value={data.nombre.trimStart()}
           onChange={handleChange}
           required
           className="bg-secondary rounded-sm p-2 text-white"
@@ -170,7 +183,7 @@ const ContactForm = () => {
           onChange={handleChange}
           required
           rows={4}
-          className="bg-secondary rounded-sm p-2 text-white"
+          className="bg-secondary min-h-[4rem] rounded-sm p-2 text-white"
         />
       </div>
       <div className="m-auto my-4 flex max-w-sm justify-center">

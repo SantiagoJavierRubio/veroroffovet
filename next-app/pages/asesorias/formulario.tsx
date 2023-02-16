@@ -35,7 +35,7 @@ export default function Formulario() {
     setLoader('loading')
     window.scrollTo(0, 0)
     if (validateStep(data, Infinity)) {
-      fetch('/api/contact', {
+      fetch('/api/asesoria', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

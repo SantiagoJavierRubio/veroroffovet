@@ -150,7 +150,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       })
       .catch(err => {
         console.log(err)
-        res.status(400).send('todoMal')
+        res.status(400).send('something went wrong')
       })
   }
 }
