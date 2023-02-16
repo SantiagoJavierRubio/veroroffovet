@@ -87,7 +87,7 @@ export default function Testimonios() {
         className="absolute left-0 top-0 hidden h-full w-8 cursor-pointer select-none items-center justify-center text-xl  transition-all sm:flex"
         onClick={backward}
       >
-        <div className="flex h-32 w-full items-center justify-center rounded-md bg-black/10 p-2 backdrop-blur-lg hover:bg-black/20">
+        <div className="z-10 flex h-32 w-full items-center justify-center rounded-md bg-black/10 p-2 backdrop-blur-lg hover:bg-black/20">
           {'<'}
         </div>
       </div>

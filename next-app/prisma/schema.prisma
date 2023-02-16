@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Price {
+  title String @db.VarChar(255) @unique @id
+  value Int
+  updatedAt DateTime @updatedAt @default(now())
+}

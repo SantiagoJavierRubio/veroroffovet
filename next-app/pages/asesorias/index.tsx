@@ -29,7 +29,30 @@ const BottomLink = () => (
   </div>
 )
 
-export default function Asesorias() {
+interface Honorarios {
+  asesorias?: number
+  suplementacion?: number
+  asesoriasControl?: number
+  suplementacionControl?: number
+  domicilio?: number
+}
+
+function parsePrice(price: number | undefined) {
+  if (price !== undefined) return `$${price}`
+  else
+    return (
+      <span className="text-base font-normal italic text-red-500">
+        (precio no disponible momentaneamente)
+      </span>
+    )
+}
+
+export default function Asesorias({ prices }: { prices: Price[] }) {
+  const honorarios: Honorarios = Object.fromEntries(
+    prices.map(p => {
+      return [p.title, p.value]
+    })
+  )
   return (
     <Layout title="Asesorias nutricionales">
       <h1 className="text-primary mt-8 text-center text-6xl font-extrabold">
@@ -67,10 +90,13 @@ export default function Asesorias() {
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
-                <p className={styles.price}>$6500</p>
+                <p className={styles.price}>
+                  {parsePrice(honorarios.asesorias)}
+                </p>
                 <p className={styles.priceDetail}>
                   Si por algún motivo el acompañamiento inicial superara el mes,
-                  se deberá abonar un control de $3000
+                  se deberá abonar un control de{' '}
+                  {parsePrice(honorarios.asesoriasControl)}
                 </p>
                 <p className={styles.priceDetail}>
                   En pacientes sanos se aconseja un control a los 6 meses y
@@ -106,10 +132,13 @@ export default function Asesorias() {
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
-                <p className={styles.price}>$6500</p>
+                <p className={styles.price}>
+                  {parsePrice(honorarios.asesorias)}
+                </p>
                 <p className={styles.priceDetail}>
                   Si por algún motivo el acompanamiento inicial superara el mes,
-                  se deberá abonar un control de $3000
+                  se deberá abonar un control de{' '}
+                  {parsePrice(honorarios.asesoriasControl)}
                 </p>
                 <p className={styles.priceDetail}>
                   En pacientes sanos se aconseja un control a los 6 meses y
@@ -150,10 +179,13 @@ export default function Asesorias() {
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
-                <p className={styles.price}>$6500</p>
+                <p className={styles.price}>
+                  {parsePrice(honorarios.asesorias)}
+                </p>
                 <p className={styles.priceDetail}>
                   Si por algún motivo el acompanamiento inicial superara el mes,
-                  se deberá abonar un control de $3000
+                  se deberá abonar un control de{' '}
+                  {parsePrice(honorarios.asesoriasControl)}
                 </p>
                 <p className={styles.priceDetail}>
                   En pacientes sanos se aconseja un control a los 6 meses y
@@ -189,10 +221,13 @@ export default function Asesorias() {
                   </li>
                 </ul>
                 <h4>Honorarios:</h4>
-                <p className={styles.price}>$4500</p>
+                <p className={styles.price}>
+                  {parsePrice(honorarios.suplementacion)}
+                </p>
                 <p className={styles.priceDetail}>
                   Si por algún motivo el acompanamiento inicial superara los 7
-                  días, se deberá abonar un control de $2000
+                  días, se deberá abonar un control de{' '}
+                  {parsePrice(honorarios.suplementacionControl)}
                 </p>
               </div>
               <BottomLink />
@@ -221,7 +256,8 @@ export default function Asesorias() {
             <p>
               En caso que prefieras una consulta presencial y residas en Capital
               Federal (consultar barrios), Vicente López o Florida, la visita a
-              domicilio posee un costo adicional de $1000
+              domicilio posee un costo adicional de{' '}
+              {parsePrice(honorarios.domicilio)}
             </p>
             <p>
               Los honorarios establecidos son por animal. En caso de más de uno,
@@ -248,4 +284,28 @@ export default function Asesorias() {
       </Container>
     </Layout>
   )
+}
+
+import { PrismaClient } from '@prisma/client'
+import { Price } from '.prisma/client'
+
+export async function getStaticProps() {
+  try {
+    const prisma = new PrismaClient()
+    const prices = await prisma.price.findMany({
+      select: { title: true, value: true }
+    })
+    return {
+      props: {
+        prices
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    return {
+      props: {
+        prices: []
+      }
+    }
+  }
 }

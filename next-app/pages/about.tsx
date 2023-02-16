@@ -5,7 +5,9 @@ import Layout from '@/components/Layout/Layout'
 export default function about() {
   return (
     <Layout title="Sobre mi">
-      <h1>Quien soy</h1>
+      <h1 className="text-primary text-center text-6xl font-bold">
+        Vero, completame!
+      </h1>
     </Layout>
   )
 }

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Testimonios from '@/components/Testimonios'
 import { useState, useEffect } from 'react'
 
-// TODO: Check and replace special characters
 // TODO: Test mobile
 // TODO: Setup non-static information consumption
 
