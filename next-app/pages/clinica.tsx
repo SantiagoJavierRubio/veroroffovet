@@ -142,12 +142,14 @@ const ContactForm = () => {
         if (res.ok) {
           setSendingStatus(SENDING_STATUS.RESPONSE_OK)
           setData(INITIAL_DATA)
-          setTimeout(() => setSendingStatus(SENDING_STATUS.NULL), 2000)
         }
       })
       .catch(err => {
         alert(err)
         setSendingStatus(SENDING_STATUS.ERROR)
+      })
+      .finally(() => {
+        setTimeout(() => setSendingStatus(SENDING_STATUS.NULL), 2000)
       })
   }
   const handleChange = (
@@ -272,6 +274,7 @@ const ContactForm = () => {
                 />
               </motion.div>
             )}
+            {sendingStatus === SENDING_STATUS.ERROR && <p>Error!</p>}
           </AnimatePresence>
         </button>
       </div>
