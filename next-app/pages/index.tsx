@@ -6,7 +6,7 @@ import Testimonios from '@/components/Testimonios'
 import { useState, useEffect } from 'react'
 
 // TODO: Test mobile
-// TODO: Setup non-static information consumption
+// TODO: Set all main titles to same style
 
 const rgb2hex = (rgb: string) =>
   `#${rgb
