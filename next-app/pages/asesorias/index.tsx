@@ -290,8 +290,8 @@ import { PrismaClient } from '@prisma/client'
 import { Price } from '.prisma/client'
 
 export async function getStaticProps() {
+  const prisma = new PrismaClient()
   try {
-    const prisma = new PrismaClient()
     const prices = await prisma.price.findMany({
       select: { title: true, value: true }
     })
@@ -307,5 +307,7 @@ export async function getStaticProps() {
         prices: []
       }
     }
+  } finally {
+    prisma.$disconnect()
   }
 }

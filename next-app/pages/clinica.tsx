@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Photo from '@/components/Photo'
 
 const BARRIOS_CABA = [
   'Almagro',
@@ -33,7 +34,7 @@ export default function Clinica() {
         Clínica a domicilio
       </h1>
       <Container>
-        <article className="text-primary mb-8 sm:ml-8">
+        <article className="text-primary relative mb-8 sm:ml-8">
           <h3 className="my-4 text-3xl underline">Servicios</h3>
           <p className="text-primary ml-2 text-base font-normal italic">
             Para felinos y caninos
@@ -49,6 +50,11 @@ export default function Clinica() {
               Certificados de salud
             </li>
           </ul>
+          <Photo
+            src="/photos/veroycabra.jpeg"
+            alt="con un paciente"
+            className="border-terciary absolute top-0 right-6 w-32 border-2 shadow-2xl sm:w-64 md:w-72"
+          />
         </article>
         <article className="text-primary mb-8 sm:mx-8">
           <h3 className="my-4 text-3xl underline">Zonas</h3>

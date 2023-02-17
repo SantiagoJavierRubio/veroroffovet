@@ -30,11 +30,12 @@
     @apply px-4 my-2 italic
 }
 .generalRemarks {
-    @apply text-primary flex flex-col gap-4 px-4 font-semibold text-lg
+    @apply text-primary flex flex-col gap-4 px-4 font-normal text-lg
 }
 .generalRemarks > p::before {
-    content: ">";
-    margin-right: .75rem;
+    content: "🐾";
+    margin-right: .5rem;
+    line-height: 1rem;
 }
 
 @keyframes appear {
