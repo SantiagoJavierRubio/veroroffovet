@@ -70,7 +70,7 @@ export default function Clinica() {
                   </ul>
                 </div>
                 <Image
-                  src="/maps/capital.jpeg"
+                  src="/maps/capital.png"
                   alt="Zonas de C.A.B.A."
                   fill
                   className="rounded-md"
@@ -90,7 +90,7 @@ export default function Clinica() {
                   </ul>
                 </div>
                 <Image
-                  src="/maps/provincia.jpeg"
+                  src="/maps/provincia.png"
                   alt="Zonas de C.A.B.A."
                   fill
                   className="rounded-md"
