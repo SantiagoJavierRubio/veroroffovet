@@ -83,7 +83,7 @@ export default function About() {
             <Curso
               type="Curso"
               title="Acute Canine Herbalism Specialist"
-              institution="Dogs Naturally"
+              institution="DNM University"
             />
             <Curso
               type="Curso"
@@ -94,6 +94,12 @@ export default function About() {
               type="Curso"
               title="Plantas Medicinales del Mundo y Fitoterapia aplicada"
               institution="Instituto de Investigaciones herbarias"
+              inCourse
+            />
+            <Curso
+              type="Curso"
+              title="Canine Essential Oils Specialist"
+              institution="DNM University"
               inCourse
             />
           </ul>

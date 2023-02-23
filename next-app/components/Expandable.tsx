@@ -13,7 +13,7 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
   return (
     <div className="transition-all">
       <button
-        className="bg-primary relative w-full py-2 text-2xl font-bold lg:rounded-md"
+        className="bg-primary relative w-full py-2 text-2xl font-bold text-stone-100 lg:rounded-md"
         onClick={toggleOpen}
       >
         {title}

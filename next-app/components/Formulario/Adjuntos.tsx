@@ -27,7 +27,7 @@ export default function Adjuntos(props: AdjuntosProps) {
   )
 
   const handleFileChange = async ({ files, fieldId }: FileInputs) => {
-    if (!files) return
+    if (!files || !files[0]) return
     if (files.length > 1 || fieldId === 'estudios') {
       const base64Promises = Array.from(files).map(file =>
         convertToBase64(file)

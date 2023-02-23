@@ -99,27 +99,44 @@ export const DEFAULT_VALUES: FormularioData = {
 export type FormularioKey = keyof typeof DEFAULT_VALUES
 
 const tutorSchema = z.object({
-  nombreTutor: z.string().trim().min(3),
-  apellidoTutor: z.string().trim().min(3),
-  mail: z.string().email(),
+  nombreTutor: z
+    .string()
+    .trim()
+    .min(3, { message: 'Debe tener al menos 3 caracteres' }),
+  apellidoTutor: z.string().trim().min(3, {
+    message: 'Debe tener al menos 3 caracteres'
+  }),
+  mail: z.string().email({ message: 'Debe ser un email válido ' }),
   celular: z.string().nullish(),
   dietaElegida: z.string()
 })
 
 const patientSchema = z.object({
-  nombrePaciente: z.string().trim().min(2),
+  nombrePaciente: z
+    .string()
+    .trim()
+    .min(2, { message: 'Debe tener al menos 2 caracteres' }),
   especie: z.string(),
-  raza: z.string().trim().min(3),
+  raza: z
+    .string()
+    .trim()
+    .min(3, { message: 'Debe tener al menos 3 caracteres' }),
   sexo: z.string(),
   castrado: z.boolean(),
-  edad: z.string().trim().min(1)
+  edad: z.string().trim().min(1, { message: 'Debe ser mayor a 0' })
 })
 
 const conditionSchema = z.object({
-  peso: z.number().positive(),
+  peso: z.number().positive({ message: 'Debe ser mayor a 0' }),
   otrosAnimales: z.string().nullish(),
-  dietaActual: z.string().trim().min(5),
-  actividad: z.string().trim().min(5),
+  dietaActual: z
+    .string()
+    .trim()
+    .min(5, { message: 'Debe tener al menos 5 caracteres' }),
+  actividad: z
+    .string()
+    .trim()
+    .min(5, { message: 'Debe tener al menos 5 caracteres' }),
   antecedentes: z.string().nullish(),
   graficoPeso: z.number().int().positive().lte(5),
   costillas: z.number().int().nonnegative().lt(4)
