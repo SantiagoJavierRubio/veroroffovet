@@ -5,8 +5,6 @@ import Link from 'next/link'
 import Testimonios from '@/components/Testimonios'
 import { useState, useEffect } from 'react'
 
-// TODO: Test mobile
-
 const rgb2hex = (rgb: string) =>
   `#${rgb
     .match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)

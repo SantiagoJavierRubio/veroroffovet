@@ -77,7 +77,7 @@ export default function Testimonios() {
 
   return (
     <div
-      className="relative m-auto mt-2 h-screen w-full overflow-x-hidden sm:h-96 sm:w-4/5"
+      className="relative m-auto h-screen w-full overflow-x-hidden sm:mt-2 sm:h-96 sm:w-4/5"
       onMouseEnter={() => setIsBlocked(true)}
       onMouseLeave={() => setIsBlocked(false)}
       onTouchStart={handleTouchStart}

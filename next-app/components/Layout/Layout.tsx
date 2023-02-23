@@ -8,8 +8,6 @@ interface LayoutProps {
   description?: string
 }
 
-// TODO: Mobile -> handle auto snap on scroll
-
 export default function Layout(props: PropsWithChildren<LayoutProps>) {
   const { title, description, children } = props
   return (
