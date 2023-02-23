@@ -6,7 +6,6 @@ import Testimonios from '@/components/Testimonios'
 import { useState, useEffect } from 'react'
 
 // TODO: Test mobile
-// TODO: Set all main titles to same style
 
 const rgb2hex = (rgb: string) =>
   `#${rgb
@@ -23,7 +22,7 @@ export default function Home() {
   }, [])
   return (
     <Layout>
-      <h1 className="text-primary mt-4 text-center text-5xl font-bold sm:mt-0">
+      <h1 className="text-primary mt-4 text-center text-5xl font-bold sm:mt-0 sm:text-6xl">
         Verónica Roffo
       </h1>
       <h2 className="text-secondary font-base p-2 text-center text-lg sm:text-xl">

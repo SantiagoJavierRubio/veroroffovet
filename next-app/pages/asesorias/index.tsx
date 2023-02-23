@@ -55,12 +55,13 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
   )
   return (
     <Layout title="Asesorias nutricionales">
-      <h1 className="text-primary mt-8 text-center text-6xl font-extrabold">
+      <h1 className="text-primary mt-8 text-center text-5xl font-bold sm:text-6xl">
         Asesorías nutricionales
       </h1>
       <Container>
-        <h2 className="mt-6 px-4 text-2xl font-bold text-black">
-          Tipos de dietas para caninos y felinos:
+        <h2 className="text-primary mt-6 text-xl font-bold sm:px-4 sm:text-2xl">
+          Tipos de dietas para caninos y felinos
+          <span className="hidden sm:inline">:</span>
         </h2>
         <ul className={styles.dietList}>
           <li className={styles.listElement}>

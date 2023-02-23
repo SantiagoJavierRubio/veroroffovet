@@ -7,7 +7,7 @@ import { FC } from 'react'
 export default function About() {
   return (
     <Layout title="Sobre mi">
-      <h1 className="text-primary mb-0 text-center text-6xl font-bold">
+      <h1 className="text-primary mb-0 text-center text-5xl font-bold sm:text-6xl">
         Sobre mi
       </h1>
       <Photo
