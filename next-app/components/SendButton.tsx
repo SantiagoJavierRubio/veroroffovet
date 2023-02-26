@@ -4,7 +4,10 @@ import { SENDING_STATUS } from '@/hooks/useSendingStatus'
 import type { Status } from '@/hooks/useSendingStatus'
 import Image from 'next/image'
 
-const SendButton: FC<{ sendingStatus: Status }> = ({ sendingStatus }) => {
+const SendButton: FC<{
+  sendingStatus: Status
+  errorMessage?: string
+}> = ({ sendingStatus, errorMessage }) => {
   const calculateButtonStyles = () => {
     switch (sendingStatus) {
       case SENDING_STATUS.SENDING:
@@ -72,7 +75,9 @@ const SendButton: FC<{ sendingStatus: Status }> = ({ sendingStatus }) => {
             />
           </motion.div>
         )}
-        {sendingStatus === SENDING_STATUS.ERROR && <p>Error!</p>}
+        {sendingStatus === SENDING_STATUS.ERROR && (
+          <p>{errorMessage || 'Error'}</p>
+        )}
       </AnimatePresence>
     </button>
   )

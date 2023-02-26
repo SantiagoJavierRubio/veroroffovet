@@ -26,7 +26,7 @@
     @apply italic font-normal ml-1 mt-2
 }
 .condicionGraficoOption {
-    @apply p-2 sm:p-4 min-w-[126px] h-[136px] relative border-4 border-transparent rounded-sm
+    @apply p-2 sm:p-4 min-w-[126px] h-[136px] relative border-4 border-transparent rounded-md
 }
 .condicionChecked {
     @apply border-primary

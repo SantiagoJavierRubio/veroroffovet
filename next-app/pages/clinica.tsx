@@ -125,6 +125,7 @@ const INITIAL_DATA = {
 const ContactForm = () => {
   const [data, setData] = useState<ContactForm>(INITIAL_DATA)
   const { sendingStatus, setSendingStatus, SENDING_STATUS } = useSendingStatus()
+  const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined)
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     setSendingStatus(SENDING_STATUS.SENDING)
@@ -143,7 +144,7 @@ const ContactForm = () => {
         }
       })
       .catch(err => {
-        alert(err)
+        err instanceof Error && setErrorMsg(err.message)
         setSendingStatus(SENDING_STATUS.ERROR)
       })
       .finally(() => {
@@ -205,7 +206,7 @@ const ContactForm = () => {
         />
       </div>
       <div className="m-auto my-4 flex max-w-sm justify-center">
-        <SendButton sendingStatus={sendingStatus} />
+        <SendButton sendingStatus={sendingStatus} errorMessage={errorMsg} />
       </div>
     </form>
   )

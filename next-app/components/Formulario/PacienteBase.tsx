@@ -2,6 +2,8 @@ import { ChangeEvent } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
 import { FormularioData, ESPECIES, SEXOS } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
+import Cat from '../../public/svgs/cat.svg'
+import Dog from '../../public/svgs/husky.svg'
 
 interface PacienteBaseData {
   nombrePaciente: FormularioData['nombrePaciente']
@@ -26,7 +28,10 @@ export default function PacienteBase(props: PacienteBaseProps) {
     update({ [e.target.id]: e.target.value })
   }
   const handleCheckboxToggle = (e: ChangeEvent<HTMLInputElement>) => {
-    update({ castrado: e.target.id === 'true' })
+    update({ castrado: e.target.value === 'true' })
+  }
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    update({ [e.target.name]: e.target.value })
   }
   const renderError = (fieldName: string) => (
     <p className="px-2 text-right text-sm font-normal italic text-red-500">
@@ -48,21 +53,62 @@ export default function PacienteBase(props: PacienteBaseProps) {
         {renderError('nombrePaciente')}
       </div>
       <div className={styles.labeledInput}>
-        <label htmlFor="especie">Especie</label>
-        <select
-          id="especie"
-          value={data.especie}
-          onChange={handleChange}
-          className="capitalize"
-          required
-        >
-          <option value={ESPECIES.GATO} className="capitalize">
-            {ESPECIES.GATO}
-          </option>
-          <option value={ESPECIES.PERRO} className="capitalize">
-            {ESPECIES.PERRO}
-          </option>
-        </select>
+        <label htmlFor="especie">
+          Especie:{' '}
+          <span className="ml-2 text-base font-normal italic">
+            {data.especie}
+          </span>
+        </label>
+        <div className="flex items-center justify-center gap-4">
+          <label
+            htmlFor="felino"
+            className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
+              data.especie === ESPECIES.GATO
+                ? 'border-primary border-4'
+                : 'border-2 border-gray-200'
+            }`}
+          >
+            <input
+              type="radio"
+              name="especie"
+              id="felino"
+              value={ESPECIES.GATO}
+              className="hidden"
+              onChange={handleCheckboxChange}
+            />
+            <Cat
+              className={`absolute m-0 aspect-square h-full w-full shrink-0 grow ${
+                data.especie === ESPECIES.GATO
+                  ? 'text-primary p-0'
+                  : 'text-primary/50 p-1'
+              }`}
+            />
+          </label>
+          <label
+            htmlFor="canino"
+            className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
+              data.especie === ESPECIES.PERRO
+                ? 'border-primary border-4'
+                : 'border-2 border-gray-200'
+            }`}
+          >
+            <input
+              type="radio"
+              name="especie"
+              id="canino"
+              value={ESPECIES.PERRO}
+              className="hidden"
+              onChange={handleCheckboxChange}
+            />
+            <Dog
+              className={`m-0 aspect-square h-full w-full shrink-0 grow ${
+                data.especie === ESPECIES.PERRO
+                  ? 'text-primary p-0'
+                  : 'text-primary/50 p-1'
+              }`}
+            />
+          </label>
+        </div>
         {renderError('expecie')}
       </div>
       <div className={styles.labeledInput}>
@@ -78,17 +124,113 @@ export default function PacienteBase(props: PacienteBaseProps) {
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="sexo">Sexo</label>
-        <select id="sexo" value={data.sexo} onChange={handleChange} required>
-          <option value={SEXOS.MACHO}>Macho</option>
-          <option value={SEXOS.HEMBRA}>Hembra</option>
-        </select>
+        <div className="flex items-center justify-center gap-4">
+          <label
+            htmlFor="hembra"
+            className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
+              data.sexo === SEXOS.HEMBRA
+                ? 'border-primary text-primary border-4'
+                : 'border-2 border-gray-200 text-stone-400'
+            }`}
+          >
+            <input
+              type="radio"
+              name="sexo"
+              id="hembra"
+              value={SEXOS.HEMBRA}
+              className="hidden"
+              onChange={handleCheckboxChange}
+            />
+            <p
+              className={`${
+                data.sexo === SEXOS.HEMBRA ? 'text-primary' : 'text-stone-400'
+              } select-none`}
+            >
+              Hembra
+            </p>
+          </label>
+          <label
+            htmlFor="macho"
+            className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
+              data.sexo === SEXOS.MACHO
+                ? 'border-primary text-primary border-4'
+                : 'border-2 border-gray-200 text-stone-400'
+            }`}
+          >
+            <input
+              type="radio"
+              name="sexo"
+              id="macho"
+              value={SEXOS.MACHO}
+              className="hidden"
+              onChange={handleCheckboxChange}
+            />
+            <p
+              className={`${
+                data.sexo === SEXOS.MACHO ? 'text-primary' : 'text-stone-400'
+              } select-none`}
+            >
+              Macho
+            </p>
+          </label>
+        </div>
         {renderError('sexo')}
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="castrado">
           ¿Está castrad{data.sexo === SEXOS.MACHO ? 'o' : 'a'}?
         </label>
-        <div className="flex justify-around">
+        <div className="flex items-center justify-center gap-4">
+          <label
+            htmlFor="si"
+            className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
+              data.castrado
+                ? 'border-primary text-primary border-4'
+                : 'border-2 border-gray-200 text-stone-400'
+            }`}
+          >
+            <input
+              type="radio"
+              name="castrado"
+              id="si"
+              value="true"
+              className="hidden"
+              onChange={handleCheckboxToggle}
+            />
+            <p
+              className={`${
+                data.castrado ? 'text-primary' : 'text-stone-400'
+              } select-none`}
+            >
+              Si
+            </p>
+          </label>
+          <label
+            htmlFor="no"
+            className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
+              !data.castrado
+                ? 'border-primary text-primary border-4'
+                : 'border-2 border-gray-200 text-stone-400'
+            }`}
+          >
+            <input
+              type="radio"
+              name="castrado"
+              id="no"
+              value="false"
+              className="hidden"
+              onChange={handleCheckboxToggle}
+            />
+            <p
+              className={`${
+                !data.castrado ? 'text-primary' : 'text-stone-400'
+              } select-none`}
+            >
+              No
+            </p>
+          </label>
+        </div>
+        {/* <div className="flex justify-around">
           <div className={styles.radioOption}>
             <label>Si</label>
             <input
@@ -117,7 +259,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
               after:p-1 checked:after:bg-secondary after:bg-contain after:bg-transparent"
             />
           </div>
-        </div>
+        </div> */}
         {renderError('castrado')}
       </div>
       <div className={styles.labeledInput}>
