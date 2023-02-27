@@ -15,7 +15,13 @@ const Photo: FC<PhotoProps> = ({ src, alt, className, ...props }) => {
   )
   return (
     <div className={twStyle} {...props}>
-      <Image src={src} alt={alt} fill blurDataURL={src} />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        blurDataURL={src}
+        className="object-cover"
+      />
     </div>
   )
 }

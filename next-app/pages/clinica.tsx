@@ -2,7 +2,6 @@ import Layout from '@/components/Layout/Layout'
 import Image from 'next/image'
 import Container from '@/components/Container'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Photo from '@/components/Photo'
 import useSendingStatus from '@/hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
@@ -82,7 +81,7 @@ export default function Clinica() {
               </div>
             </div>
             <div className="w-96 max-w-full grow" id="zonas-clinica">
-              <h4 className="text-center text-xl">Buenos Aires</h4>
+              <h4 className="text-center text-xl">Buenos Aires, zona norte</h4>
               <div className="relative m-auto aspect-square w-full">
                 <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">
                   <ul className="flex-center flex h-full shrink flex-wrap items-center justify-evenly gap-6 text-lg font-bold text-stone-100">

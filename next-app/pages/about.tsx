@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
 import Photo from '@/components/Photo'
-import { BsInstagram } from 'react-icons/bs'
+import IgLogo from '../public/svgs/ig_logo.svg'
 import { FC } from 'react'
 
 export default function About() {
@@ -23,14 +23,14 @@ export default function About() {
             grandes y pequeños
           </p>
           <p className="px-2 text-center text-xl sm:px-16">
-            🍖 Me especializo en nutricion de felinos y caninos, atendiendo
+            🍖 Me especializo en nutrición de felinos y caninos, atendiendo
             casos clinicos y brindando soluciones para mejorar las dietas de mis
             pacientes
           </p>
           <p className="px-2 text-center text-xl sm:px-16">
-            <BsInstagram className="mb-1 mr-1 inline text-lg" />
-            Ademas de las asesorias realizo divulgacion de buenas practicas y
-            recomendaciones para la nutricion animal en{' '}
+            <IgLogo className="mb-1 mr-1 inline aspect-square h-5 w-5" /> Además
+            de las asesorías realizo divulgación de buenas pr+acticas y
+            recomendaciones para la nutrición animal en{' '}
             <a
               href="https://www.instagram.com/vr.veterinaria/"
               target="_blank"
@@ -43,7 +43,7 @@ export default function About() {
         </div>
         <div className="mt-8 px-2">
           <p className="-mb-4 text-xl font-bold sm:mb-4">
-            Algunos cursos y capacitaciones en los que participe:
+            Algunos cursos y capacitaciones en los que participé:
           </p>
           <ul className="pl-2 sm:list-disc sm:pl-8">
             <Curso
@@ -89,6 +89,7 @@ export default function About() {
               type="Curso"
               title="Microbiota intestinal"
               institution="Christian Vergara"
+              inCourse
             />
             <Curso
               type="Curso"
@@ -107,7 +108,7 @@ export default function About() {
       </Container>
       <Photo
         src="/photos/veroyleon2.jpg"
-        alt="con leon mi perrito"
+        alt="con leon, mi perrito"
         className="border-terciary/50 m-auto mt-4 w-64 border-2 shadow-2xl"
       />
     </Layout>
