@@ -3,6 +3,8 @@ import nodemailer from "nodemailer"
 import cors from 'cors'
 import "dotenv/config"
 
+console.log(process.env.NODE_ENV)
+
 const app = express()
 app.use(express.json({
     limit: '15mb'

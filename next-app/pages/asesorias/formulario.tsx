@@ -24,7 +24,7 @@ export interface FormError {
   message: string
 }
 
-export default function Formulario() {
+export default function Formulario({ api_uri }: { api_uri: string }) {
   const [data, setData] = useState<FormularioData>(DEFAULT_VALUES)
   const [errors, setErrors] = useState<Map<string, string>>(new Map())
   const [loader, setLoader] = useState<string>('none')
@@ -35,7 +35,7 @@ export default function Formulario() {
     setLoader('loading')
     window.scrollTo(0, 0)
     if (validateStep(data, Infinity)) {
-      fetch(`${process.env.EMAIL_SERVER}/asesoria`, {
+      fetch(api_uri, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -197,4 +197,12 @@ export default function Formulario() {
       </div>
     </Layout>
   )
+}
+
+export function getStaticProps() {
+  return {
+    props: {
+      api_uri: `${process.env.EMAIL_SERVER}/asesoria`
+    }
+  }
 }
