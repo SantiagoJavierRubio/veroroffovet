@@ -201,7 +201,6 @@ function parseZodErrors(errors: ZodError) {
 export function validateStep(data: FormularioData, index: number) {
   const schema = getSchema(index)
   const parse = schema.safeParse(data)
-  console.log(parse)
   return parse.success
     ? { success: true, error: null }
     : { success: parse.success, error: parseZodErrors(parse.error) }

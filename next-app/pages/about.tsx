@@ -29,7 +29,7 @@ export default function About() {
           </p>
           <p className="px-2 text-center text-xl sm:px-16">
             <IgLogo className="mb-1 mr-1 inline aspect-square h-5 w-5" /> Además
-            de las asesorías realizo divulgación de buenas pr+acticas y
+            de las asesorías realizo divulgación de buenas prácticas y
             recomendaciones para la nutrición animal en{' '}
             <a
               href="https://www.instagram.com/vr.veterinaria/"
