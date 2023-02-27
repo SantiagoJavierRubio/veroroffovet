@@ -54,7 +54,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
     })
   )
   return (
-    <Layout title="Asesorias nutricionales">
+    <Layout title="Asesorías nutricionales">
       <h1 className="text-primary mt-8 text-center text-5xl font-bold sm:text-6xl">
         Asesorías nutricionales
       </h1>
@@ -198,7 +198,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
             </Expandable>
           </li>
           <li className={styles.listElement}>
-            <Expandable title="Suplementacion de ultraprocesados">
+            <Expandable title="Suplementación de ultraprocesados">
               <p className={styles.dietDescription}>
                 Son muchos los motivos por los cuales no queremos cambiar a una
                 alimentación natural, pero sí queremos mejorar la calidad del
