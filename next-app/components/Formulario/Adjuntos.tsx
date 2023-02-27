@@ -1,6 +1,14 @@
+import { useEffect, useState } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
-import { FormularioData, attachment, FormularioKey } from './formularioHelpers'
+import {
+  FormularioData,
+  attachment,
+  FormularioKey,
+  convertToBase64,
+  calculateAttachmentSizes
+} from './formularioHelpers'
 import FileUploader, { FileInputs, RemoveFileInput } from '../FileUploader'
+import { MdOutlineReportProblem } from 'react-icons/md'
 
 interface AdjuntosProps {
   data: FormularioData
@@ -8,17 +16,40 @@ interface AdjuntosProps {
   errors: Map<string, string>
 }
 
-function convertToBase64(file: File) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = err => reject(err)
-  })
+interface AttachmentSize {
+  fileSizes: {
+    [key: string]: number
+  }
+  totalSize: number
 }
+
+const MAX_ATTACHMENT_KB = 10000
 
 export default function Adjuntos(props: AdjuntosProps) {
   const { update, data, errors } = props
+  const [attachmentSizes, setAttachmentSizes] = useState<AttachmentSize>({
+    fileSizes: {},
+    totalSize: 0
+  })
+
+  useEffect(() => {
+    const newSizes = calculateAttachmentSizes(
+      [...data.estudios, data.fotoArriba, data.fotoPerfil].filter(
+        at => at !== null
+      )
+    )
+    setAttachmentSizes(newSizes)
+    const continueButton = document.querySelector(
+      '#continueBtn'
+    ) as HTMLButtonElement
+    if (newSizes.totalSize > MAX_ATTACHMENT_KB) {
+      continueButton.disabled = true
+    } else continueButton.disabled = false
+
+    return () => {
+      continueButton.disabled = false
+    }
+  }, [data.fotoArriba, data.fotoPerfil, data.estudios, data.estudios.length])
 
   const renderError = (fieldName: string) => (
     <p className="px-2 text-right text-sm font-normal italic text-red-500">
@@ -78,6 +109,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           uploadFiles={handleFileChange}
           values={[data.fotoArriba]}
           removeFiles={removeFiles}
+          sizes={attachmentSizes.fileSizes}
         />
         {renderError('fotoArriba')}
       </div>
@@ -94,6 +126,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           uploadFiles={handleFileChange}
           values={[data.fotoPerfil]}
           removeFiles={removeFiles}
+          sizes={attachmentSizes.fileSizes}
         />
         {renderError('fotoPerfil')}
       </div>
@@ -117,9 +150,22 @@ export default function Adjuntos(props: AdjuntosProps) {
           uploadFiles={handleFileChange}
           values={data.estudios}
           removeFiles={removeFiles}
+          sizes={attachmentSizes.fileSizes}
         />
         {renderError('estudios')}
       </div>
+      {attachmentSizes.totalSize > MAX_ATTACHMENT_KB && (
+        <div className="relative m-2 rounded-md border-2 border-red-500 p-4 pt-8">
+          <MdOutlineReportProblem className="absolute top-0 left-[50%] h-8 w-8 -translate-x-1/2 text-red-500" />
+          <p className="text-center text-lg font-bold text-red-500">
+            ¡Archivos adjuntos demasiado pesados!
+          </p>
+          <p className="text-center font-normal italic">
+            Considera bajarle la calidad a las fotos o subirlas a la nube y
+            pasarme el link en la siguiente pantalla
+          </p>
+        </div>
+      )}
     </FormStep>
   )
 }

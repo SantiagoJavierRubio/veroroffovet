@@ -7,7 +7,7 @@ console.log(process.env.NODE_ENV)
 
 const app = express()
 app.use(express.json({
-    limit: '15mb'
+    limit: '10mb'
 }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({

@@ -138,7 +138,11 @@ const conditionSchema = z.object({
     .trim()
     .min(5, { message: 'Debe tener al menos 5 caracteres' }),
   antecedentes: z.string().nullish(),
-  graficoPeso: z.number().int().positive().lte(5),
+  graficoPeso: z
+    .number()
+    .int()
+    .positive({ message: 'Debes seleccionar alguna opción ' })
+    .lte(5),
   costillas: z.number().int().nonnegative().lt(4)
 })
 
@@ -187,14 +191,49 @@ const getSchema = (index: number) => {
 
 function parseZodErrors(errors: ZodError) {
   return new Map(
-    errors.issues.map(err => [err.path[0].toString(), err.message])
+    errors.issues.map(err => [
+      err.path[0].toString(),
+      err.code === 'invalid_type' ? 'Campo requerido' : err.message
+    ])
   )
 }
 
 export function validateStep(data: FormularioData, index: number) {
   const schema = getSchema(index)
   const parse = schema.safeParse(data)
+  console.log(parse)
   return parse.success
     ? { success: true, error: null }
     : { success: parse.success, error: parseZodErrors(parse.error) }
+}
+
+function calculateBase64FileSize(file: attachment | null) {
+  if (!file || !file.data) return 0
+  const base64 = file.data?.substring(file.data.indexOf(',') + 1)
+  return Math.ceil((base64.length * 6) / 8 / 1000)
+}
+
+export function calculateAttachmentSizes(files: (attachment | null)[]) {
+  const fileSizes: { [key: string]: number } = {}
+  let totalInKb = 0
+  files.forEach(file => {
+    if (file) {
+      const size = calculateBase64FileSize(file)
+      fileSizes[file.filename] = size
+      totalInKb += size
+    }
+  })
+  return {
+    totalSize: totalInKb,
+    fileSizes
+  }
+}
+
+export function convertToBase64(file: File) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = err => reject(err)
+  })
 }

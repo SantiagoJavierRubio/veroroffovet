@@ -1,4 +1,5 @@
-import { ChangeEvent, DragEvent, useState } from 'react'
+import { ChangeEvent, DragEvent } from 'react'
+import { FaTrash } from 'react-icons/fa'
 import Image from 'next/image'
 
 export interface FileInputs {
@@ -26,6 +27,7 @@ interface FileUploaderProps<T> {
   id: string
   multiple?: boolean
   values: T[]
+  sizes: { [key: string]: number }
 }
 
 export default function FileUploader<T extends MinimalFileData | null>({
@@ -38,7 +40,8 @@ export default function FileUploader<T extends MinimalFileData | null>({
   id,
   values,
   dropInstruction,
-  multiple = false
+  multiple = false,
+  sizes
 }: FileUploaderProps<T>) {
   if (values[0]) values[0].filename
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +84,14 @@ export default function FileUploader<T extends MinimalFileData | null>({
                 key={`${id}-${index}`}
                 className="flex items-center justify-center"
               >
-                <p>{val?.filename}</p>
+                <p>
+                  {val?.filename}{' '}
+                  <span className="text-secondary ml-2 text-base font-normal italic">
+                    {sizes[val.filename] > 1000
+                      ? `(${(sizes[val.filename] / 1000).toFixed(2)} Mb)`
+                      : `(${sizes[val.filename]} Kb)`}
+                  </span>
+                </p>
                 <button
                   onClick={() =>
                     removeFiles({
@@ -90,9 +100,9 @@ export default function FileUploader<T extends MinimalFileData | null>({
                     })
                   }
                   type="button"
-                  className="m-0 flex h-6 w-6 items-center justify-center rounded-sm bg-transparent p-0 text-center text-base font-bold text-red-400"
+                  className="m-0 ml-2 flex h-6 w-6 items-center justify-center rounded-sm bg-transparent p-0 text-center text-base font-bold text-red-400"
                 >
-                  X
+                  <FaTrash />
                 </button>
               </div>
             )

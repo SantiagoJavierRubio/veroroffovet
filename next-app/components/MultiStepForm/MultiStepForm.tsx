@@ -55,7 +55,7 @@ export default function MultiStepForm(props: MultiStepFormProps) {
         ) : (
           <button
             type="submit"
-            className="bg-primary active:bg-primary/90 rounded-lg py-2 px-4 font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner"
+            className="bg-primary active:bg-primary/90 rounded-lg py-2 px-4 font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:shadow-none disabled:drop-shadow-none"
             id="continueBtn"
           >
             Seguir

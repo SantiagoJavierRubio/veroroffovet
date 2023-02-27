@@ -132,7 +132,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         sexo={data.sexo}
         update={update}
       />
-      {renderError('graficoPeso')}
+      <div className="mr-[20%]">{renderError('graficoPeso')}</div>
       <div className={styles.labeledInput}>
         <label htmlFor="costillas">Palpación de costillas</label>
         <p className={styles.aclaracion}>
