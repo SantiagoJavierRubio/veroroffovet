@@ -71,7 +71,7 @@ export default function Home() {
               className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
               style={{ backgroundColor: docBg }}
             >
-              Consultas clinicas
+              Consultas clínicas
             </h3>
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
               <div className="flex items-center gap-4 pt-4">

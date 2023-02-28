@@ -62,6 +62,7 @@ export default function About() {
               type="Curso"
               title="Nutrición natural de mascotas y taller de patologías"
               institution="Christian Vergara"
+              inCourse
             />
             <Curso
               type="Curso"
@@ -89,7 +90,6 @@ export default function About() {
               type="Curso"
               title="Microbiota intestinal"
               institution="Christian Vergara"
-              inCourse
             />
             <Curso
               type="Curso"

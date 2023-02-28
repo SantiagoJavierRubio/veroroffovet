@@ -73,7 +73,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
                 posible la presa que nuestros carnívoros a cargo consumirían en
                 la naturaleza. Animales con ciertas patologías diagnosticadas o
                 que convivan con humanos inmunosuprimidos pueden no ser aptos
-                para una dieta BARF.
+                para una dieta BARF
               </p>
               <div className={styles.dietDetails}>
                 <h4>Incluye:</h4>
@@ -115,7 +115,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
                 una dieta adecuada para un carnívoro pero, a diferencia de la
                 dieta BARF, es cocida. Cada dieta para cada animal es distinta y
                 se formula en base a sus condiciones de vida y de salud,
-                adecuada a sus requerimientos.
+                adecuada a sus requerimientos
               </p>
               <div className={styles.dietDetails}>
                 <h4>Incluye:</h4>
@@ -158,7 +158,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
                 ultraprocesado. Muchas veces se presentan miedos o inseguridades
                 a la hora de cambiar la alimentación de nuestros compañeros
                 carnívoros, ésta es una buena forma de empezar y probar cómo se
-                sienten durante el proceso.
+                sienten durante el proceso
               </p>
               <div className={styles.dietDetails}>
                 <h4>Incluye:</h4>
@@ -204,7 +204,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
                 alimentación natural, pero sí queremos mejorar la calidad del
                 alimento que les ofrecemos a diario. Incorporando pequeños
                 cambios como el agregado de suplementos específicos según cada
-                caso estamos mejorando muchísimo su calidad de vida.
+                caso estamos mejorando muchísimo su calidad de vida
               </p>
               <div className={styles.dietDetails}>
                 <h4>Incluye:</h4>
@@ -252,18 +252,24 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
             <p>
               El plan nutricional elegido será entregado vía mail dentro de los
               7 días hábiles luego de la consulta. A partir de que se entrega el
-              material, corren los días de seguimiento correspondientes al plan.
+              material, corren los días de seguimiento correspondientes al plan
             </p>
             <p>
               En caso que prefieras una consulta presencial y residas en Capital
-              Federal (consultar barrios), Vicente López o Florida, la visita a
-              domicilio posee un costo adicional de{' '}
-              {parsePrice(honorarios.domicilio)}
+              Federal{' '}
+              <Link
+                className="hover:text-secondary underline"
+                href="/clinica#zonas-clinica"
+              >
+                (consultar barrios)
+              </Link>
+              , Vicente López o Florida, la visita a domicilio posee un costo
+              adicional de {parsePrice(honorarios.domicilio)}
             </p>
             <p>
               Los honorarios establecidos son por animal. En caso de más de uno,
               se realiza un descuento que se establece según cada situación
-              (especies, edades, estados de salud, etc.).
+              (especies, edades, estados de salud, etc.)
             </p>
             <p>
               Medios de pago: Transferencia bancaria o Mercadopago. En caso de

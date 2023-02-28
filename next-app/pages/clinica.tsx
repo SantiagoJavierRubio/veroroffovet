@@ -41,7 +41,7 @@ export default function Clinica() {
             Para felinos y caninos
           </p>
           <ul className="ml-12 mt-2 list-disc">
-            <li className="border-primary my-2 text-xl">Consultas clinicas</li>
+            <li className="border-primary my-2 text-xl">Consultas clínicas</li>
             <li className="border-primary my-2 text-xl">Tratamientos</li>
             <li className="border-primary my-2 text-xl">Vacunaciones</li>
             <li className="border-primary my-2 text-xl">

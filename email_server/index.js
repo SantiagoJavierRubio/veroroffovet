@@ -11,7 +11,7 @@ app.use(express.json({
 }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
-    origin: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.CLIENT_URL
+    origin: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : [process.env.CLIENT_URL, process.env.CLIENT_URL_2]
 }))
 
 app.get('/', (req, res) => res.send('Email server to bypass vercel 4.5mb limit'))
