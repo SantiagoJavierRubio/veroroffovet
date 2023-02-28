@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
 import { FormularioData, DIET_TYPES } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
+import useLocalInputs from '@/hooks/useLocalInputs'
 
 interface TutorData {
   nombreTutor: FormularioData['nombreTutor']
@@ -19,9 +20,11 @@ interface TutorProps {
 
 export default function Tutor(props: TutorProps) {
   const { data, update, errors } = props
+  const { inputs, updateInputs } = useLocalInputs<TutorData>(data)
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    updateInputs(e.target.id as keyof TutorData, e.target.value)
     update({ [e.target.id]: e.target.value })
   }
   const renderError = (fieldName: string) => (
@@ -36,7 +39,7 @@ export default function Tutor(props: TutorProps) {
         <input
           type="text"
           id="nombreTutor"
-          value={data.nombreTutor}
+          value={inputs.nombreTutor}
           required
           autoFocus
           onChange={handleChange}
@@ -48,7 +51,7 @@ export default function Tutor(props: TutorProps) {
         <input
           type="text"
           id="apellidoTutor"
-          value={data.apellidoTutor}
+          value={inputs.apellidoTutor}
           required
           onChange={handleChange}
         />
@@ -59,7 +62,7 @@ export default function Tutor(props: TutorProps) {
         <input
           type="email"
           id="mail"
-          value={data.mail}
+          value={inputs.mail}
           required
           onChange={handleChange}
         />
@@ -72,7 +75,7 @@ export default function Tutor(props: TutorProps) {
         <input
           type="tel"
           id="celular"
-          value={data.celular}
+          value={inputs.celular}
           onChange={handleChange}
         />
         {renderError('celular')}
@@ -81,7 +84,7 @@ export default function Tutor(props: TutorProps) {
         <label htmlFor="dietaElegida">Dieta elegida</label>
         <select
           id="dietaElegida"
-          value={data.dietaElegida}
+          value={inputs.dietaElegida}
           required
           onChange={handleChange}
         >

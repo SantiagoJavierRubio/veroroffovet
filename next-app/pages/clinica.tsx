@@ -60,7 +60,7 @@ export default function Clinica() {
         <article className="text-primary mb-8 sm:mx-8">
           <h3 className="my-4 text-3xl underline">Zonas</h3>
           <div className="flex flex-wrap justify-evenly gap-6">
-            <div className="w-96 max-w-full grow">
+            <div className="w-96 max-w-full grow" id="zonas-clinica">
               <h4 className="text-center text-xl">Capital Federal</h4>
               <div className="relative m-auto aspect-square w-full">
                 <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">
@@ -80,7 +80,7 @@ export default function Clinica() {
                 />
               </div>
             </div>
-            <div className="w-96 max-w-full grow" id="zonas-clinica">
+            <div className="w-96 max-w-full grow">
               <h4 className="text-center text-xl">Buenos Aires, zona norte</h4>
               <div className="relative m-auto aspect-square w-full">
                 <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">

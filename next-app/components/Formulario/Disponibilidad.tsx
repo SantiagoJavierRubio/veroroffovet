@@ -1,14 +1,22 @@
+import useLocalInputs from '@/hooks/useLocalInputs'
 import { ChangeEvent, useState } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
 import type { FormularioData } from './formularioHelpers'
 
+interface DisponibilidadData {
+  disponibilidad: FormularioData['disponibilidad']
+  aclaraciones: FormularioData['aclaraciones']
+}
+
 interface DisponibilidadProps {
-  data: FormularioData
+  data: DisponibilidadData
   update: (newData: Partial<FormularioData>) => void
 }
 
 export default function Disponibilidad(props: DisponibilidadProps) {
   const { data, update } = props
+  const { inputs, updateInputs } = useLocalInputs<DisponibilidadData>(data)
+
   const [checkedDays, setCheckedDays] = useState<string[]>(() => {
     const checked: string[] = []
     Object.entries(data.disponibilidad).forEach(([day, value]) => {
@@ -20,6 +28,10 @@ export default function Disponibilidad(props: DisponibilidadProps) {
   const checkDay = (e: ChangeEvent<HTMLInputElement>) => {
     setCheckedDays(prev => {
       if (prev.includes(e.target.id)) {
+        updateInputs('disponibilidad', {
+          ...inputs.disponibilidad,
+          [e.target.id]: undefined
+        })
         update({
           disponibilidad: {
             ...data.disponibilidad,
@@ -34,10 +46,15 @@ export default function Disponibilidad(props: DisponibilidadProps) {
   }
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    updateInputs(e.target.id as keyof DisponibilidadData, e.target.value)
     update({ [e.target.id]: e.target.value })
   }
 
   const handleChangeDisponiblidad = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    updateInputs('disponibilidad', {
+      ...inputs.disponibilidad,
+      [e.target.id]: e.target.value
+    })
     update({
       disponibilidad: {
         ...data.disponibilidad,
@@ -49,7 +66,7 @@ export default function Disponibilidad(props: DisponibilidadProps) {
   return (
     <FormStep title="Disponibilidad horaria">
       <div className="items-between mx-0 mt-4 flex flex-col justify-center gap-4 sm:mx-auto sm:items-center">
-        {Object.keys(data.disponibilidad).map(day => (
+        {Object.keys(inputs.disponibilidad).map(day => (
           <div
             key={day}
             className="grid grid-cols-[25%_70%] items-center gap-4 sm:grid-cols-2"
@@ -67,7 +84,7 @@ export default function Disponibilidad(props: DisponibilidadProps) {
             </div>
             <textarea
               id={day}
-              value={data.disponibilidad[day]}
+              value={inputs.disponibilidad[day]}
               onChange={handleChangeDisponiblidad}
               disabled={!checkedDays.includes(day)}
               className="bg-secondary min-h-[3rem] rounded-sm p-2 font-semibold text-white placeholder:text-gray-500 disabled:text-gray-500"
@@ -83,7 +100,7 @@ export default function Disponibilidad(props: DisponibilidadProps) {
         </label>
         <textarea
           id="aclaraciones"
-          value={data.aclaraciones}
+          value={inputs.aclaraciones}
           onChange={handleChange}
           cols={5}
           className="bg-secondary rounded-sm p-2 text-white"

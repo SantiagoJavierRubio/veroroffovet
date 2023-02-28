@@ -1,8 +1,9 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
 import { FormularioData, COSTILLAS_TEXT } from './formularioHelpers'
 import CondicionImageSelect from './CondicionImageSelect'
 import styles from '../../styles/MultistepForm.module.css'
+import useLocalInputs from '@/hooks/useLocalInputs'
 
 interface PacienteCondicionData {
   peso: FormularioData['peso']
@@ -24,13 +25,25 @@ interface PacienteCondicionProps {
 
 export default function PacienteCondicion(props: PacienteCondicionProps) {
   const { data, update, errors } = props
+  const { inputs, updateInputs } = useLocalInputs<PacienteCondicionData>(data)
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     if (e.target.type === 'number') {
-      if (isNaN(parseFloat(e.target.value))) update({ [e.target.id]: 0 })
-      else update({ [e.target.id]: parseFloat(e.target.value) })
-    } else update({ [e.target.id]: e.target.value })
+      if (isNaN(parseFloat(e.target.value))) {
+        updateInputs(e.target.id as keyof PacienteCondicionData, 0)
+        update({ [e.target.id]: 0 })
+      } else {
+        updateInputs(
+          e.target.id as keyof PacienteCondicionData,
+          parseFloat(e.target.value)
+        )
+        update({ [e.target.id]: parseFloat(e.target.value) })
+      }
+    } else {
+      updateInputs(e.target.id as keyof PacienteCondicionData, e.target.value)
+      update({ [e.target.id]: e.target.value })
+    }
   }
   const renderError = (fieldName: string) => (
     <p className="px-2 text-right text-sm font-normal italic text-red-500">
@@ -39,6 +52,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
   )
 
   const setCostillasCheck = (index: number) => {
+    updateInputs('costillas', index)
     update({ costillas: index })
   }
   return (
@@ -51,10 +65,10 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
             id="peso"
             step="0.1"
             min="0"
-            value={data.peso}
+            value={inputs.peso || ''}
             onChange={handleChange}
             required
-            autoFocus={!data.peso}
+            autoFocus={!inputs.peso}
             className="grow basis-5/6"
           />
           <span className="mt-2 ml-1 font-bold">Kg</span>
@@ -79,7 +93,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         </label>
         <textarea
           id="otrosAnimales"
-          value={data.otrosAnimales}
+          value={inputs.otrosAnimales}
           onChange={handleChange}
         />
         {renderError('otrosAnimales')}
@@ -93,7 +107,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         </label>
         <textarea
           id="dietaActual"
-          value={data.dietaActual}
+          value={inputs.dietaActual}
           required
           onChange={handleChange}
         />
@@ -109,7 +123,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         </label>
         <textarea
           id="actividad"
-          value={data.actividad}
+          value={inputs.actividad}
           required
           onChange={handleChange}
         />
@@ -121,15 +135,15 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
         </label>
         <textarea
           id="antecedentes"
-          value={data.antecedentes}
+          value={inputs.antecedentes}
           onChange={handleChange}
         />
         {renderError('antecedentes')}
       </div>
       <CondicionImageSelect
         graficoPeso={data.graficoPeso}
-        especie={data.especie}
-        sexo={data.sexo}
+        especie={inputs.especie}
+        sexo={inputs.sexo}
         update={update}
       />
       <div className="mr-[20%]">{renderError('graficoPeso')}</div>
@@ -148,7 +162,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
               <input
                 type="radio"
                 name="costillas"
-                checked={data.costillas === index}
+                checked={inputs.costillas === index}
                 onChange={() => setCostillasCheck(index)}
                 value={index}
                 className="invisible relative mr-2 after:content-{''}
@@ -158,7 +172,7 @@ export default function PacienteCondicion(props: PacienteCondicionProps) {
               />
               <label
                 className={`cursor-pointer ${
-                  data.costillas === index && 'font-extrabold'
+                  inputs.costillas === index && 'font-extrabold'
                 }`}
                 onClick={() => setCostillasCheck(index)}
               >

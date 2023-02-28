@@ -23,7 +23,7 @@ interface AttachmentSize {
   totalSize: number
 }
 
-const MAX_ATTACHMENT_KB = 10000
+const MAX_ATTACHMENT_KB = 9000
 
 export default function Adjuntos(props: AdjuntosProps) {
   const { update, data, errors } = props
@@ -104,7 +104,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           dropInstruction="Arrastra tu archivo aqui"
           id="fotoArriba"
           required={false}
-          capture="environment"
+          capture={undefined}
           accept="image/*"
           uploadFiles={handleFileChange}
           values={[data.fotoArriba]}
@@ -121,7 +121,7 @@ export default function Adjuntos(props: AdjuntosProps) {
           dropInstruction="Arrastra tu archivo aqui"
           id="fotoPerfil"
           required={false}
-          capture="environment"
+          capture={undefined}
           accept="image/*"
           uploadFiles={handleFileChange}
           values={[data.fotoPerfil]}

@@ -4,6 +4,7 @@ import { FormularioData, ESPECIES, SEXOS } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
 import Cat from '../../public/svgs/cat.svg'
 import Dog from '../../public/svgs/husky.svg'
+import useLocalInputs from '@/hooks/useLocalInputs'
 
 interface PacienteBaseData {
   nombrePaciente: FormularioData['nombrePaciente']
@@ -22,15 +23,19 @@ interface PacienteBaseProps {
 
 export default function PacienteBase(props: PacienteBaseProps) {
   const { data, update, errors } = props
+  const { inputs, updateInputs } = useLocalInputs<PacienteBaseData>(data)
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    updateInputs(e.target.id as keyof PacienteBaseData, e.target.value)
     update({ [e.target.id]: e.target.value })
   }
   const handleCheckboxToggle = (e: ChangeEvent<HTMLInputElement>) => {
+    updateInputs('castrado', e.target.value === 'true')
     update({ castrado: e.target.value === 'true' })
   }
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateInputs(e.target.name as keyof PacienteBaseData, e.target.value)
     update({ [e.target.name]: e.target.value })
   }
   const renderError = (fieldName: string) => (
@@ -45,10 +50,10 @@ export default function PacienteBase(props: PacienteBaseProps) {
         <input
           type="text"
           id="nombrePaciente"
-          value={data.nombrePaciente}
+          value={inputs.nombrePaciente}
           onChange={handleChange}
           required
-          autoFocus={!data.nombrePaciente}
+          autoFocus={!inputs.nombrePaciente}
         />
         {renderError('nombrePaciente')}
       </div>
@@ -56,14 +61,14 @@ export default function PacienteBase(props: PacienteBaseProps) {
         <label htmlFor="especie">
           Especie:{' '}
           <span className="ml-2 text-base font-normal italic">
-            {data.especie}
+            {inputs.especie}
           </span>
         </label>
         <div className="flex items-center justify-center gap-4">
           <label
             htmlFor="felino"
             className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
-              data.especie === ESPECIES.GATO
+              inputs.especie === ESPECIES.GATO
                 ? 'border-primary border-4'
                 : 'border-2 border-gray-200'
             }`}
@@ -78,7 +83,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
             <Cat
               className={`absolute m-0 aspect-square h-full w-full shrink-0 grow ${
-                data.especie === ESPECIES.GATO
+                inputs.especie === ESPECIES.GATO
                   ? 'text-primary p-0'
                   : 'text-primary/50 p-1'
               }`}
@@ -87,7 +92,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           <label
             htmlFor="canino"
             className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
-              data.especie === ESPECIES.PERRO
+              inputs.especie === ESPECIES.PERRO
                 ? 'border-primary border-4'
                 : 'border-2 border-gray-200'
             }`}
@@ -102,7 +107,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
             <Dog
               className={`m-0 aspect-square h-full w-full shrink-0 grow ${
-                data.especie === ESPECIES.PERRO
+                inputs.especie === ESPECIES.PERRO
                   ? 'text-primary p-0'
                   : 'text-primary/50 p-1'
               }`}
@@ -116,7 +121,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
         <input
           type="text"
           id="raza"
-          value={data.raza}
+          value={inputs.raza}
           onChange={handleChange}
           required
         />
@@ -128,7 +133,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           <label
             htmlFor="hembra"
             className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
-              data.sexo === SEXOS.HEMBRA
+              inputs.sexo === SEXOS.HEMBRA
                 ? 'border-primary text-primary border-4'
                 : 'border-2 border-gray-200 text-stone-400'
             }`}
@@ -143,7 +148,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
             <p
               className={`${
-                data.sexo === SEXOS.HEMBRA ? 'text-primary' : 'text-stone-400'
+                inputs.sexo === SEXOS.HEMBRA ? 'text-primary' : 'text-stone-400'
               } select-none`}
             >
               Hembra
@@ -152,7 +157,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           <label
             htmlFor="macho"
             className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
-              data.sexo === SEXOS.MACHO
+              inputs.sexo === SEXOS.MACHO
                 ? 'border-primary text-primary border-4'
                 : 'border-2 border-gray-200 text-stone-400'
             }`}
@@ -167,7 +172,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
             <p
               className={`${
-                data.sexo === SEXOS.MACHO ? 'text-primary' : 'text-stone-400'
+                inputs.sexo === SEXOS.MACHO ? 'text-primary' : 'text-stone-400'
               } select-none`}
             >
               Macho
@@ -178,13 +183,13 @@ export default function PacienteBase(props: PacienteBaseProps) {
       </div>
       <div className={styles.labeledInput}>
         <label htmlFor="castrado">
-          ¿Está castrad{data.sexo === SEXOS.MACHO ? 'o' : 'a'}?
+          ¿Está castrad{inputs.sexo === SEXOS.MACHO ? 'o' : 'a'}?
         </label>
         <div className="flex items-center justify-center gap-4">
           <label
             htmlFor="si"
             className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
-              data.castrado
+              inputs.castrado
                 ? 'border-primary text-primary border-4'
                 : 'border-2 border-gray-200 text-stone-400'
             }`}
@@ -199,7 +204,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
             <p
               className={`${
-                data.castrado ? 'text-primary' : 'text-stone-400'
+                inputs.castrado ? 'text-primary' : 'text-stone-400'
               } select-none`}
             >
               Si
@@ -208,7 +213,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           <label
             htmlFor="no"
             className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
-              !data.castrado
+              !inputs.castrado
                 ? 'border-primary text-primary border-4'
                 : 'border-2 border-gray-200 text-stone-400'
             }`}
@@ -223,7 +228,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
             />
             <p
               className={`${
-                !data.castrado ? 'text-primary' : 'text-stone-400'
+                !inputs.castrado ? 'text-primary' : 'text-stone-400'
               } select-none`}
             >
               No
