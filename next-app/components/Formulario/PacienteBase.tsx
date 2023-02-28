@@ -57,17 +57,17 @@ export default function PacienteBase(props: PacienteBaseProps) {
         />
         {renderError('nombrePaciente')}
       </div>
-      <div className={styles.labeledInput}>
+      <div className="m-0 my-2 max-w-full sm:m-auto sm:w-3/5">
         <label htmlFor="especie">
           Especie:{' '}
           <span className="ml-2 text-base font-normal italic">
             {inputs.especie}
           </span>
         </label>
-        <div className="flex items-center justify-center gap-4">
+        <div className="my-2 flex items-center justify-center gap-4">
           <label
             htmlFor="felino"
-            className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
+            className={`flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
               inputs.especie === ESPECIES.GATO
                 ? 'border-primary border-4'
                 : 'border-2 border-gray-200'
@@ -82,7 +82,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
               onChange={handleCheckboxChange}
             />
             <Cat
-              className={`absolute m-0 aspect-square h-full w-full shrink-0 grow ${
+              className={`m-0 aspect-square h-full w-full shrink-0 grow ${
                 inputs.especie === ESPECIES.GATO
                   ? 'text-primary p-0'
                   : 'text-primary/50 p-1'
@@ -91,7 +91,7 @@ export default function PacienteBase(props: PacienteBaseProps) {
           </label>
           <label
             htmlFor="canino"
-            className={`relative flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
+            className={`flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md bg-gray-200 ${
               inputs.especie === ESPECIES.PERRO
                 ? 'border-primary border-4'
                 : 'border-2 border-gray-200'
@@ -127,9 +127,9 @@ export default function PacienteBase(props: PacienteBaseProps) {
         />
         {renderError('raza')}
       </div>
-      <div className={styles.labeledInput}>
+      <div className="m-0 my-2 max-w-full sm:m-auto sm:w-3/5">
         <label htmlFor="sexo">Sexo</label>
-        <div className="flex items-center justify-center gap-4">
+        <div className="my-2 flex items-center justify-center gap-4">
           <label
             htmlFor="hembra"
             className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
@@ -181,11 +181,11 @@ export default function PacienteBase(props: PacienteBaseProps) {
         </div>
         {renderError('sexo')}
       </div>
-      <div className={styles.labeledInput}>
+      <div className="m-0 my-2 max-w-full sm:m-auto sm:w-3/5">
         <label htmlFor="castrado">
           ¿Está castrad{inputs.sexo === SEXOS.MACHO ? 'o' : 'a'}?
         </label>
-        <div className="flex items-center justify-center gap-4">
+        <div className="my-2 flex items-center justify-center gap-4">
           <label
             htmlFor="si"
             className={`relative flex aspect-square w-20 cursor-pointer flex-col items-center justify-center rounded-md bg-gray-200 ${
@@ -235,36 +235,6 @@ export default function PacienteBase(props: PacienteBaseProps) {
             </p>
           </label>
         </div>
-        {/* <div className="flex justify-around">
-          <div className={styles.radioOption}>
-            <label>Si</label>
-            <input
-              type="radio"
-              name="castrado"
-              id="true"
-              onChange={handleCheckboxToggle}
-              checked={data.castrado}
-              className="invisible relative after:content-{''}
-              after:rounded-full after:border-2 after:absolute after:top-0 after:left-0
-              after:w-3 after:h-3 after:visible after:border-black after:cursor-pointer
-              after:p-1 checked:after:bg-secondary after:bg-contain after:bg-transparent"
-            />
-          </div>
-          <div className={styles.radioOption}>
-            <label>No</label>
-            <input
-              type="radio"
-              name="castrado"
-              id="false"
-              onChange={handleCheckboxToggle}
-              checked={!data.castrado}
-              className="invisible relative after:content-{''}
-              after:rounded-full after:border-2 after:absolute after:top-0 after:left-0
-              after:w-3 after:h-3 after:visible after:border-black after:cursor-pointer
-              after:p-1 checked:after:bg-secondary after:bg-contain after:bg-transparent"
-            />
-          </div>
-        </div> */}
         {renderError('castrado')}
       </div>
       <div className={styles.labeledInput}>
