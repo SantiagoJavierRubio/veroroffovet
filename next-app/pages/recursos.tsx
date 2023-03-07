@@ -1,13 +1,14 @@
 import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
+import ImageDisplayer from '@/components/ImageDisplayer'
 
 export default function Recursos() {
   return (
     <Layout title="Recursos">
       <Container>
-        <h2 className="text-secondary animate-pulse text-center text-4xl">
-          Proximamente...
-        </h2>
+        <div className="m-auto w-full max-w-md">
+          <ImageDisplayer imageList={[]} />
+        </div>
       </Container>
     </Layout>
   )
