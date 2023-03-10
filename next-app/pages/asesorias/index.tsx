@@ -3,6 +3,8 @@ import Expandable from '@/components/Expandable'
 import styles from '../../styles/Asesorias.module.css'
 import Link from 'next/link'
 import Container from '@/components/Container'
+import { prisma } from '@/prisma/client'
+import { Price } from '.prisma/client'
 
 const CommonDetails = () => {
   return (
@@ -29,7 +31,7 @@ const BottomLink = () => (
   </div>
 )
 
-interface Honorarios {
+export interface Honorarios {
   asesorias?: number
   suplementacion?: number
   asesoriasControl?: number
@@ -293,11 +295,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
   )
 }
 
-import { PrismaClient } from '@prisma/client'
-import { Price } from '.prisma/client'
-
 export async function getStaticProps() {
-  const prisma = new PrismaClient()
   try {
     const prices = await prisma.price.findMany({
       select: { title: true, value: true }
@@ -314,7 +312,5 @@ export async function getStaticProps() {
         prices: []
       }
     }
-  } finally {
-    prisma.$disconnect()
   }
 }

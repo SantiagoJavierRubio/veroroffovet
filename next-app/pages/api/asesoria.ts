@@ -74,7 +74,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       costillas,
       fotoPerfil,
       fotoArriba,
-      disponibilidad
+      disponibilidad,
+      aclaraciones
     } = req.body as FormularioData
 
     const attachments = [
@@ -133,6 +134,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           ${displayDisponibilidad(disponibilidad)}
         </table>
       </div>
+      <h3>Aclaraciones: </h3>
+      <p>${aclaraciones}</p>
     `
 
     const mailData = {
