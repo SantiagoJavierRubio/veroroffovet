@@ -9,7 +9,15 @@ datasource db {
 }
 
 model Price {
-  title       String @db.VarChar(255) @unique @id
-  value       Int
-  updatedAt   DateTime @updatedAt @default(now())
+  title         String    @db.VarChar(255) @unique @id
+  value         Int
+  updatedAt     DateTime  @updatedAt @default(now())
+}
+
+model Curso {
+  id            String    @unique @id @default(cuid())
+  type          String
+  title         String
+  institution   String
+  inCourse      Boolean   @default(false)
 }

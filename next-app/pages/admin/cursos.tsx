@@ -5,16 +5,17 @@ import { useSession } from 'next-auth/react'
 import SendButton from '@/components/SendButton'
 import useSendingStatus from '@/hooks/useSendingStatus'
 import { PrismaClient } from '@prisma/client'
+import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 
 interface CursosProps {
-  cursos: any
+  courses: Curso[]
 }
 
-export default function CursosPage({ cursos }: CursosProps) {
+export default function CursosPage({ courses }: CursosProps) {
   const { data: session, status } = useSession()
-  const [inputs, setInputs] = useState<any>()
+  const [inputs, setInputs] = useState<Curso[]>(courses)
 
   const { sendingStatus, setSendingStatus, SENDING_STATUS } = useSendingStatus()
   const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined)
@@ -46,11 +47,35 @@ export default function CursosPage({ cursos }: CursosProps) {
       })
   }
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputs(prev => ({
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, id: string) => {
+    setInputs(prev =>
+      prev.map(course => {
+        if (course.id !== id) return course
+        else
+          return e.target.type === 'checkbox'
+            ? {
+                ...course,
+                inCourse: e.target.checked
+              }
+            : {
+                ...course,
+                [e.target.name]: e.target.value
+              }
+      })
+    )
+  }
+
+  const addNew = () => {
+    setInputs(prev => [
       ...prev,
-      [e.target.name]: parseInt(e.target.value)
-    }))
+      {
+        id: prev.length.toString(),
+        type: '',
+        title: '',
+        institution: '',
+        inCourse: false
+      }
+    ])
   }
   return (
     <Layout>
@@ -78,6 +103,37 @@ export default function CursosPage({ cursos }: CursosProps) {
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-1 sm:p-2"
               >
+                {inputs.map(course => (
+                  <div key={course.id}>
+                    <input
+                      name="type"
+                      type="text"
+                      value={course.type}
+                      onChange={e => handleChange(e, course.id)}
+                    />
+                    <input
+                      name="title"
+                      type="text"
+                      value={course.title}
+                      onChange={e => handleChange(e, course.id)}
+                    />
+                    <input
+                      name="institution"
+                      type="text"
+                      value={course.institution}
+                      onChange={e => handleChange(e, course.id)}
+                    />
+                    <input
+                      type="checkbox"
+                      name="inCourse"
+                      checked={course.inCourse}
+                      onChange={e => handleChange(e, course.id)}
+                    />
+                  </div>
+                ))}
+                <button type="button" onClick={addNew}>
+                  +
+                </button>
                 <div className="m-auto my-4 flex max-w-sm justify-center">
                   <SendButton
                     sendingStatus={sendingStatus}
@@ -96,11 +152,17 @@ export default function CursosPage({ cursos }: CursosProps) {
 export async function getServerSideProps() {
   const prisma = new PrismaClient()
   try {
+    const courses = await prisma.curso.findMany()
+    return {
+      props: {
+        courses
+      }
+    }
   } catch (err) {
     console.error(err)
     return {
       props: {
-        honorarios: null
+        courses: []
       }
     }
   } finally {
