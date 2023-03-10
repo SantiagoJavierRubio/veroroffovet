@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { Honorarios } from '../asesorias'
 import SendButton from '@/components/SendButton'
 import useSendingStatus from '@/hooks/useSendingStatus'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/prisma/client'
 import { Price } from '.prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
@@ -194,7 +194,6 @@ export default function HonorariosPage({ honorarios }: HonorariosProps) {
 }
 
 export async function getServerSideProps() {
-  const prisma = new PrismaClient()
   try {
     const prices = (await prisma.price.findMany({
       select: { title: true, value: true }
@@ -211,7 +210,5 @@ export async function getServerSideProps() {
         honorarios: null
       }
     }
-  } finally {
-    prisma.$disconnect()
   }
 }

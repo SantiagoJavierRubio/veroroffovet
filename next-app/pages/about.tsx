@@ -2,7 +2,8 @@ import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
 import Photo from '@/components/Photo'
 import IgLogo from '../public/svgs/ig_logo.svg'
-import { Curso, PrismaClient } from '@prisma/client'
+import { Curso } from '@prisma/client'
+import { prisma } from '@/prisma/client'
 import { FC } from 'react'
 
 interface AboutProps {
@@ -101,7 +102,6 @@ const Curso: FC<CursoProps> = ({
 }
 
 export async function getStaticProps() {
-  const prisma = new PrismaClient()
   try {
     const courses = await prisma.curso.findMany()
     return {
@@ -116,7 +116,5 @@ export async function getStaticProps() {
         courses: []
       }
     }
-  } finally {
-    prisma.$disconnect()
   }
 }

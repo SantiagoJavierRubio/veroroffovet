@@ -4,11 +4,11 @@ import { useState, ChangeEvent, FormEvent } from 'react'
 import { useSession } from 'next-auth/react'
 import SendButton from '@/components/SendButton'
 import useSendingStatus from '@/hooks/useSendingStatus'
-import { PrismaClient } from '@prisma/client'
 import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { BiBookAdd } from 'react-icons/bi'
+import { prisma } from '@/prisma/client'
 
 interface CursosProps {
   courses: Curso[]
@@ -193,7 +193,6 @@ export default function CursosPage({ courses }: CursosProps) {
 }
 
 export async function getServerSideProps() {
-  const prisma = new PrismaClient()
   try {
     const courses = await prisma.curso.findMany()
     return {
@@ -208,7 +207,8 @@ export async function getServerSideProps() {
         courses: []
       }
     }
-  } finally {
-    prisma.$disconnect()
   }
+  //  finally {
+  //   prisma.$disconnect()
+  // }
 }
