@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { MdAdminPanelSettings } from 'react-icons/md'
 
 interface LinkBtnProps {
   title: string
@@ -53,6 +55,7 @@ export default function NavBar() {
   useEffect(() => {
     setCurrent(setCurrentPage)
   }, [])
+  const { data: session, status } = useSession()
   const gridCols = `grid-cols-${Object.keys(LOCATIONS).length}`
   return (
     <nav
@@ -95,6 +98,15 @@ export default function NavBar() {
           selected={current === LOCATIONS.RECURSOS}
         />
       </Link>
+      {session && (
+        <Link
+          href="/admin"
+          className="bg-secondary/50 absolute top-1/2 right-0 flex -translate-y-1/2 flex-col items-center rounded-md p-2 text-xs md:right-2"
+        >
+          Admin
+          <MdAdminPanelSettings size={26} />
+        </Link>
+      )}
     </nav>
   )
 }
