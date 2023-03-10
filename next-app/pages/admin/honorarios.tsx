@@ -18,11 +18,11 @@ function parsePriceListToObject(prices: Price[]) {
   )
 }
 
-interface AdminProps {
+interface HonorariosProps {
   honorarios: Honorarios | null
 }
 
-export default function HonorariosPage({ honorarios }: AdminProps) {
+export default function HonorariosPage({ honorarios }: HonorariosProps) {
   const { data: session, status } = useSession()
   const [inputs, setInputs] = useState<Honorarios>(
     () =>
