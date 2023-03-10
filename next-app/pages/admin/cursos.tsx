@@ -8,6 +8,7 @@ import { PrismaClient } from '@prisma/client'
 import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
+import { BiBookAdd } from 'react-icons/bi'
 
 interface CursosProps {
   courses: Curso[]
@@ -24,13 +25,13 @@ export default function CursosPage({ courses }: CursosProps) {
     e.preventDefault()
     setSendingStatus(SENDING_STATUS.SENDING)
 
-    fetch('/api/admin/.........', {
+    fetch('/api/admin/courses', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: '........'
+      body: JSON.stringify(inputs)
     })
       .then(res => {
         if (res.status === 200) {
@@ -39,6 +40,7 @@ export default function CursosPage({ courses }: CursosProps) {
         return res.json()
       })
       .then(data => {
+        setInputs(data)
         setTimeout(() => setSendingStatus(SENDING_STATUS.NULL), 1500)
       })
       .catch(err => {
@@ -101,40 +103,81 @@ export default function CursosPage({ courses }: CursosProps) {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-1 sm:p-2"
+                className="flex flex-col gap-2 sm:p-2"
               >
+                <div className="grid w-full grid-cols-8 gap-2">
+                  <label
+                    htmlFor="type"
+                    className="text-primary col-span-1 text-center text-lg font-semibold underline"
+                  >
+                    Tipo
+                  </label>
+                  <label
+                    htmlFor="title"
+                    className="text-primary col-span-4 text-center text-lg font-semibold underline"
+                  >
+                    Título
+                  </label>
+                  <label
+                    htmlFor="institution"
+                    className="text-primary col-span-2 text-center text-lg font-semibold underline"
+                  >
+                    Institución
+                  </label>
+                  <label
+                    htmlFor="inCourse"
+                    className="text-primary col-span-1 text-center text-lg font-semibold underline"
+                  >
+                    En curso
+                  </label>
+                </div>
                 {inputs.map(course => (
-                  <div key={course.id}>
+                  <div
+                    key={course.id}
+                    className="grid w-full grid-cols-8 gap-1"
+                  >
                     <input
                       name="type"
                       type="text"
                       value={course.type}
                       onChange={e => handleChange(e, course.id)}
+                      className="bg-secondary col-span-1 rounded-sm p-2 text-base font-semibold text-white"
                     />
-                    <input
-                      name="title"
-                      type="text"
-                      value={course.title}
-                      onChange={e => handleChange(e, course.id)}
-                    />
+                    <div className="text-primary col-span-4 flex text-xl">
+                      &quot;
+                      <input
+                        name="title"
+                        type="text"
+                        value={course.title}
+                        onChange={e => handleChange(e, course.id)}
+                        className="bg-secondary grow rounded-sm p-2 text-base font-semibold text-white"
+                      />
+                      &quot;
+                    </div>
                     <input
                       name="institution"
                       type="text"
                       value={course.institution}
                       onChange={e => handleChange(e, course.id)}
+                      className="bg-secondary col-span-2 rounded-sm p-2 text-base font-semibold text-white"
                     />
                     <input
                       type="checkbox"
                       name="inCourse"
                       checked={course.inCourse}
                       onChange={e => handleChange(e, course.id)}
+                      className="bg-secondary col-span-1 rounded-sm p-2 text-base font-semibold text-white"
                     />
                   </div>
                 ))}
-                <button type="button" onClick={addNew}>
-                  +
+                <button
+                  type="button"
+                  onClick={addNew}
+                  className="text-primary bg-secondary/50 hover:bg-secondary/80 m-auto mt-4 flex items-center gap-2 rounded-md p-2 text-xl transition-all hover:shadow-md hover:shadow-stone-500/50 active:shadow-none"
+                >
+                  Añadir nuevo <BiBookAdd />
                 </button>
-                <div className="m-auto my-4 flex max-w-sm justify-center">
+                <div className="m-auto my-6 flex justify-center">
                   <SendButton
                     sendingStatus={sendingStatus}
                     errorMessage={errorMsg}

@@ -2,9 +2,14 @@ import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
 import Photo from '@/components/Photo'
 import IgLogo from '../public/svgs/ig_logo.svg'
+import { Curso, PrismaClient } from '@prisma/client'
 import { FC } from 'react'
 
-export default function About() {
+interface AboutProps {
+  courses: Curso[]
+}
+
+export default function About({ courses }: AboutProps) {
   return (
     <Layout title="Sobre mi">
       <h1 className="text-primary mb-0 text-center text-5xl font-bold sm:text-6xl">
@@ -46,63 +51,15 @@ export default function About() {
             Algunos cursos y capacitaciones en los que participé:
           </p>
           <ul className="pl-2 sm:list-disc sm:pl-8">
-            <Curso
-              type="Máster"
-              title="Alimentación natural y nutrición funcional para perros y
-                gatos"
-              institution="Biovet"
-            />
-            <Curso
-              type="Curso"
-              title="Nutrición natural en caninos y felinos domésticos"
-              institution="Red
-                Animal Chile"
-            />
-            <Curso
-              type="Curso"
-              title="Nutrición natural de mascotas y taller de patologías"
-              institution="Christian Vergara"
-              inCourse
-            />
-            <Curso
-              type="Curso"
-              title="Alimentación fisiológica en perros"
-              institution="Clara Fontana"
-            />
-            <Curso
-              type="Asistencia a las"
-              title="Jornadas Internacionales sobre
-                Gastroenterología felina"
-              institution="Asociación Argentina de Medicina
-                Felina"
-            />
-            <Curso
-              type="Curso"
-              title="Geriatría Clínica en caninos y felinos"
-              institution="CPF Veterinaria"
-            />
-            <Curso
-              type="Curso"
-              title="Acute Canine Herbalism Specialist"
-              institution="DNM University"
-            />
-            <Curso
-              type="Curso"
-              title="Microbiota intestinal"
-              institution="Christian Vergara"
-            />
-            <Curso
-              type="Curso"
-              title="Plantas Medicinales del Mundo y Fitoterapia aplicada"
-              institution="Instituto de Investigaciones herbarias"
-              inCourse
-            />
-            <Curso
-              type="Curso"
-              title="Canine Essential Oils Specialist"
-              institution="DNM University"
-              inCourse
-            />
+            {courses.map(course => (
+              <Curso
+                type={course.type}
+                title={course.title}
+                institution={course.institution}
+                inCourse={course.inCourse}
+                key={course.id}
+              />
+            ))}
           </ul>
         </div>
       </Container>
@@ -141,4 +98,25 @@ const Curso: FC<CursoProps> = ({
       )}
     </li>
   )
+}
+
+export async function getStaticProps() {
+  const prisma = new PrismaClient()
+  try {
+    const courses = await prisma.curso.findMany()
+    return {
+      props: {
+        courses
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    return {
+      props: {
+        courses: []
+      }
+    }
+  } finally {
+    prisma.$disconnect()
+  }
 }
