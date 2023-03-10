@@ -137,7 +137,7 @@ const ContactForm = () => {
       body: JSON.stringify(data)
     })
       .then(res => {
-        if (res.ok) {
+        if (res.status === 200) {
           setSendingStatus(SENDING_STATUS.RESPONSE_OK)
           setData(INITIAL_DATA)
         }

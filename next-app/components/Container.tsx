@@ -6,7 +6,7 @@ const Container: FC<PropsWithChildren & HTMLAttributes<HTMLDivElement>> = ({
   children,
   ...props
 }) => {
-  const twStyles = twMerge('mx-auto w-full max-w-5xl py-8', className)
+  const twStyles = twMerge('mx-auto w-full max-w-5xl py-8 relative', className)
   return (
     <div className={twStyles} {...props}>
       {children}

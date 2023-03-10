@@ -29,7 +29,7 @@ const BottomLink = () => (
   </div>
 )
 
-interface Honorarios {
+export interface Honorarios {
   asesorias?: number
   suplementacion?: number
   asesoriasControl?: number
