@@ -14,15 +14,35 @@ export default async function handler(
         pass: process.env.GMAIL_PASS
       }
     })
+    const {
+      nombreTutor,
+      nombrePaciente,
+      conforme,
+      cambios,
+      recomendacion,
+      testimonio
+    } = req.body
     const htmlContent = `
-        <h1>Problem report on VEROROFFOVET</h1>
-        <p style="padding-left: 6px">${req.body.report}</p>
+        <h1>Encuesta de opinión</h1>
+        <h3>De: ${nombreTutor || 'Anónimo'}</h3>
+        <h4>Paciente: ${nombrePaciente || 'Anónimo'}</h4>
+        <p>¿Estás conforme con el servicio prestado? <span>${conforme}</span></p>
+        ${cambios && '<p>¿Qué cambiarías?</p>'}
+        <p>${cambios || ''}</p>
+        <p>¿Me recomendarías con otros/as tutores/as? <span>${recomendacion}</span></p>
+        ${
+          testimonio &&
+          `
+            <h6>Testimonio</h6>
+            <p>${testimonio}</p>
+        `
+        }
     `
     return await transporter
       .sendMail({
         from: process.env.GMAIL_USER,
-        to: process.env.DEV_MAIL,
-        subject: 'Problem report on VEROROFFOVET',
+        to: process.env.GMAIL_USER,
+        subject: `Encuesta de opinión`,
         html: htmlContent
       })
       .then(sent => {

@@ -1,7 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === 'POST') {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -21,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             <p style="margin: 2px">Cel: ${req.body.celular || '-'}</p>
         </div>
     `
-    transporter
+    return await transporter
       .sendMail({
         from: req.body.mail,
         to: process.env.GMAIL_USER,
@@ -34,7 +37,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       })
       .catch(err => {
         console.log(err)
-        res.status(400).send('something went wrong')
+        return res.status(400).send('something went wrong')
       })
   }
 }

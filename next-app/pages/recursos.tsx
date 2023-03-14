@@ -6,17 +6,17 @@ export default function Recursos() {
   return (
     <Layout title="Recursos">
       <Container>
-        <h2 className="text-primary mb-4 text-3xl font-bold underline">
+        <h2 className="text-primary mb-4 text-2xl font-bold underline sm:text-3xl">
           Cursos:
         </h2>
         <ul>
           <li>
-            <h3 className="text-primary text-center text-2xl font-semibold">
-              Cómo elegir un ultraprocesado
+            <h3 className="text-primary px-4 text-center text-xl font-semibold sm:text-2xl">
+              Cómo elegir un ultraprocesado y cómo mejorarlo
             </h3>
             <div className="border-terciary w-full rounded-lg sm:border-2">
               <div>
-                <h6 className="text-secondary text-center text-xl">
+                <h6 className="text-secondary text-center text-lg sm:text-xl">
                   Información
                 </h6>
                 <div className="m-auto w-full max-w-sm">
