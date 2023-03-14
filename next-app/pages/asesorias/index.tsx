@@ -274,8 +274,12 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
               (especies, edades, estados de salud, etc.)
             </p>
             <p>
-              Medios de pago: Transferencia bancaria o Mercadopago. En caso de
-              consulta a domicilio, se acepta también efectivo
+              Medios de pago: Transferencia bancaria o Mercadopago{' '}
+              <span className="text-base">
+                (en caso de consulta a domicilio, se acepta también efectivo)
+              </span>
+              <br />
+              <span className="ml-8">Fuera de Argentina: Paypal</span>
             </p>
             <p>
               Días y horarios para las consultas durante el seguimiento: de
@@ -290,6 +294,12 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
             </button>
           </Link>
         </div>
+        <h6 className="text-primary mt-12 text-center text-xl">
+          ¿Ya realizaste una asesoría?{' '}
+          <span className="hover:text-secondary underline">
+            <Link href="/asesorias/opinion">Dejame tu opinión</Link>
+          </span>
+        </h6>
       </Container>
     </Layout>
   )

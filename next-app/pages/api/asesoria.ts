@@ -42,7 +42,10 @@ function displayDisponibilidad(
   return result
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === 'POST') {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -145,7 +148,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       html: mailHTML,
       attachments: attachments as Attachment[]
     }
-    transporter
+    return await transporter
       .sendMail(mailData)
       .then(sent => {
         if (sent.accepted) return res.send('Email sent')
@@ -153,7 +156,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       })
       .catch(err => {
         console.log(err)
-        res.status(400).send('something went wrong')
+        return res.status(400).send('something went wrong')
       })
   }
 }
