@@ -22,7 +22,10 @@ export default function Head(props: HeadProps) {
         content={description || DEFAULT_DESCRIPTION}
       />
       <meta property="og:site_name" content={title || DEFAULT_TITLE} />
-      <meta property="og:image" content="/VR_logo.png" />
+      <meta
+        property="og:image"
+        content="https://www.veronicanutrivet.com.ar/VR_logo.png"
+      />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
