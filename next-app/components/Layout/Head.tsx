@@ -7,7 +7,7 @@ interface HeadProps {
 
 const DEFAULT_TITLE = 'Veronica Roffo - Veterinaria'
 const DEFAULT_DESCRIPTION =
-  'Asesorias nutricionales y veterinaria clinica. Buenos Aires - Argentina'
+  'Asesorias nutricionales y veterinaria clínica. Buenos Aires - Argentina'
 
 export default function Head(props: HeadProps) {
   const { title, description } = props
@@ -16,6 +16,13 @@ export default function Head(props: HeadProps) {
       <title>{title || DEFAULT_TITLE}</title>
       <meta name="description" content={description || DEFAULT_DESCRIPTION} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:description"
+        content={description || DEFAULT_DESCRIPTION}
+      />
+      <meta property="og:site_name" content={title || DEFAULT_TITLE} />
+      <meta property="og:image" content="/VR_logo.png" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
