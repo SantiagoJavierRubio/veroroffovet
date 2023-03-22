@@ -24,7 +24,7 @@ export default async function handler(
         })
       )
     )
-    res.revalidate('/about')
+    await res.revalidate('/about')
     return res.send(newCourses)
   } catch (err) {
     res.status(500).send(err)

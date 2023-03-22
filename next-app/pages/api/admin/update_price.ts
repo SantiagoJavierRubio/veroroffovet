@@ -36,7 +36,7 @@ export default async function handler(
         })
       )
     )
-    res.revalidate('/asesorias')
+    await res.revalidate('/asesorias')
     return res.send(updatedPrices)
   } catch (err) {
     res.status(500).send(err)
