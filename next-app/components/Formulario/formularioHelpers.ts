@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { ZodError } from 'zod/lib'
+import Resizer from 'react-image-file-resizer'
 
 export const DIET_TYPES = {
   BARF: 'BARF',
@@ -228,7 +229,23 @@ export function calculateAttachmentSizes(files: (attachment | null)[]) {
   }
 }
 
+const resizeImage = (file: File) =>
+  new Promise(resolve =>
+    Resizer.imageFileResizer(
+      file,
+      600,
+      600,
+      'JPEG',
+      100,
+      0,
+      uri => resolve(uri),
+      'base64',
+      200
+    )
+  )
+
 export function convertToBase64(file: File) {
+  if (file.type.includes('image')) return resizeImage(file)
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
