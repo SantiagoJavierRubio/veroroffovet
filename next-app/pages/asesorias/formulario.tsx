@@ -24,6 +24,29 @@ export interface FormError {
   message: string
 }
 
+function sendReport(error: Error) {
+  const report = {
+    timestamp: new Date().toLocaleString(),
+    location: '/asesorias/formulario',
+    env: {
+      platform: navigator.platform || 'unkown',
+      userAgentData: navigator.userAgent
+    },
+    data: {
+      message: error.message,
+      stack: error.stack || 'unkown'
+    }
+  }
+  fetch('/api/error', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(report)
+  })
+}
+
 export default function Formulario({ api_uri }: { api_uri: string }) {
   const [data, setData] = useState<FormularioData>(DEFAULT_VALUES)
   const [errors, setErrors] = useState<Map<string, string>>(new Map())
@@ -47,8 +70,12 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
           if (res.ok) setLoader('done')
         })
         .catch(err => {
-          alert(err)
+          sendReport(err)
+          alert('❌ Algo salió mal. Intentá nuevamente')
           setLoader('none')
+        })
+        .finally(() => {
+          if (loader === 'loading') setLoader('none')
         })
     }
   }
