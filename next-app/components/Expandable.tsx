@@ -13,12 +13,12 @@ export default function Expandable(props: PropsWithChildren<ExpandableProps>) {
   return (
     <div className="transition-all">
       <button
-        className="bg-primary relative w-full py-2 text-2xl font-bold text-stone-100 lg:rounded-md"
+        className="bg-primary group relative w-full py-2 text-2xl font-bold text-stone-100 lg:rounded-md"
         onClick={toggleOpen}
       >
         {title}
         <span
-          className={`text-secondary/50 absolute right-4 text-xl font-light ${
+          className={`text-secondary absolute right-4 scale-y-150 text-2xl font-semibold transition-all group-hover:right-5 ${
             open ? '-rotate-90' : 'rotate-90'
           }`}
         >
