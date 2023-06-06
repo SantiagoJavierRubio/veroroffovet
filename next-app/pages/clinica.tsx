@@ -7,10 +7,7 @@ import useSendingStatus from '@/hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
 
 const BARRIOS_CABA = [
-  'Almagro',
-  'Balvanera',
   'Belgrano',
-  'Caballito',
   'Chacarita',
   'Coghlan',
   'Colegiales',
