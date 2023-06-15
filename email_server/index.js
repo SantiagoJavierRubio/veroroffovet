@@ -54,7 +54,8 @@ app.post('/asesoria', async (req, res) => {
         costillas,
         fotoPerfil,
         fotoArriba,
-        disponibilidad
+        disponibilidad,
+        aclaraciones
     } = req.body
 
     const attachments = [
@@ -110,6 +111,8 @@ app.post('/asesoria', async (req, res) => {
             ${displayDisponibilidad(disponibilidad)}
         </table>
         </div>
+        <h3>Aclaraciones: </h3>
+        <p>${aclaraciones}</p>
     `
 
     const mailData = {

@@ -112,19 +112,21 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
   }
 
   useEffect(() => {
-    const lsDisponibilidad = window.localStorage.getItem('disponibilidad')
+    const storage = {
+      nombreTutor: window.localStorage.getItem('nombreTutor'),
+      apellidoTutor: window.localStorage.getItem('apellidoTutor'),
+      mail: window.localStorage.getItem('mail'),
+      celular: window.localStorage.getItem('celular'),
+      disponibilidad: window.localStorage.getItem('disponibilidad')
+    }
     setData({
       ...DEFAULT_VALUES,
-      nombreTutor:
-        window.localStorage.getItem('nombreTutor') ||
-        DEFAULT_VALUES.nombreTutor,
-      apellidoTutor:
-        window.localStorage.getItem('apellidoTutor') ||
-        DEFAULT_VALUES.apellidoTutor,
-      mail: window.localStorage.getItem('mail') || DEFAULT_VALUES.mail,
-      celular: window.localStorage.getItem('celular') || DEFAULT_VALUES.celular,
-      disponibilidad: lsDisponibilidad
-        ? JSON.parse(lsDisponibilidad)
+      nombreTutor: storage.nombreTutor || DEFAULT_VALUES.nombreTutor,
+      apellidoTutor: storage.apellidoTutor || DEFAULT_VALUES.apellidoTutor,
+      mail: storage.mail || DEFAULT_VALUES.mail,
+      celular: storage.celular || DEFAULT_VALUES.celular,
+      disponibilidad: storage.disponibilidad
+        ? JSON.parse(storage.disponibilidad)
         : DEFAULT_VALUES.disponibilidad
     })
   }, [])
