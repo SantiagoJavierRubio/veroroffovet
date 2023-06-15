@@ -94,7 +94,7 @@ export const DEFAULT_VALUES: FormularioData = {
     jueves: '',
     viernes: ''
   },
-  aclaraciones: undefined
+  aclaraciones: ''
 }
 
 export type FormularioKey = keyof typeof DEFAULT_VALUES

@@ -1,3 +1,5 @@
+// This controller is not being used. Traffic is sent to custom email_server to avoid data caps by vercel
+
 import type { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 import {
