@@ -68,7 +68,7 @@ export default function Clinica() {
                   </ul>
                 </div>
                 <Image
-                  src="/maps/capital.png"
+                  src="https://res.cloudinary.com/dxpkhydol/image/upload/v1688567888/caba.png"
                   alt="Zonas de C.A.B.A."
                   fill
                   className="rounded-md"
@@ -88,7 +88,7 @@ export default function Clinica() {
                   </ul>
                 </div>
                 <Image
-                  src="/maps/provincia.png"
+                  src="https://res.cloudinary.com/dxpkhydol/image/upload/v1688567947/provincia.png"
                   alt="Zonas de C.A.B.A."
                   fill
                   className="rounded-md"
