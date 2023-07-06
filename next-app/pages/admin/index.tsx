@@ -45,6 +45,11 @@ export default function Admin() {
                       Cursos
                     </button>
                   </Link>
+                  <Link href="/admin/barrios" className="grow">
+                    <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
+                      Barrios
+                    </button>
+                  </Link>
                 </div>
                 <div className="mt-16 flex justify-end">
                   <Link

@@ -6,26 +6,16 @@ import Photo from '@/components/Photo'
 import useSendingStatus from '@/hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
 
-const BARRIOS_CABA = [
-  'Belgrano',
-  'Chacarita',
-  'Coghlan',
-  'Colegiales',
-  'La Paternal',
-  'Nuñez',
-  'Palermo',
-  'Parque Chas',
-  'Recoleta',
-  'Saavedra',
-  'Villa Crespo',
-  'Villa Pueyrredón',
-  'Villa Ortúzar',
-  'Villa Urquiza'
-]
+import { prisma } from '@/prisma/client'
+import { Barrio } from '.prisma/client'
 
-const BARRIOS_BSAS = ['Florida', 'Vicente Lopez']
+interface ClinicaProps {
+  barrios: Barrio[]
+}
 
-export default function Clinica() {
+export default function Clinica({ barrios }: ClinicaProps) {
+  const BARRIOS_CABA = barrios.filter(b => b.distritoName === 'caba')
+  const BARRIOS_BSAS = barrios.filter(b => b.distritoName === 'provincia')
   return (
     <Layout title="Clinica a domicilio">
       <h1 className="text-primary mb-0 text-center text-5xl font-bold sm:text-6xl">
@@ -63,12 +53,12 @@ export default function Clinica() {
                 <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">
                   <ul className="flex-center flex h-full shrink flex-wrap items-center justify-evenly gap-6 text-lg font-bold text-stone-100">
                     {BARRIOS_CABA.map(barrio => (
-                      <li key={barrio}>{barrio}</li>
+                      <li key={barrio.name}>{barrio.name}</li>
                     ))}
                   </ul>
                 </div>
                 <Image
-                  src="/maps/capital.png"
+                  src="https://res.cloudinary.com/dxpkhydol/image/upload/v1688567888/caba.png"
                   alt="Zonas de C.A.B.A."
                   fill
                   className="rounded-md"
@@ -83,12 +73,12 @@ export default function Clinica() {
                 <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">
                   <ul className="flex-center flex h-full shrink flex-wrap items-center justify-evenly gap-6 text-lg font-bold text-stone-100">
                     {BARRIOS_BSAS.map(barrio => (
-                      <li key={barrio}>{barrio}</li>
+                      <li key={barrio.name}>{barrio.name}</li>
                     ))}
                   </ul>
                 </div>
                 <Image
-                  src="/maps/provincia.png"
+                  src="https://res.cloudinary.com/dxpkhydol/image/upload/v1688567947/provincia.png"
                   alt="Zonas de C.A.B.A."
                   fill
                   className="rounded-md"
@@ -102,6 +92,26 @@ export default function Clinica() {
       </Container>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  try {
+    const barrios = await prisma.barrio.findMany({
+      orderBy: {
+        distritoName: 'asc'
+      }
+    })
+    return {
+      props: { barrios }
+    }
+  } catch (err) {
+    console.error(err)
+    return {
+      props: {
+        barrios: null
+      }
+    }
+  }
 }
 
 interface ContactForm {

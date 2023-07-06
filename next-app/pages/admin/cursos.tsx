@@ -208,7 +208,4 @@ export async function getServerSideProps() {
       }
     }
   }
-  //  finally {
-  //   prisma.$disconnect()
-  // }
 }
