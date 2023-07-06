@@ -113,7 +113,7 @@ export default function BarriosPage({ barrios }: BarriosProps) {
           </div>
         ) : (
           <>
-            {session !== null ? (
+            {session === null ? (
               <div className="m-auto text-center text-2xl font-bold text-red-500">
                 Unauthorized
               </div>
