@@ -9,6 +9,7 @@ export interface FileInputs {
 
 interface MinimalFileData {
   filename: string
+  data?: string | null
 }
 
 export interface RemoveFileInput {
@@ -43,7 +44,6 @@ export default function FileUploader<T extends MinimalFileData | null>({
   multiple = false,
   sizes
 }: FileUploaderProps<T>) {
-  if (values[0]) values[0].filename
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     if (!e.target.files) return
@@ -53,7 +53,7 @@ export default function FileUploader<T extends MinimalFileData | null>({
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     if (!multiple && e.dataTransfer.files.length > 1)
-      return alert('Too many files for this field')
+      return alert('Demasiados archivos para este campo')
     uploadFiles({ fieldId: id, files: e.dataTransfer.files })
   }
   return (
@@ -62,20 +62,32 @@ export default function FileUploader<T extends MinimalFileData | null>({
       onDragOver={e => e.preventDefault()}
       onDrop={handleDrop}
     >
-      <p className="hidden text-center text-xl font-bold sm:block">
-        {dropInstruction
-          ? dropInstruction
-          : multiple
-          ? 'Drop your files here'
-          : 'Drop your file here'}
-      </p>
-      <div className="relative h-12 w-12">
-        <Image
-          alt="fileTypeLogo"
-          src={logoURL || `/svgs/${multiple ? 'files' : 'file'}-generic.svg`}
-          fill={true}
+      {!multiple && !!values[0]?.data ? (
+        <img
+          src={values[0].data}
+          className="m-auto max-h-80 w-1/2 text-sm font-thin"
+          alt={values[0].filename}
         />
-      </div>
+      ) : (
+        <>
+          <p className="hidden text-center text-xl font-bold sm:block">
+            {dropInstruction
+              ? dropInstruction
+              : multiple
+              ? 'Drop your files here'
+              : 'Drop your file here'}
+          </p>
+          <div className="relative h-12 w-12">
+            <Image
+              alt="fileTypeLogo"
+              src={
+                logoURL || `/svgs/${multiple ? 'files' : 'file'}-generic.svg`
+              }
+              fill={true}
+            />
+          </div>
+        </>
+      )}
       <div className="text-center text-base font-normal italic">
         {values.map(
           (val, index) =>
@@ -122,7 +134,9 @@ export default function FileUploader<T extends MinimalFileData | null>({
         htmlFor={id}
         className="text-primary bg-secondary cursor-pointer rounded-md p-4"
       >
-        {multiple ? 'Elegir archivos' : 'Elegir un archivo'}
+        {multiple
+          ? 'Elegir archivos'
+          : `Elegir ${values[0]?.data ? 'otro' : 'un'} archivo`}
       </label>
     </div>
   )
