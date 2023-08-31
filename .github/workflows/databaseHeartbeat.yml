@@ -12,8 +12,8 @@ jobs:
       - name: setup
         uses: actions/checkout@v3
         uses: actions/setup-node@v3
-          with:
-            node-version: '14'
+        with:
+          node-version: '14'
         run: echo This works
       # - run: npm install dotenv mysql2
       # - run: node ./wake.js
