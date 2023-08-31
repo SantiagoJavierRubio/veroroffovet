@@ -2,7 +2,7 @@ name: Mantain database active
 
 on:
   schedule:
-    - cron: '0/5 * * * *'
+    - cron: '* * * * *'
 
 jobs:
   send-heartbeat:
