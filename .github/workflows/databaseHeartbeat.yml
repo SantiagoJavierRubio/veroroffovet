@@ -2,12 +2,14 @@ name: Mantain database active
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/10 * * * *'
 
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
     steps:
+      - name: announce
+        run: echo start
       - name: Checkout
         uses: actions/checkout@v3
       - name: Node
