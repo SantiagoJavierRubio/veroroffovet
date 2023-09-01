@@ -10,4 +10,4 @@ RUN npm install --production
 
 COPY . .
 
-CMD ["node", "wake.js"]
+ENTRYPOINT [ "/entrypoint.sh" ]
