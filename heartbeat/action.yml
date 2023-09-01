@@ -3,5 +3,3 @@ description: "Send SQL to PS dummy table to keep alive"
 runs:
   using: "docker"
   image: "Dockerfile"
-  env:
-    DATABASE_URL: ${{ secrets.DATABASE_URL }}
