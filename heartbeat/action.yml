@@ -1,4 +1,0 @@
-name: "Send heartbeat to PS"
-runs:
-  using: "docker"
-  image: "Dockerfile"
