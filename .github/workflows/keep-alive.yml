@@ -1,0 +1,17 @@
+name: Mantain database active
+on:
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    name: Send heartbeat
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+      - name: Send hb
+        uses: ./heartbeat
+        id: hb
