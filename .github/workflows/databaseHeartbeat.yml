@@ -1,15 +1,19 @@
-name: Mantain database active
+name: Heartbeat CronJob
+run-name: Mantain database alive
 
 on:
-  schedule:
-    - cron: '25 */2 * * *'
+  [push]
+  # schedule:
+  #   - cron: "25 */2 * * *"
 
 jobs:
-  heartbeat:
-    name: Heartbeat
+  connect-remote:
+    name: Connection
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_USER: ${{ secrets.DATABASE_USER }}
+      DATABASE_PWD: ${{ secrets.DATABASE_PWD }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ./heartbeat
+      - run: mysql -h ${{ secrets.DATABASE_HOST }} -u ${{ secrets.DATABASE_USER }} -p${{ secrets.DATABASE_PWD }} --ssl-mode=VERIFY_IDENTITY --ssl-ca=/etc/ssl/certs/ca-certificates.crt
