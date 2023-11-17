@@ -1,4 +1,4 @@
-name: Heartbeat CronJob
+name: Heartbeat cron-job
 run-name: Mantain database alive
 
 on:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   connect-remote:
-    name: Connection
+    name: Connect to remote
     runs-on: ubuntu-latest
     env:
       DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
