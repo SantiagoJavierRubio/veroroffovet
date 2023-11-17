@@ -2,9 +2,8 @@ name: Heartbeat cron-job
 run-name: Mantain database alive
 
 on:
-  [push]
-  # schedule:
-  #   - cron: "25 */2 * * *"
+  schedule:
+    - cron: "35 6,20 * * 5"
 
 jobs:
   heartbeat:
