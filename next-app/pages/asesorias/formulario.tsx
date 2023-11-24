@@ -54,6 +54,10 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
 
   const router = useRouter()
 
+  /* cambiar al rehabilitar o cambiar implementacion */
+  // eslint-disable-next-line prefer-const
+  let habilitado = true
+
   const submit = () => {
     setLoader('loading')
     window.scrollTo(0, 0)
@@ -191,38 +195,49 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
         <h1 className="text-secondary my-4 text-center text-4xl font-bold">
           Solicitar asesoría nutricional
         </h1>
-        <div className={styles.form}>
-          <MultiStepForm
-            pages={[
-              <Tutor data={data} update={update} key="tutor" errors={errors} />,
-              <PacienteBase
-                data={data}
-                update={update}
-                key="pacienteBase"
-                errors={errors}
-              />,
-              <PacienteCondicion
-                data={data}
-                update={update}
-                key="pacienteCondicion"
-                errors={errors}
-              />,
-              <Adjuntos
-                update={update}
-                data={data}
-                key="adjuntos"
-                errors={errors}
-              />,
-              <Disponibilidad
-                data={data}
-                update={update}
-                key="disponibilidad"
-              />
-            ]}
-            submitFunction={submit}
-            stepValidation={stepValidation}
-          />
-        </div>
+        {habilitado ? (
+          <h2 className="mt-12 text-center text-2xl text-red-400">
+            Momentaneamente no disponible
+          </h2>
+        ) : (
+          <div className={styles.form}>
+            <MultiStepForm
+              pages={[
+                <Tutor
+                  data={data}
+                  update={update}
+                  key="tutor"
+                  errors={errors}
+                />,
+                <PacienteBase
+                  data={data}
+                  update={update}
+                  key="pacienteBase"
+                  errors={errors}
+                />,
+                <PacienteCondicion
+                  data={data}
+                  update={update}
+                  key="pacienteCondicion"
+                  errors={errors}
+                />,
+                <Adjuntos
+                  update={update}
+                  data={data}
+                  key="adjuntos"
+                  errors={errors}
+                />,
+                <Disponibilidad
+                  data={data}
+                  update={update}
+                  key="disponibilidad"
+                />
+              ]}
+              submitFunction={submit}
+              stepValidation={stepValidation}
+            />
+          </div>
+        )}
       </div>
     </Layout>
   )
