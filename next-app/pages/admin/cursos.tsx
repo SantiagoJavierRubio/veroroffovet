@@ -3,50 +3,21 @@ import Layout from '@/components/Layout/Layout'
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { useSession } from 'next-auth/react'
 import SendButton from '@/components/SendButton'
-import useSendingStatus from '@/hooks/useSendingStatus'
 import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
+import { FiLoader } from 'react-icons/fi'
 import { BiBookAdd } from 'react-icons/bi'
-import { prisma } from '@/prisma/client'
+import { useCursos } from '@/api/admin/cursos'
 
-interface CursosProps {
-  courses: Curso[]
-}
-
-export default function CursosPage({ courses }: CursosProps) {
+export default function CursosPage() {
   const { data: session, status } = useSession()
-  const [inputs, setInputs] = useState<Curso[]>(courses)
-
-  const { sendingStatus, setSendingStatus, SENDING_STATUS } = useSendingStatus()
-  const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined)
+  const { get, post } = useCursos()
+  const [inputs, setInputs] = useState<Curso[]>(get.data || [])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    setSendingStatus(SENDING_STATUS.SENDING)
-
-    fetch('/api/admin/courses', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(inputs)
-    })
-      .then(res => {
-        if (res.status === 200) {
-          setSendingStatus(SENDING_STATUS.RESPONSE_OK)
-        }
-        return res.json()
-      })
-      .then(data => {
-        setInputs(data)
-        setTimeout(() => setSendingStatus(SENDING_STATUS.NULL), 1500)
-      })
-      .catch(err => {
-        err instanceof Error && setErrorMsg(err.message)
-        setSendingStatus(SENDING_STATUS.ERROR)
-      })
+    post.mutate(inputs)
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, id: string) => {
@@ -90,9 +61,9 @@ export default function CursosPage({ courses }: CursosProps) {
         <h1 className="text-primary text-center text-3xl font-bold">
           Editar cursos
         </h1>
-        {status === 'loading' ? (
-          <div className="text-primary m-auto animate-pulse text-center text-2xl font-bold">
-            Loading...
+        {get.status === 'pending' || status === 'loading' ? (
+          <div className="text-primary m-auto w-full animate-pulse text-center text-2xl font-bold">
+            <FiLoader className="animate-spin" />
           </div>
         ) : (
           <>
@@ -179,8 +150,8 @@ export default function CursosPage({ courses }: CursosProps) {
                 </button>
                 <div className="m-auto my-6 flex justify-center">
                   <SendButton
-                    sendingStatus={sendingStatus}
-                    errorMessage={errorMsg}
+                    sendingStatus={post.status}
+                    errorMessage={post.error?.message}
                   />
                 </div>
               </form>
@@ -190,22 +161,4 @@ export default function CursosPage({ courses }: CursosProps) {
       </Container>
     </Layout>
   )
-}
-
-export async function getServerSideProps() {
-  try {
-    const courses = await prisma.curso.findMany()
-    return {
-      props: {
-        courses
-      }
-    }
-  } catch (err) {
-    console.error(err)
-    return {
-      props: {
-        courses: []
-      }
-    }
-  }
 }

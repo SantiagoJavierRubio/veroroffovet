@@ -4,19 +4,25 @@ import { SENDING_STATUS } from '@/hooks/useSendingStatus'
 import type { Status } from '@/hooks/useSendingStatus'
 import Image from 'next/image'
 
+type ReactQueryMutationStates = 'idle' | 'pending' | 'success' | 'error'
+
 const SendButton: FC<{
-  sendingStatus: Status
+  sendingStatus: Status | ReactQueryMutationStates
   errorMessage?: string
 }> = ({ sendingStatus, errorMessage }) => {
   const calculateButtonStyles = () => {
     switch (sendingStatus) {
       case SENDING_STATUS.SENDING:
+      case 'pending':
         return 'bg-primary w-auto p-4 aspect-square'
       case SENDING_STATUS.ERROR:
+      case 'error':
         return 'bg-red-400 p-4 asapect-video'
       case SENDING_STATUS.RESPONSE_OK:
+      case 'success':
         return 'bg-green-500 p-1 aspect-square'
       case SENDING_STATUS.NULL:
+      case 'idle':
       default:
         return 'bg-primary aspect-video p-4 active:bg-primary/90'
     }
@@ -24,12 +30,16 @@ const SendButton: FC<{
   return (
     <button
       type="submit"
-      disabled={sendingStatus !== SENDING_STATUS.NULL}
+      disabled={
+        sendingStatus !== SENDING_STATUS.NULL && sendingStatus !== 'idle'
+      }
       className={`${calculateButtonStyles()} relative m-auto h-16 rounded-lg font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner disabled:translate-y-0`}
     >
       <AnimatePresence>
-        {sendingStatus === SENDING_STATUS.NULL && <p>Enviar</p>}
-        {sendingStatus === SENDING_STATUS.SENDING && (
+        {(sendingStatus === SENDING_STATUS.NULL ||
+          sendingStatus === 'idle') && <p>Enviar</p>}
+        {(sendingStatus === SENDING_STATUS.SENDING ||
+          sendingStatus === 'pending') && (
           <svg
             aria-hidden="true"
             className="fill-secondary m-auto h-6 w-6 animate-spin text-gray-200 dark:text-gray-600"
@@ -47,7 +57,8 @@ const SendButton: FC<{
             />
           </svg>
         )}
-        {sendingStatus === SENDING_STATUS.RESPONSE_OK && (
+        {(sendingStatus === SENDING_STATUS.RESPONSE_OK ||
+          sendingStatus === 'success') && (
           <motion.div
             initial={{
               rotate: -260,
@@ -75,9 +86,8 @@ const SendButton: FC<{
             />
           </motion.div>
         )}
-        {sendingStatus === SENDING_STATUS.ERROR && (
-          <p>{errorMessage || 'Error'}</p>
-        )}
+        {(sendingStatus === SENDING_STATUS.ERROR ||
+          sendingStatus === 'error') && <p>{errorMessage || 'Error'}</p>}
       </AnimatePresence>
     </button>
   )

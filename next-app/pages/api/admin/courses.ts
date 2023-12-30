@@ -7,25 +7,30 @@ export default async function handler(
 ) {
   const prisma = new PrismaClient()
   try {
-    const data = req.body as Curso[]
-    const newCourses = await prisma.$transaction(
-      data.map(course =>
-        prisma.curso.upsert({
-          where: {
-            id: course.id
-          },
-          update: course,
-          create: {
-            type: course.type,
-            title: course.title,
-            institution: course.institution,
-            inCourse: course.inCourse
-          }
-        })
+    if (req.method === 'POST') {
+      const data = req.body as Curso[]
+      const newCourses = await prisma.$transaction(
+        data.map(course =>
+          prisma.curso.upsert({
+            where: {
+              id: course.id
+            },
+            update: course,
+            create: {
+              type: course.type,
+              title: course.title,
+              institution: course.institution,
+              inCourse: course.inCourse
+            }
+          })
+        )
       )
-    )
-    await res.revalidate('/about')
-    return res.send(newCourses)
+      await res.revalidate('/about')
+      return res.send(newCourses)
+    } else {
+      const courses = await prisma.curso.findMany()
+      res.send(courses)
+    }
   } catch (err) {
     res.status(500).send(err)
   } finally {
