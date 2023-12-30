@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Curso } from '@prisma/client'
 
 async function getCursos() {
@@ -7,19 +7,16 @@ async function getCursos() {
 }
 
 async function editCursos(data: Curso[]) {
-  return (await axios.post('/api/admin/courses', data)).data
+  return axios.post('/api/admin/courses', data)
 }
 
 export const useCursos = () => {
-  const client = useQueryClient()
   const get = useQuery({ queryKey: ['cursos'], queryFn: getCursos })
   const post = useMutation({
     mutationKey: ['cursos'],
     mutationFn: editCursos,
     onSuccess: () => {
-      client.refetchQueries({
-        queryKey: ['cursos']
-      })
+      get.refetch()
       setTimeout(() => post.reset(), 900)
     }
   })
