@@ -15,12 +15,16 @@ export const useHonorarios = () => {
     queryKey: ['honorarios'],
     queryFn: getHonorarios
   })
+
   const post = useMutation({
     mutationKey: ['honorarios'],
     mutationFn: updateHonorarios,
     onSuccess: () => {
       get.refetch()
-      setTimeout(() => post.reset, 900)
+      setTimeout(() => post.reset(), 900)
+    },
+    onError: () => {
+      setTimeout(() => post.reset(), 900)
     }
   })
 

@@ -1,42 +1,29 @@
 import Container from '@/components/Container'
 import Layout from '@/components/Layout/Layout'
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
+import { type FormEvent } from 'react'
 import { useSession } from 'next-auth/react'
-import { Honorarios } from '../asesorias'
 import SendButton from '@/components/SendButton'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { useHonorarios } from '@/api/admin/honorarios'
+import { editHonorarios } from '@/schemas/honorarios'
+import useFormErrors from '@/hooks/useFormErrors'
 
 export default function HonorariosPage() {
   const { data: session, status } = useSession()
   const { get, post } = useHonorarios()
-  const [inputs, setInputs] = useState<Honorarios>(
-    get.data ?? {
-      asesorias: 0,
-      asesoriasControl: 0,
-      suplementacion: 0,
-      suplementacionControl: 0,
-      domicilio: 0
-    }
-  )
-  // TODO> alternative?
-  useEffect(() => {
-    if (!get.data) return
-    setInputs(get.data)
-  }, [get.data])
+  const { errors, parseErrors } = useFormErrors(editHonorarios)
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    post.mutate(inputs)
+    const values = new FormData(e.currentTarget)
+    const valuesObj = Object.fromEntries(values)
+    if (parseErrors(valuesObj)) {
+      const inputs = editHonorarios.parse(valuesObj)
+      post.mutate(inputs)
+    }
   }
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputs(prev => ({
-      ...prev,
-      [e.target.name]: parseInt(e.target.value)
-    }))
-  }
   return (
     <Layout>
       <Container>
@@ -71,13 +58,19 @@ export default function HonorariosPage() {
                     Asesorias
                   </label>
                   <input
-                    onChange={handleChange}
-                    value={inputs.asesorias}
+                    defaultValue={get.data?.asesorias}
                     className="bg-secondary rounded-sm p-2 pl-5 font-semibold text-white"
                     type="number"
                     name="asesorias"
                     id="asesorias"
                   />
+                  <p
+                    className={`text-red-500 ${
+                      errors?.asesorias ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {errors?.asesorias?._errors[0]}
+                  </p>
                 </div>
                 <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
                   <label
@@ -87,13 +80,19 @@ export default function HonorariosPage() {
                     Control asesorias
                   </label>
                   <input
-                    onChange={handleChange}
-                    value={inputs.asesoriasControl}
+                    defaultValue={get.data?.asesoriasControl}
                     className="bg-secondary rounded-sm p-2 pl-5 font-semibold text-white"
                     type="number"
                     name="asesoriasControl"
                     id="asesoriasControl"
                   />
+                  <p
+                    className={`text-red-500 ${
+                      errors?.asesoriasControl ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {errors?.asesoriasControl?._errors[0]}
+                  </p>
                 </div>
                 <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
                   <label
@@ -103,13 +102,19 @@ export default function HonorariosPage() {
                     Suplementacion
                   </label>
                   <input
-                    onChange={handleChange}
-                    value={inputs.suplementacion}
+                    defaultValue={get.data?.suplementacion}
                     className="bg-secondary rounded-sm p-2 pl-5 font-semibold text-white"
                     type="number"
                     name="suplementacion"
                     id="suplementacion"
                   />
+                  <p
+                    className={`text-red-500 ${
+                      errors?.suplementacion ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {errors?.suplementacion?._errors[0]}
+                  </p>
                 </div>
                 <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
                   <label
@@ -119,13 +124,19 @@ export default function HonorariosPage() {
                     Control suplementacion
                   </label>
                   <input
-                    onChange={handleChange}
-                    value={inputs.suplementacionControl}
+                    defaultValue={get.data?.suplementacionControl}
                     className="bg-secondary rounded-sm p-2 pl-5 font-semibold text-white"
                     type="number"
                     name="suplementacionControl"
                     id="suplementacionControl"
                   />
+                  <p
+                    className={`text-red-500 ${
+                      errors?.suplementacionControl ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {errors?.suplementacionControl?._errors[0]}
+                  </p>
                 </div>
                 <div className="m-auto my-2 grid w-full max-w-full auto-cols-auto sm:w-3/5">
                   <label
@@ -135,13 +146,19 @@ export default function HonorariosPage() {
                     Costo a domicilio
                   </label>
                   <input
-                    onChange={handleChange}
-                    value={inputs.domicilio}
+                    defaultValue={get.data?.domicilio}
                     className="bg-secondary rounded-sm p-2 pl-5 font-semibold text-white"
                     type="number"
                     name="domicilio"
                     id="domicilio"
                   />
+                  <p
+                    className={`text-red-500 ${
+                      errors?.domicilio ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {errors?.domicilio?._errors[0]}
+                  </p>
                 </div>
                 <div className="m-auto my-4 flex max-w-sm justify-center">
                   <SendButton
