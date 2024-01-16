@@ -257,29 +257,13 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
               material, corren los días de seguimiento correspondientes al plan
             </p>
             <p>
-              En caso que prefieras una consulta presencial y residas en Capital
-              Federal{' '}
-              <Link
-                className="hover:text-secondary underline"
-                href="/clinica#zonas-clinica"
-              >
-                (consultar barrios)
-              </Link>
-              , Vicente López o Florida, la visita a domicilio posee un costo
-              adicional de {parsePrice(honorarios.domicilio)}
-            </p>
-            <p>
               Los honorarios establecidos son por animal. En caso de más de uno,
               se realiza un descuento que se establece según cada situación
               (especies, edades, estados de salud, etc.)
             </p>
             <p>
-              Medios de pago: Transferencia bancaria o Mercadopago{' '}
-              <span className="text-base">
-                (en caso de consulta a domicilio, se acepta también efectivo)
-              </span>
-              <br />
-              <span className="ml-8">Fuera de Argentina: Paypal</span>
+              Medios de pago: Transferencia bancaria o Mercadopago. Fuera de
+              Argentina: Paypal
             </p>
             <p>
               Días y horarios para las consultas durante el seguimiento: de
@@ -288,14 +272,9 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
           </div>
         </article>
         <div className="mt-6 flex w-full justify-center">
-          {/* Sacar pointer-events-none para rehabilitar */}
-          <Link
-            href="/asesorias/formulario"
-            className="pointer-events-none m-auto"
-          >
+          <Link href="/asesorias/formulario" className="m-auto">
             <button className="bg-secondary active:bg-secondary/90 m-auto max-w-full rounded-lg p-6 text-2xl font-bold text-stone-50 shadow-none outline-none transition-all duration-75 hover:-translate-y-px hover:shadow-black/60 hover:drop-shadow-xl hover:duration-75 active:translate-y-0 active:scale-100 active:shadow-inner">
-              Momentaneamente no disponible
-              {/* Solicitar una asesoría */}
+              Solicitar una asesoría
             </button>
           </Link>
         </div>
