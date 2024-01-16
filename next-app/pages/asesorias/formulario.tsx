@@ -56,7 +56,7 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
 
   /* cambiar al rehabilitar o cambiar implementacion */
   // eslint-disable-next-line prefer-const
-  let habilitado = true
+  let habilitado = false
 
   const submit = () => {
     setLoader('loading')

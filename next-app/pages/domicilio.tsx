@@ -9,17 +9,17 @@ import SendButton from '@/components/SendButton'
 import { prisma } from '@/prisma/client'
 import { Barrio } from '.prisma/client'
 
-interface ClinicaProps {
+interface DomicilioProps {
   barrios: Barrio[]
 }
 
-export default function Clinica({ barrios }: ClinicaProps) {
+export default function Domicilio({ barrios }: DomicilioProps) {
   const BARRIOS_CABA = barrios.filter(b => b.distritoName === 'caba')
   const BARRIOS_BSAS = barrios.filter(b => b.distritoName === 'provincia')
   return (
-    <Layout title="Clinica a domicilio">
+    <Layout title="Atención a domicilio">
       <h1 className="text-primary mb-0 text-center text-5xl font-bold sm:text-6xl">
-        Clínica a domicilio
+        Atención a domicilio
       </h1>
       <Container>
         <article className="text-primary relative mb-8 sm:ml-8">
@@ -28,8 +28,6 @@ export default function Clinica({ barrios }: ClinicaProps) {
             Para felinos y caninos
           </p>
           <ul className="ml-12 mt-2 list-disc">
-            <li className="border-primary my-2 text-xl">Consultas clínicas</li>
-            <li className="border-primary my-2 text-xl">Tratamientos</li>
             <li className="border-primary my-2 text-xl">Vacunaciones</li>
             <li className="border-primary my-2 text-xl">
               Análisis de laboratorio
@@ -38,6 +36,9 @@ export default function Clinica({ barrios }: ClinicaProps) {
               Certificados de salud
             </li>
           </ul>
+          <p className="ml-2 text-base font-normal italic text-red-600">
+            Agenda para consultas clínicas cerrada
+          </p>
           <Photo
             src="/photos/veroycabra.jpeg"
             alt="con un paciente"
@@ -47,7 +48,7 @@ export default function Clinica({ barrios }: ClinicaProps) {
         <article className="text-primary mb-8 sm:mx-8">
           <h3 className="my-4 text-3xl underline">Zonas</h3>
           <div className="flex flex-wrap justify-evenly gap-6">
-            <div className="w-96 max-w-full grow" id="zonas-clinica">
+            <div className="w-96 max-w-full grow" id="zonas-domicilio">
               <h4 className="text-center text-xl">Capital Federal</h4>
               <div className="relative m-auto aspect-square w-full">
                 <div className="absolute inset-0 z-10 rounded-md p-4 opacity-0 transition-all hover:bg-black/80 hover:opacity-100">

@@ -36,7 +36,7 @@ const LinkButton = (props: LinkBtnProps) => {
 const LOCATIONS = {
   INICIO: '/',
   ASESORIAS: 'asesorias',
-  CLINICA: 'clinica',
+  DOMICILIO: 'domicilio',
   RECURSOS: 'recursos',
   ABOUT: 'about'
 }
@@ -44,7 +44,7 @@ const LOCATIONS = {
 function setCurrentPage() {
   const loc = window.location.href
   if (loc.includes(LOCATIONS.ASESORIAS)) return LOCATIONS.ASESORIAS
-  else if (loc.includes(LOCATIONS.CLINICA)) return LOCATIONS.CLINICA
+  else if (loc.includes(LOCATIONS.DOMICILIO)) return LOCATIONS.DOMICILIO
   else if (loc.includes(LOCATIONS.RECURSOS)) return LOCATIONS.RECURSOS
   else if (loc.includes(LOCATIONS.ABOUT)) return LOCATIONS.ABOUT
   else return LOCATIONS.INICIO
@@ -77,11 +77,11 @@ export default function NavBar() {
           selected={current === LOCATIONS.ASESORIAS}
         />
       </Link>
-      <Link href="/clinica">
+      <Link href="/domicilio">
         <LinkButton
-          title="Clínica a domicilio"
+          title="Atención a domicilio"
           icon="/svgs/veterinarian.svg"
-          selected={current === LOCATIONS.CLINICA}
+          selected={current === LOCATIONS.DOMICILIO}
         />
       </Link>
       <Link href="/about">
