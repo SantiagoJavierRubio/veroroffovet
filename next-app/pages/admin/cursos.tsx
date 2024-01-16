@@ -13,6 +13,7 @@ import { useCursos } from '@/api/admin/cursos'
 export default function CursosPage() {
   const { data: session, status } = useSession()
   const { get, post } = useCursos()
+  // handle update on first load - handle delete
   const [inputs, setInputs] = useState<Curso[]>(get.data || [])
 
   const handleSubmit = (e: FormEvent) => {
