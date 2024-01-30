@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient, Barrio } from '@prisma/client'
+import { prisma } from '@/prisma/client'
+import { Barrio } from '@prisma/client'
 
 type UpdateBarriosInput = {
   new: Barrio[]
@@ -10,7 +11,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const prisma = new PrismaClient()
   try {
     if (req.method === 'POST') {
       const input: UpdateBarriosInput = req.body
@@ -38,7 +38,5 @@ export default async function handler(
   } catch (err) {
     console.error(err)
     res.status(500).send(err)
-  } finally {
-    prisma.$disconnect()
   }
 }

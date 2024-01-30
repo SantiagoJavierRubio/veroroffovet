@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient, Price } from '@prisma/client'
+import { Price } from '@prisma/client'
+import { prisma } from '@/prisma/client'
 
 type UpdatesInput = [string, number][]
 
@@ -26,7 +27,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const prisma = new PrismaClient()
   try {
     if (req.method === 'POST') {
       const input = Object.entries(req.body)
@@ -59,7 +59,5 @@ export default async function handler(
   } catch (err) {
     console.error(err)
     res.status(500).send(err)
-  } finally {
-    prisma.$disconnect()
   }
 }

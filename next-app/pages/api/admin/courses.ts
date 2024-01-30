@@ -1,12 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/prisma/client'
 import { CursoInput } from '@/pages/admin/cursos'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const prisma = new PrismaClient()
   try {
     if (req.method === 'POST') {
       const data = req.body as CursoInput[]
@@ -47,7 +46,5 @@ export default async function handler(
   } catch (err) {
     console.log(err)
     res.status(500).send(err)
-  } finally {
-    prisma.$disconnect()
   }
 }
