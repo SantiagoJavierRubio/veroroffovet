@@ -12,7 +12,7 @@ import {
   MdRestoreFromTrash,
   MdAddCircle
 } from 'react-icons/md'
-import { useBarrios } from '@/api/admin/barrios'
+import { useBarrios } from '@/queries/admin/barrios'
 
 const DEFAULT_BARRIO: Barrio = {
   name: '',
@@ -76,7 +76,7 @@ export default function BarriosPage() {
           Editar barrios
         </h1>
         {/* eslint-disable-next-line no-constant-condition */}
-        {status === 'loading' ? (
+        {status === 'loading' || true ? (
           <div className="text-primary mt-14 text-center text-2xl font-bold">
             <BiLoaderAlt size={36} className="m-auto animate-spin" />
           </div>
