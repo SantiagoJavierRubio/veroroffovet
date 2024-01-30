@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Curso, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
+import { CursoInput } from '@/pages/admin/cursos'
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,14 +9,19 @@ export default async function handler(
   const prisma = new PrismaClient()
   try {
     if (req.method === 'POST') {
-      const data = req.body as Curso[]
+      const data = req.body as CursoInput[]
       const newCourses = await prisma.$transaction(
         data.map(course =>
           prisma.curso.upsert({
             where: {
-              id: course.id
+              id: course.id ?? ''
             },
-            update: course,
+            update: {
+              type: course.type,
+              title: course.title,
+              institution: course.institution,
+              inCourse: course.inCourse
+            },
             create: {
               type: course.type,
               title: course.title,
@@ -27,11 +33,19 @@ export default async function handler(
       )
       await res.revalidate('/about')
       return res.send(newCourses)
+    } else if (req.method == 'DELETE') {
+      const { id } = req.query
+      if (id == undefined) throw new Error('ID required')
+      const del = await prisma.curso.delete({
+        where: { id: id.toString() }
+      })
+      res.send(del)
     } else {
       const courses = await prisma.curso.findMany()
       res.send(courses)
     }
   } catch (err) {
+    console.log(err)
     res.status(500).send(err)
   } finally {
     prisma.$disconnect()

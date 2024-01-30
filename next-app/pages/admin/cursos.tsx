@@ -1,30 +1,49 @@
 import Container from '@/components/Container'
 import Layout from '@/components/Layout/Layout'
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import SendButton from '@/components/SendButton'
 import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { FiLoader } from 'react-icons/fi'
-import { BiBookAdd } from 'react-icons/bi'
+import { BiBookAdd, BiTrash } from 'react-icons/bi'
 import { useCursos } from '@/api/admin/cursos'
+
+export type CursoInput = Omit<Curso, 'id'> & { id: string | undefined }
 
 export default function CursosPage() {
   const { data: session, status } = useSession()
-  const { get, post } = useCursos()
-  // handle update on first load - handle delete
-  const [inputs, setInputs] = useState<Curso[]>(get.data || [])
+  const { get, post, deleteOne } = useCursos()
+  const [inputs, setInputs] = useState<CursoInput[]>(get.data ?? [])
+
+  useEffect(() => {
+    if (get.status == 'success' && get.data) {
+      setInputs(get.data)
+    }
+  }, [get.data, get.status])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     post.mutate(inputs)
   }
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>, id: string) => {
+  const handleRemove = (id: string | number) => {
+    if (typeof id == 'string') {
+      deleteOne.mutate(id)
+    } else {
+      setInputs(prev => [...prev.splice(id, 1)])
+    }
+  }
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    id: string | number
+  ) => {
     setInputs(prev =>
-      prev.map(course => {
-        if (course.id !== id) return course
+      prev.map((course, index) => {
+        if (course.id && course.id !== id) return course
+        else if (typeof id == 'number' && index !== id) return course
         else
           return e.target.type === 'checkbox'
             ? {
@@ -43,7 +62,7 @@ export default function CursosPage() {
     setInputs(prev => [
       ...prev,
       {
-        id: prev.length.toString(),
+        id: undefined,
         type: '',
         title: '',
         institution: '',
@@ -77,7 +96,7 @@ export default function CursosPage() {
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-2 sm:p-2"
               >
-                <div className="grid w-full grid-cols-8 gap-2">
+                <div className="grid w-full grid-cols-9 gap-2">
                   <label
                     htmlFor="type"
                     className="text-primary col-span-1 text-center text-lg font-semibold underline"
@@ -103,16 +122,16 @@ export default function CursosPage() {
                     En curso
                   </label>
                 </div>
-                {inputs.map(course => (
+                {inputs.map((course, index) => (
                   <div
                     key={course.id}
-                    className="grid w-full grid-cols-8 gap-1"
+                    className="grid w-full grid-cols-9 gap-1"
                   >
                     <input
                       name="type"
                       type="text"
                       value={course.type}
-                      onChange={e => handleChange(e, course.id)}
+                      onChange={e => handleChange(e, course.id ?? index)}
                       className="bg-secondary col-span-1 rounded-sm p-2 text-base font-semibold text-white"
                     />
                     <div className="text-primary col-span-4 flex text-xl">
@@ -121,7 +140,7 @@ export default function CursosPage() {
                         name="title"
                         type="text"
                         value={course.title}
-                        onChange={e => handleChange(e, course.id)}
+                        onChange={e => handleChange(e, course.id ?? index)}
                         className="bg-secondary grow rounded-sm p-2 text-base font-semibold text-white"
                       />
                       &quot;
@@ -130,16 +149,23 @@ export default function CursosPage() {
                       name="institution"
                       type="text"
                       value={course.institution}
-                      onChange={e => handleChange(e, course.id)}
+                      onChange={e => handleChange(e, course.id ?? index)}
                       className="bg-secondary col-span-2 rounded-sm p-2 text-base font-semibold text-white"
                     />
                     <input
                       type="checkbox"
                       name="inCourse"
                       checked={course.inCourse}
-                      onChange={e => handleChange(e, course.id)}
+                      onChange={e => handleChange(e, course.id ?? index)}
                       className="bg-secondary col-span-1 rounded-sm p-2 text-base font-semibold text-white"
                     />
+                    <button
+                      type="button"
+                      className="text-red-500"
+                      onClick={() => handleRemove(course.id ?? index)}
+                    >
+                      <BiTrash />
+                    </button>
                   </div>
                 ))}
                 <button
