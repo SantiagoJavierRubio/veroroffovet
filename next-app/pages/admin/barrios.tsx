@@ -6,6 +6,7 @@ import SendButton from '@/components/SendButton'
 import { Barrio } from '.prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
+import { BiLoaderAlt } from 'react-icons/bi'
 import {
   MdDeleteForever,
   MdRestoreFromTrash,
@@ -74,9 +75,10 @@ export default function BarriosPage() {
         <h1 className="text-primary text-center text-3xl font-bold">
           Editar barrios
         </h1>
+        {/* eslint-disable-next-line no-constant-condition */}
         {status === 'loading' ? (
-          <div className="text-primary m-auto animate-pulse text-center text-2xl font-bold">
-            Loading...
+          <div className="text-primary mt-14 text-center text-2xl font-bold">
+            <BiLoaderAlt size={36} className="m-auto animate-spin" />
           </div>
         ) : (
           <>

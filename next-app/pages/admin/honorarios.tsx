@@ -8,6 +8,7 @@ import { FaChevronLeft } from 'react-icons/fa'
 import { useHonorarios } from '@/api/admin/honorarios'
 import { editHonorarios } from '@/schemas/honorarios'
 import useFormErrors from '@/hooks/useFormErrors'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 export default function HonorariosPage() {
   const { data: session, status } = useSession()
@@ -36,8 +37,8 @@ export default function HonorariosPage() {
           Editar honorarios
         </h1>
         {get.isLoading || status === 'loading' ? (
-          <div className="text-primary m-auto animate-pulse text-center text-2xl font-bold">
-            Loading...
+          <div className="text-primary mt-14 text-center text-2xl font-bold">
+            <BiLoaderAlt size={36} className="m-auto animate-spin" />
           </div>
         ) : (
           <>

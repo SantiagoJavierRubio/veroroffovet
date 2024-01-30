@@ -3,6 +3,7 @@ import Layout from '@/components/Layout/Layout'
 import { useSession } from 'next-auth/react'
 import { SlLogout, SlLogin } from 'react-icons/sl'
 import Link from 'next/link'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 export default function Admin() {
   const { data: session, status } = useSession()
@@ -13,8 +14,8 @@ export default function Admin() {
           Panel de administración
         </h1>
         {status === 'loading' ? (
-          <div className="text-primary m-auto animate-pulse text-center text-2xl font-bold">
-            Loading...
+          <div className="text-primary mt-14 text-center text-2xl font-bold">
+            <BiLoaderAlt size={36} className="m-auto animate-spin" />
           </div>
         ) : (
           <>
