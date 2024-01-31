@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -55,7 +57,7 @@ export default function NavBar() {
   useEffect(() => {
     setCurrent(setCurrentPage)
   }, [])
-  const { data: session, status } = useSession()
+  // const { data: session, status } = useSession()
   const gridCols = `grid-cols-${Object.keys(LOCATIONS).length}`
   return (
     <nav
@@ -98,7 +100,7 @@ export default function NavBar() {
           selected={current === LOCATIONS.RECURSOS}
         />
       </Link>
-      {session && (
+      {/* {session && (
         <Link
           href="/admin"
           className="bg-secondary/50 absolute top-1/2 right-0 flex -translate-y-1/2 flex-col items-center rounded-md p-2 text-xs md:right-2"
@@ -106,7 +108,7 @@ export default function NavBar() {
           Admin
           <MdAdminPanelSettings size={26} />
         </Link>
-      )}
+      )} */}
     </nav>
   )
 }

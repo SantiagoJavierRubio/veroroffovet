@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, useCallback, TouchEvent } from 'react'
 import { data } from './testimonios_data'
 import { motion } from 'framer-motion'
