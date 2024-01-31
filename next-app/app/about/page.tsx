@@ -1,5 +1,5 @@
-import Container from '@/components/Container'
-import Photo from '@/components/Photo'
+import Container from '@/app/_components/common/Container'
+import Photo from '@/app/_components/common/Photo'
 import IgLogo from '../../public/svgs/ig_logo.svg'
 import { Curso } from './_components/Curso'
 import { prisma } from '@/prisma/client'

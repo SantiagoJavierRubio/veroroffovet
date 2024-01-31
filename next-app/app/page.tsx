@@ -1,4 +1,4 @@
-import Container from '@/components/Container'
+import Container from '@/app/_components/common/Container'
 import Image from 'next/image'
 import Link from 'next/link'
 import Testimonios from '@/components/Testimonios'

@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from '@/components/Container'
+import Container from '@/app/_components/common/Container'
 import { Metadata } from 'next'
 import { OpinionForm } from './_components/OpinionForm'
 

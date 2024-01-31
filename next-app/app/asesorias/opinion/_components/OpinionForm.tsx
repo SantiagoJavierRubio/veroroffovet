@@ -1,6 +1,6 @@
 'use client'
 
-import SendButton from '@/components/SendButton'
+import SendButton from '@/app/_components/common/SendButton'
 import useSendingStatus from '@/app/_hooks/useSendingStatus'
 import { ChangeEvent, FormEvent, useState } from 'react'
 

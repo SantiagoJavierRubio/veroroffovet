@@ -1,7 +1,7 @@
-import Expandable from '@/components/Expandable'
+import Expandable from '@/app/_components/common/Expandable'
 import styles from '../../styles/Asesorias.module.css'
 import Link from 'next/link'
-import Container from '@/components/Container'
+import Container from '@/app/_components/common/Container'
 import { prisma } from '@/prisma/client'
 import { Metadata } from 'next'
 

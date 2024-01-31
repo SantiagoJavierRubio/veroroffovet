@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type ChangeEvent } from 'react'
 import useSendingStatus from '@/app/_hooks/useSendingStatus'
-import SendButton from '@/components/SendButton'
+import SendButton from '@/app/_components/common/SendButton'
 
 interface ContactForm {
   nombre: string

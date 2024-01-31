@@ -1,4 +1,4 @@
-import Container from '@/components/Container'
+import Container from '@/app/_components/common/Container'
 import { ReportForm } from './_components/ReportForm'
 
 export default function Report() {

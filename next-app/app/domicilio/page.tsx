@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Container from '@/components/Container'
+import Container from '@/app/_components/common/Container'
 import { ContactForm } from './_components/ContactForm'
-import Photo from '@/components/Photo'
+import Photo from '@/app/_components/common/Photo'
 
 import { prisma } from '@/prisma/client'
 import { Metadata } from 'next'

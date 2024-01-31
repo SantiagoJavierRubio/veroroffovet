@@ -1,4 +1,4 @@
-import Container from '@/components/Container'
+import Container from '@/app/_components/common/Container'
 import ImageDisplayer from './_components/ImageDisplayer'
 import { Metadata } from 'next'
 

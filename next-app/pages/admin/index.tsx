@@ -1,5 +1,5 @@
-import Container from '@/components/Container'
-import Layout from '@/components/Layout/Layout'
+import Container from '@/app/_components/common/Container'
+import Layout from '@/app/_components/layout/Layout'
 import { useSession } from 'next-auth/react'
 import { SlLogout, SlLogin } from 'react-icons/sl'
 import Link from 'next/link'
