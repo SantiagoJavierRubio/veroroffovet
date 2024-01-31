@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
-import ImageDisplayer from '@/components/ImageDisplayer'
+import ImageDisplayer from '@/app/recursos/_components/ImageDisplayer'
 
 export default function Recursos() {
   return (
