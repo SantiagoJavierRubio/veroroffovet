@@ -7,7 +7,7 @@ import { prisma } from '@/prisma/client'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Clinica'
+  title: 'Atencion a domicilio'
 }
 
 export default async function Clinica() {
@@ -22,7 +22,7 @@ export default async function Clinica() {
   return (
     <>
       <h1 className="text-primary mb-0 text-center text-5xl font-bold sm:text-6xl">
-        Clínica a domicilio
+        Atención a domicilio
       </h1>
       <Container>
         <article className="text-primary relative mb-8 sm:ml-8">
@@ -31,8 +31,6 @@ export default async function Clinica() {
             Para felinos y caninos
           </p>
           <ul className="ml-12 mt-2 list-disc">
-            <li className="border-primary my-2 text-xl">Consultas clínicas</li>
-            <li className="border-primary my-2 text-xl">Tratamientos</li>
             <li className="border-primary my-2 text-xl">Vacunaciones</li>
             <li className="border-primary my-2 text-xl">
               Análisis de laboratorio
@@ -41,6 +39,9 @@ export default async function Clinica() {
               Certificados de salud
             </li>
           </ul>
+          <p className="ml-2 text-base font-normal italic text-red-600">
+            Agenda para consultas clínicas cerrada
+          </p>
           <Photo
             src="/photos/veroycabra.jpeg"
             alt="con un paciente"

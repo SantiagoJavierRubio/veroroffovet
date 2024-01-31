@@ -1,23 +1,9 @@
 import Container from '@/components/Container'
-// import Layout from '@/components/Layout/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import Testimonios from '@/components/Testimonios'
-// import { useState, useEffect } from 'react'
-
-// const rgb2hex = (rgb: string) =>
-//   `#${rgb
-//     .match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
-//     ?.slice(1)
-//     .map(n => parseInt(n, 10).toString(16).padStart(2, '0'))
-//     .join('')}`
 
 export default function Home() {
-  //   const [docBg, setDocBg] = useState<string>("'#f6ece3'")
-  //   useEffect(() => {
-  //     const rgb = window.getComputedStyle(document.body)['backgroundColor']
-  //     setDocBg(rgb2hex(rgb))
-  //   }, [])
   return (
     <>
       <h1 className="text-primary mt-4 text-center text-5xl font-bold sm:mt-0 sm:text-6xl">
@@ -29,10 +15,7 @@ export default function Home() {
       <Container>
         <section className="flex flex-col gap-8">
           <div className="border-terciary/75 w-full rounded-md p-6 pb-8 sm:border-2">
-            <h3
-              className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
-              //   style={{ backgroundColor: docBg }}
-            >
+            <h3 className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent">
               Asesorías nutricionales
             </h3>
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
@@ -67,31 +50,10 @@ export default function Home() {
             </div>
           </div>
           <div className="border-terciary/75 w-full rounded-md p-6 sm:border-2">
-            <h3
-              className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
-              //   style={{ backgroundColor: docBg }}
-            >
-              Consultas clínicas
+            <h3 className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent">
+              Atención a domicilio
             </h3>
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
-              <div className="flex items-center gap-4 pt-4">
-                <div className="relative h-16 w-16">
-                  <Image
-                    src="/svgs/cat-house.svg"
-                    fill
-                    alt="consultas online"
-                  />
-                </div>
-                <p>
-                  A domicilio{' '}
-                  <Link
-                    className="hover:text-secondary underline"
-                    href="/clinica#zonas-clinica"
-                  >
-                    (revisar zonas)
-                  </Link>
-                </p>
-              </div>
               <div>
                 <div className="flex items-center gap-4">
                   <div className="relative h-16 w-16">
@@ -101,10 +63,25 @@ export default function Home() {
                       alt="consultas online"
                     />
                   </div>
-                  <p>
-                    Diagnósticos, tratamientos, vacunaciones, certificados, etc.
-                  </p>
+                  <p>Vacunaciones, certificados y análisis de laboratorio.</p>
                 </div>
+              </div>
+              <div className="flex items-center gap-4 pt-4">
+                <div className="relative h-16 w-16">
+                  <Image
+                    src="/svgs/cat-house.svg"
+                    fill
+                    alt="consultas online"
+                  />
+                </div>
+                <p>
+                  <Link
+                    className="hover:text-secondary underline"
+                    href="/domicilio#zonas-clinica"
+                  >
+                    Revisar zonas
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
