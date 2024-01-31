@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Photo from '@/components/Photo'
-import useSendingStatus from '@/hooks/useSendingStatus'
+import useSendingStatus from '@/app/_hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
 
 import { prisma } from '@/prisma/client'

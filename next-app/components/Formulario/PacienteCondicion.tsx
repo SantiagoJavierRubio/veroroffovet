@@ -3,7 +3,7 @@ import FormStep from '../MultiStepForm/FormStep'
 import { FormularioData, COSTILLAS_TEXT } from './formularioHelpers'
 import CondicionImageSelect from './CondicionImageSelect'
 import styles from '../../styles/MultistepForm.module.css'
-import useLocalInputs from '@/hooks/useLocalInputs'
+import useLocalInputs from '@/app/_hooks/useLocalInputs'
 
 interface PacienteCondicionData {
   peso: FormularioData['peso']

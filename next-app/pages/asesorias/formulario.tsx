@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Layout from '@/components/Layout/Layout'
+import Layout from '@/app/_components/layout/Layout'
 import Image from 'next/image'
 import styles from '../../styles/MultistepForm.module.css'
 import { motion } from 'framer-motion'

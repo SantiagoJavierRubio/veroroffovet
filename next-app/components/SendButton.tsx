@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { FC } from 'react'
-import { SENDING_STATUS } from '@/hooks/useSendingStatus'
-import type { Status } from '@/hooks/useSendingStatus'
+import { SENDING_STATUS } from '@/app/_hooks/useSendingStatus'
+import type { Status } from '@/app/_hooks/useSendingStatus'
 import Image from 'next/image'
 
 type ReactQueryMutationStates = 'idle' | 'pending' | 'success' | 'error'

@@ -4,7 +4,7 @@ import { FormularioData, ESPECIES, SEXOS } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
 import Cat from '../../public/svgs/cat.svg'
 import Dog from '../../public/svgs/husky.svg'
-import useLocalInputs from '@/hooks/useLocalInputs'
+import useLocalInputs from '@/app/_hooks/useLocalInputs'
 
 interface PacienteBaseData {
   nombrePaciente: FormularioData['nombrePaciente']

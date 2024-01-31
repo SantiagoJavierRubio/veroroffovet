@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
 import { FormularioData, DIET_TYPES } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
-import useLocalInputs from '@/hooks/useLocalInputs'
+import useLocalInputs from '@/app/_hooks/useLocalInputs'
 
 interface TutorData {
   nombreTutor: FormularioData['nombreTutor']

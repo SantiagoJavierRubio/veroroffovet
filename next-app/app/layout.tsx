@@ -1,8 +1,8 @@
-import NavBar from '@/components/Layout/NavBar'
+import NavBar from './_components/layout/NavBar'
 import { Metadata } from 'next'
 import React from 'react'
 import '../styles/globals.css'
-import Footer from '@/components/Layout/Footer'
+import Footer from './_components/layout/Footer'
 
 const DEFAULT_TITLE = 'Veronica Roffo - Veterinaria'
 const DEFAULT_DESCRIPTION =

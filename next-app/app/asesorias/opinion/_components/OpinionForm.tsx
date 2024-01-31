@@ -1,7 +1,7 @@
 'use client'
 
 import SendButton from '@/components/SendButton'
-import useSendingStatus from '@/hooks/useSendingStatus'
+import useSendingStatus from '@/app/_hooks/useSendingStatus'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 const CONFORMITY_VALS = {

@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
 import { useState, ChangeEvent, FormEvent } from 'react'
-import useSendingStatus from '@/hooks/useSendingStatus'
+import useSendingStatus from '@/app/_hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
 
 const CONFORMITY_VALS = {

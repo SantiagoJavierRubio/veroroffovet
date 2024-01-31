@@ -1,5 +1,5 @@
 import { FormEvent, ReactNode } from 'react'
-import { useMultistepForm } from '@/hooks/useMultistepForm'
+import { useMultistepForm } from '@/app/_hooks/useMultistepForm'
 
 interface MultiStepFormProps {
   pages: ReactNode[]

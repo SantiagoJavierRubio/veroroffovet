@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { useHonorarios } from '@/queries/admin/honorarios'
 import { editHonorarios } from '@/schemas/honorarios'
-import useFormErrors from '@/hooks/useFormErrors'
+import useFormErrors from '@/app/_hooks/useFormErrors'
 import { BiLoaderAlt } from 'react-icons/bi'
 
 export default function HonorariosPage() {

@@ -1,4 +1,4 @@
-import useLocalInputs from '@/hooks/useLocalInputs'
+import useLocalInputs from '@/app/_hooks/useLocalInputs'
 import { ChangeEvent, useState } from 'react'
 import FormStep from '../MultiStepForm/FormStep'
 import type { FormularioData } from './formularioHelpers'

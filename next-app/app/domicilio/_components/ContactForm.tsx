@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type FormEvent, type ChangeEvent } from 'react'
-import useSendingStatus from '@/hooks/useSendingStatus'
+import useSendingStatus from '@/app/_hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
 
 interface ContactForm {

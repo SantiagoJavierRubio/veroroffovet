@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, ChangeEvent, FormEvent } from 'react'
-import useSendingStatus from '@/hooks/useSendingStatus'
+import useSendingStatus from '@/app/_hooks/useSendingStatus'
 import SendButton from '@/components/SendButton'
 
 export function ReportForm() {
