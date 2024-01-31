@@ -71,27 +71,9 @@ export default function Home() {
               className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent"
               style={{ backgroundColor: docBg }}
             >
-              Consultas clínicas
+              Atención a domicilio
             </h3>
-            <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
-              <div className="flex items-center gap-4 pt-4">
-                <div className="relative h-16 w-16">
-                  <Image
-                    src="/svgs/cat-house.svg"
-                    fill
-                    alt="consultas online"
-                  />
-                </div>
-                <p>
-                  A domicilio{' '}
-                  <Link
-                    className="hover:text-secondary underline"
-                    href="/clinica#zonas-clinica"
-                  >
-                    (revisar zonas)
-                  </Link>
-                </p>
-              </div>
+            <div className="text-primary flex flex-col items-center justify-evenly gap-6 py-4 text-xl">
               <div>
                 <div className="flex items-center gap-4">
                   <div className="relative h-16 w-16">
@@ -101,10 +83,25 @@ export default function Home() {
                       alt="consultas online"
                     />
                   </div>
-                  <p>
-                    Diagnósticos, tratamientos, vacunaciones, certificados, etc.
-                  </p>
+                  <p>Vacunaciones, certificados y análisis de laboratorio.</p>
                 </div>
+              </div>
+              <div className="flex items-center gap-4 pt-4">
+                <div className="relative h-16 w-16">
+                  <Image
+                    src="/svgs/cat-house.svg"
+                    fill
+                    alt="consultas online"
+                  />
+                </div>
+                <p>
+                  <Link
+                    className="hover:text-secondary text-xl underline"
+                    href="/domicilio#zonas-domicilio"
+                  >
+                    Revisar zonas
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
