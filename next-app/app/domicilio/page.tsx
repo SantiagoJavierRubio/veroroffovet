@@ -7,7 +7,7 @@ import { prisma } from '@/prisma/client'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Atencion a domicilio'
+  title: 'Atención a domicilio'
 }
 
 export default async function Clinica() {

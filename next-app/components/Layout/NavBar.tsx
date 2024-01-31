@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { MdAdminPanelSettings } from 'react-icons/md'
@@ -43,8 +44,7 @@ const LOCATIONS = {
   ABOUT: 'about'
 }
 
-function setCurrentPage() {
-  const loc = window.location.href
+function setCurrentPage(loc: string) {
   if (loc.includes(LOCATIONS.ASESORIAS)) return LOCATIONS.ASESORIAS
   else if (loc.includes(LOCATIONS.DOMICILIO)) return LOCATIONS.DOMICILIO
   else if (loc.includes(LOCATIONS.RECURSOS)) return LOCATIONS.RECURSOS
@@ -54,9 +54,10 @@ function setCurrentPage() {
 
 export default function NavBar() {
   const [current, setCurrent] = useState(LOCATIONS.INICIO)
+  const path = usePathname()
   useEffect(() => {
-    setCurrent(setCurrentPage)
-  }, [])
+    path && setCurrent(setCurrentPage(path))
+  }, [path])
   // const { data: session, status } = useSession()
   const gridCols = `grid-cols-${Object.keys(LOCATIONS).length}`
   return (
