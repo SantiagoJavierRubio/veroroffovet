@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { Honorarios } from '@/pages/asesorias'
+import { Honorarios } from '@/pages/asesorias/prev_index'
 
 async function getHonorarios() {
   return (await axios.get<Honorarios>('/api/admin/honorarios')).data

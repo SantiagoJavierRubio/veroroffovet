@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, PropsWithChildren } from 'react'
 import { motion } from 'framer-motion'
 
