@@ -65,6 +65,7 @@ export default function BarriosPage() {
       setToDelete(prev => prev.filter(val => val != value))
     else setToDelete(prev => [...prev, value])
   }
+
   return (
     <Container>
       <Link href="/admin" className="absolute top-0 left-0">
