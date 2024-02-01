@@ -8,7 +8,7 @@ import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { FiLoader } from 'react-icons/fi'
-import { BiBookAdd, BiTrash } from 'react-icons/bi'
+import { BiBookAdd, BiLoaderAlt, BiTrash } from 'react-icons/bi'
 import { useCursos } from '@/app/_queries/admin/cursos'
 
 export type CursoInput = Omit<Curso, 'id'> & { id: string | undefined }
@@ -82,8 +82,8 @@ export default function CursosPage() {
         Editar cursos
       </h1>
       {get.status === 'pending' || status === 'loading' ? (
-        <div className="text-primary m-auto w-full animate-pulse text-center text-2xl font-bold">
-          <FiLoader className="animate-spin" />
+        <div className="text-primary mt-14 text-center text-2xl font-bold">
+          <BiLoaderAlt size={36} className="m-auto animate-spin" />
         </div>
       ) : (
         <>
