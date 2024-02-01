@@ -2,6 +2,7 @@ import { revalidatePath } from 'next/cache'
 import { Barrio } from '@prisma/client'
 
 import { prisma } from '@/prisma/client'
+import { NextResponse } from 'next/server'
 
 type UpdateBarriosInput = {
   new: Barrio[]
@@ -22,7 +23,7 @@ export async function POST(request: Request) {
     prisma.barrio.deleteMany({ where: { name: { in: input.delete } } })
   ])
   revalidatePath('/domicilio')
-  return Response.json(barrios)
+  return NextResponse.json(barrios)
 }
 
 export async function GET() {
@@ -31,5 +32,5 @@ export async function GET() {
       distritoName: 'asc'
     }
   })
-  return Response.json(barrios)
+  return NextResponse.json(barrios)
 }

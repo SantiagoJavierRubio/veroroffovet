@@ -2,6 +2,7 @@ import { revalidatePath } from 'next/cache'
 
 import { prisma } from '@/prisma/client'
 import { CursoInput } from '@/app/admin/cursos/page'
+import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   const data = (await request.json()) as CursoInput[]
@@ -27,12 +28,12 @@ export async function POST(request: Request) {
     )
   )
   revalidatePath('/about')
-  return Response.json(newCourses)
+  return NextResponse.json(newCourses)
 }
 
 export async function GET() {
   const courses = await prisma.curso.findMany()
-  return Response.json(courses)
+  return NextResponse.json(courses)
 }
 
 export async function DELETE(request: Request) {
@@ -44,5 +45,5 @@ export async function DELETE(request: Request) {
     where: { id: id.toString() }
   })
 
-  return Response.json(del)
+  return NextResponse.json(del)
 }
