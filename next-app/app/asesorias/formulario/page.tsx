@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import styles from '@/styles/MultistepForm.module.css'
+import styles from '@/app/_lib/styles/MultistepForm.module.css'
 import { motion } from 'framer-motion'
 
 import MultiStepForm from '@/app/_components/form/MultiStepForm/MultiStepForm'

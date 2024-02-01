@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import FormStep from '@/app/_components/form/MultiStepForm/FormStep'
 import { FormularioData, ESPECIES, SEXOS } from './formularioHelpers'
-import styles from '../../styles/MultistepForm.module.css'
+import styles from '@/app/_lib/styles/MultistepForm.module.css'
 import Cat from '../../public/svgs/cat.svg'
 import Dog from '../../public/svgs/husky.svg'
 import useLocalInputs from '@/app/_hooks/useLocalInputs'

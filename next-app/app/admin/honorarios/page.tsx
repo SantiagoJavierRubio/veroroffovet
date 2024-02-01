@@ -7,7 +7,7 @@ import SendButton from '@/app/_components/common/SendButton'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { useHonorarios } from '@/app/_queries/admin/honorarios'
-import { editHonorarios } from '@/schemas/honorarios'
+import { editHonorarios } from '@/app/_lib/schemas/honorarios'
 import useFormErrors from '@/app/_hooks/useFormErrors'
 import { BiLoaderAlt } from 'react-icons/bi'
 

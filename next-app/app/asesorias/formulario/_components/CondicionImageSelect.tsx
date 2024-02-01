@@ -1,7 +1,7 @@
 import { ESPECIES, SEXOS, FormularioData } from './formularioHelpers'
 import Image from 'next/image'
 import { ChangeEvent } from 'react'
-import styles from '../../styles/MultistepForm.module.css'
+import styles from '@/app/_lib/styles/MultistepForm.module.css'
 
 interface CondicionImageSelectProps {
   graficoPeso: FormularioData['graficoPeso']

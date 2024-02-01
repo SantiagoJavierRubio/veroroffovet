@@ -1,5 +1,5 @@
 import Expandable from '@/app/_components/common/Expandable'
-import styles from '../../styles/Asesorias.module.css'
+import styles from '@/app/_lib/styles/Asesorias.module.css'
 import Link from 'next/link'
 import Container from '@/app/_components/common/Container'
 import { prisma } from '@/prisma/client'

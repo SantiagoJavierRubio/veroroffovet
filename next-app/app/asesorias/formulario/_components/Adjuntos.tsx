@@ -10,7 +10,7 @@ import {
 import FileUploader, {
   FileInputs,
   RemoveFileInput
-} from '../../../_components/form/FileUploader'
+} from '@/app/_components/form/FileUploader'
 import { MdOutlineReportProblem } from 'react-icons/md'
 
 interface AdjuntosProps {
