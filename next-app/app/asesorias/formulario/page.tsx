@@ -1,8 +1,9 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import Layout from '@/app/_components/layout/Layout'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import styles from '../../styles/MultistepForm.module.css'
+import styles from '@/styles/MultistepForm.module.css'
 import { motion } from 'framer-motion'
 
 import MultiStepForm from '@/components/MultiStepForm/MultiStepForm'
@@ -47,7 +48,8 @@ function sendReport(error: Error) {
   })
 }
 
-export default function Formulario({ api_uri }: { api_uri: string }) {
+export default function Formulario() {
+  const api_uri = `${process.env.EMAIL_SERVER}/asesoria`
   const [data, setData] = useState<FormularioData>(DEFAULT_VALUES)
   const [errors, setErrors] = useState<Map<string, string>>(new Map())
   const [loader, setLoader] = useState<string>('none')
@@ -104,7 +106,7 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
       'disponibilidad',
       JSON.stringify(data.disponibilidad)
     )
-    router.reload()
+    router.refresh()
   }
 
   const handleReset = () => {
@@ -136,7 +138,7 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
   }, [])
 
   return (
-    <Layout title="Asesorias nutricionales - Formulario">
+    <>
       <div
         className={`${
           loader !== 'none' ? 'flex' : 'hidden'
@@ -239,14 +241,6 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
           </div>
         )}
       </div>
-    </Layout>
+    </>
   )
-}
-
-export function getStaticProps() {
-  return {
-    props: {
-      api_uri: `${process.env.EMAIL_SERVER}/asesoria`
-    }
-  }
 }
