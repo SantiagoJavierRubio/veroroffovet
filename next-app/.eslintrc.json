@@ -9,7 +9,8 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "settings": {
     "react": { "version": "detect" }
@@ -22,7 +23,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "tailwindcss"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "tailwindcss",
+    "@tanstack/query"
+  ],
   "rules": {
     "prettier/prettier": "error",
     "space-before-function-paren": "off",
