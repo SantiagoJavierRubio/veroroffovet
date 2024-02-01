@@ -1,7 +1,10 @@
-import NavBar from './_components/layout/NavBar/NavBar'
-import { Metadata } from 'next'
 import React from 'react'
+import { Metadata } from 'next'
+import { Rubik } from 'next/font/google'
+
 import '../styles/globals.css'
+
+import NavBar from './_components/layout/NavBar/NavBar'
 import Footer from './_components/layout/Footer'
 
 const DEFAULT_TITLE = 'Veronica Roffo - Veterinaria'
@@ -20,13 +23,19 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest'
 }
 
+const rubik = Rubik({
+  subsets: ['latin'],
+  weight: 'variable',
+  display: 'swap'
+})
+
 export default function RootLayout({
   children
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html>
+    <html lang="en" className={rubik.className}>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
