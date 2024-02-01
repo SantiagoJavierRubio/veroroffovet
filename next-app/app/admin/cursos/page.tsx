@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { FiLoader } from 'react-icons/fi'
 import { BiBookAdd, BiTrash } from 'react-icons/bi'
-import { useCursos } from '@/queries/admin/cursos'
+import { useCursos } from '@/app/_queries/admin/cursos'
 
 export type CursoInput = Omit<Curso, 'id'> & { id: string | undefined }
 

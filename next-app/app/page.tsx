@@ -15,7 +15,7 @@ export default function Home() {
       <Container>
         <section className="flex flex-col gap-8">
           <div className="border-terciary/75 w-full rounded-md p-6 pb-8 sm:border-2">
-            <h3 className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent">
+            <h3 className="text-primary mx-auto -mt-10 w-fit bg-[#f6ece3] px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent">
               Asesorías nutricionales
             </h3>
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
@@ -50,7 +50,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-terciary/75 w-full rounded-md p-6 sm:border-2">
-            <h3 className="text-primary mx-auto -mt-10 w-fit px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent">
+            <h3 className="text-primary mx-auto -mt-10 w-fit bg-[#f6ece3] px-2 text-xl font-bold underline sm:mx-0 sm:decoration-transparent">
               Atención a domicilio
             </h3>
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
