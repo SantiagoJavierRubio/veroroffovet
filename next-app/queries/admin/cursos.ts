@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Curso } from '@prisma/client'
-import { CursoInput } from '@/pages/admin/cursos'
+import { CursoInput } from '@/pages/admin/prev_cursos'
 
 async function getCursos() {
   return (await axios.get<Curso[]>('/api/admin/courses')).data

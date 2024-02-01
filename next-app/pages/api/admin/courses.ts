@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '@/prisma/client'
-import { CursoInput } from '@/pages/admin/cursos'
+import { CursoInput } from '@/pages/admin/prev_cursos'
 
 export default async function handler(
   req: NextApiRequest,

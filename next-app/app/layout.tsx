@@ -1,4 +1,4 @@
-import NavBar from './_components/layout/NavBar'
+import NavBar from './_components/layout/NavBar/NavBar'
 import { Metadata } from 'next'
 import React from 'react'
 import '../styles/globals.css'

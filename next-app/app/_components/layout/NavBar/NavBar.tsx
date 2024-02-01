@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { SessionProvider } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { MdAdminPanelSettings } from 'react-icons/md'
+import { AdminOptions } from './AdminOptions'
 
 interface LinkBtnProps {
   title: string
@@ -58,58 +58,51 @@ export default function NavBar() {
   useEffect(() => {
     path && setCurrent(setCurrentPage(path))
   }, [path])
-  // const { data: session, status } = useSession()
   const gridCols = `grid-cols-${Object.keys(LOCATIONS).length}`
   return (
-    <nav
-      className={`bg-primary border-secondary/70 fixed bottom-0 left-0 z-50 grid 
+    <SessionProvider>
+      <nav
+        className={`bg-primary border-secondary/70 fixed bottom-0 left-0 z-50 grid 
       min-h-fit w-full grid-flow-col gap-4 border-t-[1px] p-4 shadow-lg lg:gap-6 ${gridCols}
       sm:absolute sm:top-0 sm:bottom-full sm:border-t-0 sm:border-b-[1px] md:px-12 lg:px-20`}
-    >
-      <Link href="/">
-        <LinkButton
-          title="Inicio"
-          icon="/svgs/pet-house.svg"
-          selected={current === LOCATIONS.INICIO}
-        />
-      </Link>
-      <Link href="/asesorias">
-        <LinkButton
-          title="Asesorías nutricionales"
-          icon="/svgs/dog-food.svg"
-          selected={current === LOCATIONS.ASESORIAS}
-        />
-      </Link>
-      <Link href="/domicilio">
-        <LinkButton
-          title="Atención a domicilio"
-          icon="/svgs/veterinarian.svg"
-          selected={current === LOCATIONS.DOMICILIO}
-        />
-      </Link>
-      <Link href="/about">
-        <LinkButton
-          title="Sobre mi"
-          icon="/svgs/stethoscope.svg"
-          selected={current === LOCATIONS.ABOUT}
-        />
-      </Link>
-      <Link href="/recursos">
-        <LinkButton
-          title="Recursos"
-          icon="/svgs/medical-history.svg"
-          selected={current === LOCATIONS.RECURSOS}
-        />
-      </Link>
-      {/* {session && (
-        <Link
-          href="/admin"
-          className="bg-secondary/50 absolute top-1/2 right-0 flex -translate-y-1/2 flex-col items-center rounded-md p-2 text-xs md:right-2"
-        >
-          Admin
-          <MdAdminPanelSettings size={26} />
+      >
+        <Link href="/">
+          <LinkButton
+            title="Inicio"
+            icon="/svgs/pet-house.svg"
+            selected={current === LOCATIONS.INICIO}
+          />
         </Link>
-      )} */}
-    </nav>
+        <Link href="/asesorias">
+          <LinkButton
+            title="Asesorías nutricionales"
+            icon="/svgs/dog-food.svg"
+            selected={current === LOCATIONS.ASESORIAS}
+          />
+        </Link>
+        <Link href="/domicilio">
+          <LinkButton
+            title="Atención a domicilio"
+            icon="/svgs/veterinarian.svg"
+            selected={current === LOCATIONS.DOMICILIO}
+          />
+        </Link>
+        <Link href="/about">
+          <LinkButton
+            title="Sobre mi"
+            icon="/svgs/stethoscope.svg"
+            selected={current === LOCATIONS.ABOUT}
+          />
+        </Link>
+        <Link href="/recursos">
+          <LinkButton
+            title="Recursos"
+            icon="/svgs/medical-history.svg"
+            selected={current === LOCATIONS.RECURSOS}
+          />
+        </Link>
+        <AdminOptions />
+      </nav>
+    </SessionProvider>
   )
 }
