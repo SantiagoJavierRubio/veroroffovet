@@ -2,7 +2,7 @@ import React from 'react'
 import { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
 
-import '../styles/globals.css'
+import '@/app/_lib/styles/globals.css'
 
 import NavBar from './_components/layout/NavBar/NavBar'
 import Footer from './_components/layout/Footer'
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 const rubik = Rubik({
   subsets: ['latin'],
-  weight: 'variable',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   display: 'swap'
 })
 

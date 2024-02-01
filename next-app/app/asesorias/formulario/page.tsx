@@ -6,18 +6,18 @@ import Image from 'next/image'
 import styles from '@/styles/MultistepForm.module.css'
 import { motion } from 'framer-motion'
 
-import MultiStepForm from '@/components/MultiStepForm/MultiStepForm'
-import Tutor from '@/components/Formulario/Tutor'
-import PacienteBase from '@/components/Formulario/PacienteBase'
-import PacienteCondicion from '@/components/Formulario/PacienteCondicion'
-import Adjuntos from '@/components/Formulario/Adjuntos'
-import Disponibilidad from '@/components/Formulario/Disponibilidad'
+import MultiStepForm from '@/app/_components/form/MultiStepForm/MultiStepForm'
+import Tutor from '@/app/asesorias/formulario/_components/Tutor'
+import PacienteBase from '@/app/asesorias/formulario/_components/PacienteBase'
+import PacienteCondicion from '@/app/asesorias/formulario/_components/PacienteCondicion'
+import Adjuntos from '@/app/asesorias/formulario/_components/Adjuntos'
+import Disponibilidad from '@/app/asesorias/formulario/_components/Disponibilidad'
 
-import type { FormularioData } from '@/components/Formulario/formularioHelpers'
+import type { FormularioData } from '@/app/asesorias/formulario/_components/formularioHelpers'
 import {
   DEFAULT_VALUES,
   validateStep
-} from '@/components/Formulario/formularioHelpers'
+} from '@/app/asesorias/formulario/_components/formularioHelpers'
 import Link from 'next/link'
 
 export interface FormError {

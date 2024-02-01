@@ -1,5 +1,5 @@
-import { ChangeEvent, useState } from 'react'
-import FormStep from '../MultiStepForm/FormStep'
+import { ChangeEvent } from 'react'
+import FormStep from '@/app/_components/form/MultiStepForm/FormStep'
 import { FormularioData, COSTILLAS_TEXT } from './formularioHelpers'
 import CondicionImageSelect from './CondicionImageSelect'
 import styles from '../../styles/MultistepForm.module.css'

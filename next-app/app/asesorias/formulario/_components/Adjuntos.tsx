@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import FormStep from '../MultiStepForm/FormStep'
+import FormStep from '@/app/_components/form/MultiStepForm/FormStep'
 import {
   FormularioData,
   attachment,
@@ -7,7 +7,10 @@ import {
   convertToBase64,
   calculateAttachmentSizes
 } from './formularioHelpers'
-import FileUploader, { FileInputs, RemoveFileInput } from '../FileUploader'
+import FileUploader, {
+  FileInputs,
+  RemoveFileInput
+} from '../../../_components/form/FileUploader'
 import { MdOutlineReportProblem } from 'react-icons/md'
 
 interface AdjuntosProps {

@@ -1,6 +1,6 @@
 import useLocalInputs from '@/app/_hooks/useLocalInputs'
 import { ChangeEvent, useState } from 'react'
-import FormStep from '../MultiStepForm/FormStep'
+import FormStep from '@/app/_components/form/MultiStepForm/FormStep'
 import type { FormularioData } from './formularioHelpers'
 
 interface DisponibilidadData {

@@ -1,13 +1,13 @@
 import Container from '@/app/_components/common/Container'
 import Image from 'next/image'
 import Link from 'next/link'
-import Testimonios from '@/components/Testimonios'
+import Testimonios from '@/app/_components/testimonios/Testimonios'
 
 export default function Home() {
   return (
     <>
       <h1 className="text-primary mt-4 text-center text-5xl font-bold sm:mt-0 sm:text-6xl">
-        Verónica Roffo APP
+        Verónica Roffo
       </h1>
       <h2 className="text-secondary font-base p-2 text-center text-lg sm:text-xl">
         Veterinaria orientada a nutrición natural de perros y gatos.

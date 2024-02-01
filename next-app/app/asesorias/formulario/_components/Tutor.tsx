@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import FormStep from '../MultiStepForm/FormStep'
+import FormStep from '@/app/_components/form/MultiStepForm/FormStep'
 import { FormularioData, DIET_TYPES } from './formularioHelpers'
 import styles from '../../styles/MultistepForm.module.css'
 import useLocalInputs from '@/app/_hooks/useLocalInputs'
