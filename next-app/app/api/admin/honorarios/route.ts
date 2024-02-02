@@ -4,6 +4,8 @@ import { Price } from '@prisma/client'
 import { prisma } from '@/prisma/client'
 import { NextResponse } from 'next/server'
 
+import { isAdmin } from '../_auth/isAdmin'
+
 type UpdatesInput = [string, number][]
 
 function checkUpdates(updates: [unknown, unknown][]): updates is UpdatesInput {
@@ -26,6 +28,8 @@ function parsePriceListToObject(prices: Price[]) {
 }
 
 export async function POST(request: Request) {
+  if (!(await isAdmin()))
+    return NextResponse.json('Unauthorized', { status: 401 })
   const body = await request.json()
   const input = Object.entries(body)
   if (!checkUpdates(input)) {

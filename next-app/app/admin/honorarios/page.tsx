@@ -2,7 +2,6 @@
 
 import Container from '@/app/_components/common/Container'
 import { type FormEvent } from 'react'
-import { useSession } from 'next-auth/react'
 import SendButton from '@/app/_components/common/SendButton'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
@@ -10,9 +9,10 @@ import { useHonorarios } from '@/app/_queries/admin/honorarios'
 import { editHonorarios } from '@/app/_lib/schemas/honorarios'
 import useFormErrors from '@/app/_hooks/useFormErrors'
 import { BiLoaderAlt } from 'react-icons/bi'
+import useAdminSession from '@/app/_hooks/sessions/useAdminSession'
 
 export default function HonorariosPage() {
-  const { data: session, status } = useSession()
+  const { adminUser, status } = useAdminSession()
   const { get, post } = useHonorarios()
   const { errors, parseErrors } = useFormErrors(editHonorarios)
 
@@ -42,7 +42,7 @@ export default function HonorariosPage() {
         </div>
       ) : (
         <>
-          {session === null ? (
+          {!adminUser ? (
             <div className="m-auto text-center text-2xl font-bold text-red-500">
               Unauthorized
             </div>

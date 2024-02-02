@@ -4,12 +4,16 @@ import { NextResponse } from 'next/server'
 import { Barrio } from '@prisma/client'
 import { prisma } from '@/prisma/client'
 
+import { isAdmin } from '../_auth/isAdmin'
+
 type UpdateBarriosInput = {
   new: Barrio[]
   delete: string[]
 }
 
 export async function POST(request: Request) {
+  if (!(await isAdmin()))
+    return NextResponse.json('Unauthorized', { status: 401 })
   const input: UpdateBarriosInput = await request.json()
   const barrios = await prisma.$transaction([
     ...input.new.map(data =>

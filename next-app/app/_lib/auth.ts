@@ -4,9 +4,10 @@ import {
   type DefaultSession
 } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
+import { prisma } from '@/prisma/client'
 import { Role } from '@prisma/client'
-import { GetServerSidePropsContext } from 'next'
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {
@@ -14,6 +15,10 @@ declare module 'next-auth' {
       id: string
       role: Role
     }
+  }
+
+  interface User {
+    role: Role
   }
 }
 
@@ -25,6 +30,7 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  adapter: PrismaAdapter(prisma),
   callbacks: {
     async signIn({ user }) {
       if (process.env.NODE_ENV === 'development') return true
@@ -36,13 +42,13 @@ export const authOptions: NextAuthOptions = {
       return `${baseUrl}/admin`
     },
 
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id
+    session: ({ session, user }) => {
+      if (session.user) {
+        session.user.id = user.id
+        session.user.role = user.role
       }
-    })
+      return session
+    }
   }
 }
 

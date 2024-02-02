@@ -4,7 +4,11 @@ import { prisma } from '@/prisma/client'
 import { CursoInput } from '@/app/admin/cursos/page'
 import { NextResponse } from 'next/server'
 
+import { isAdmin } from '../_auth/isAdmin'
+
 export async function POST(request: Request) {
+  if (!(await isAdmin()))
+    return NextResponse.json('Unauthorized', { status: 401 })
   const data = (await request.json()) as CursoInput[]
   const newCourses = await prisma.$transaction(
     data.map(course =>
@@ -37,6 +41,8 @@ export async function GET() {
 }
 
 export async function DELETE(request: Request) {
+  if (!(await isAdmin()))
+    return NextResponse.json('Unauthorized', { status: 401 })
   const { searchParams } = new URL(request.url)
   const id = searchParams.get('id')
   if (id == undefined) throw new Error('ID required')
