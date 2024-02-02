@@ -1,13 +1,13 @@
 'use client'
 
 import Container from '@/app/_components/common/Container'
-import { useSession } from 'next-auth/react'
+import useAdminSession from '../_hooks/sessions/useAdminSession'
 import { SlLogout, SlLogin } from 'react-icons/sl'
 import Link from 'next/link'
 import { BiLoaderAlt } from 'react-icons/bi'
 
 export default function Admin() {
-  const { data: session, status } = useSession()
+  const { adminUser, status } = useAdminSession()
   return (
     <Container>
       <h1 className="text-primary text-center text-3xl font-bold">
@@ -19,7 +19,7 @@ export default function Admin() {
         </div>
       ) : (
         <>
-          {session === null ? (
+          {!adminUser ? (
             <>
               <div className="m-auto text-center text-2xl font-bold italic text-red-500">
                 Unauthorized
