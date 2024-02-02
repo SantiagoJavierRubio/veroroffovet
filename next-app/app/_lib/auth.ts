@@ -3,7 +3,8 @@ import {
   type NextAuthOptions,
   type DefaultSession
 } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
+// import GoogleProvider from 'next-auth/providers/google'
+import EmailProvider from 'next-auth/providers/email'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 import { prisma } from '@/prisma/client'
@@ -24,17 +25,29 @@ declare module 'next-auth' {
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID || '',
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+    // }),
+    EmailProvider({
+      server: {
+        service: 'gmail',
+        port: 587,
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_PASS
+        }
+      },
+      from: process.env.GMAIL_USER
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   callbacks: {
     async signIn({ user }) {
-      if (process.env.NODE_ENV === 'development') return true
-      if (user && user.id === process.env.ADMIN_ID) return true
+      if (!user.email) return false
+      if (await prisma.user.findUnique({ where: { email: user.email } }))
+        return true
       return false
     },
 
