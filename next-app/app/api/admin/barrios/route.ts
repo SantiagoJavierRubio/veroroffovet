@@ -1,8 +1,8 @@
 import { revalidatePath } from 'next/cache'
-import { Barrio } from '@prisma/client'
-
-import { prisma } from '@/prisma/client'
 import { NextResponse } from 'next/server'
+
+import { Barrio } from '@prisma/client'
+import { prisma } from '@/prisma/client'
 
 type UpdateBarriosInput = {
   new: Barrio[]

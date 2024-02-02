@@ -1,5 +1,21 @@
-import { type NextAuthOptions } from 'next-auth'
+import {
+  getServerSession,
+  type NextAuthOptions,
+  type DefaultSession
+} from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
+
+import { Role } from '@prisma/client'
+import { GetServerSidePropsContext } from 'next'
+
+declare module 'next-auth' {
+  interface Session extends DefaultSession {
+    user: DefaultSession['user'] & {
+      id: string
+      role: Role
+    }
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,8 +31,19 @@ export const authOptions: NextAuthOptions = {
       if (user && user.id === process.env.ADMIN_ID) return true
       return false
     },
+
     async redirect({ baseUrl }) {
       return `${baseUrl}/admin`
-    }
+    },
+
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id
+      }
+    })
   }
 }
+
+export const getServerAuthSession = () => getServerSession(authOptions)
