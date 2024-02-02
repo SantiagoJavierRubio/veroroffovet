@@ -21,6 +21,10 @@ export default function AddClient() {
       post
         .mutateAsync(email)
         .then(res => {
+          const form = document.getElementById('createUserForm')
+          if (form instanceof HTMLFormElement) {
+            form.reset()
+          }
           if (res.status == 201) alert('Client created')
         })
         .catch(() => {
@@ -50,6 +54,7 @@ export default function AddClient() {
             </div>
           ) : (
             <form
+              id="createUserForm"
               onSubmit={handleSubmit}
               className="text-primary mt-8 flex flex-col items-center gap-4 sm:p-2"
             >

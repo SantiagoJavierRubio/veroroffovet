@@ -51,6 +51,11 @@ export default function Admin() {
                     Barrios
                   </button>
                 </Link>
+                <Link href="/admin/add_client" className="grow">
+                  <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
+                    Agregar clientes
+                  </button>
+                </Link>
               </div>
               <div className="mt-16 flex justify-end">
                 <Link
