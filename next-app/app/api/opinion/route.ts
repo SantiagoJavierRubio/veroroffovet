@@ -1,15 +1,8 @@
+import { getClientsTransporter } from '@/app/_lib/mail/clients'
 import { NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
 
 export async function POST(request: Request) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    port: 587,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
-    }
-  })
+  const transporter = getClientsTransporter()
 
   const {
     nombreTutor,
@@ -38,7 +31,7 @@ export async function POST(request: Request) {
       `
   return await transporter
     .sendMail({
-      from: process.env.GMAIL_USER,
+      from: 'clientes@veronicanutrivet.com.ar',
       to: process.env.GMAIL_USER,
       subject: `Encuesta de opinión`,
       html: htmlContent
