@@ -1,15 +1,8 @@
+import { getNoReplyTransporter } from '@/app/_lib/mail/noreply'
 import { NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
 
 export async function POST(request: Request) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    port: 587,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
-    }
-  })
+  const transporter = getNoReplyTransporter()
 
   const { report } = await request.json()
 
@@ -19,7 +12,7 @@ export async function POST(request: Request) {
       `
   return await transporter
     .sendMail({
-      from: process.env.GMAIL_USER,
+      from: 'noreply@veronicanutrivet.com.ar',
       to: process.env.DEV_MAIL,
       subject: 'Problem report on VEROROFFOVET',
       html: htmlContent
