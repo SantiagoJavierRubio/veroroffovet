@@ -1,34 +1,14 @@
 import { getClientsTransporter } from '@/app/_lib/mail/clients'
+import { getOpinionHTML } from '@/app/_lib/mail/templates/opinion'
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   const transporter = getClientsTransporter()
 
-  const {
-    nombreTutor,
-    nombrePaciente,
-    conforme,
-    cambios,
-    recomendacion,
-    testimonio
-  } = await request.json()
+  const inputs = await request.json()
 
-  const htmlContent = `
-          <h1>Encuesta de opinión</h1>
-          <h3>De: ${nombreTutor || 'Anónimo'}</h3>
-          <h4>Paciente: ${nombrePaciente || 'Anónimo'}</h4>
-          <p>¿Estás conforme con el servicio prestado? <span>${conforme}</span></p>
-          ${cambios && '<p>¿Qué cambiarías?</p>'}
-          <p>${cambios || ''}</p>
-          <p>¿Me recomendarías con otros/as tutores/as? <span>${recomendacion}</span></p>
-          ${
-            testimonio &&
-            `
-              <h6>Testimonio</h6>
-              <p>${testimonio}</p>
-          `
-          }
-      `
+  const htmlContent = getOpinionHTML(inputs)
+
   return await transporter
     .sendMail({
       from: 'clientes@veronicanutrivet.com.ar',

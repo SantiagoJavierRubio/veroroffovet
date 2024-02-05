@@ -1,26 +1,19 @@
 import { getClientsTransporter } from '@/app/_lib/mail/clients'
+import { getClinicaHTML } from '@/app/_lib/mail/templates/clinica'
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   const transporter = getClientsTransporter()
 
-  const { consulta, nombre, email, celular } = await request.json()
+  const inputs = await request.json()
 
-  const htmlContent = `
-          <h1>Consulta clinica</h1>
-          <p style="padding-left: 6px">${consulta}</p>
-          <p>De:</p>
-          <div style="padding-left: 8px">
-              <p style="margin: 2px">${nombre}</p>
-              <p style="margin: 2px">${email}</p>
-              <p style="margin: 2px">Cel: ${celular || '-'}</p>
-          </div>
-      `
+  const htmlContent = getClinicaHTML(inputs)
+
   return await transporter
     .sendMail({
       from: 'clientes@veronicanutrivet.com.ar',
       to: process.env.GMAIL_USER,
-      subject: `Consulta clinica de ${nombre}`,
+      subject: `Consulta clinica de ${inputs.nombre}`,
       html: htmlContent
     })
     .then(sent => {
