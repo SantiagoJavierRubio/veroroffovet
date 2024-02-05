@@ -9,6 +9,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 import { prisma } from '@/prisma/client'
 import { Role } from '@prisma/client'
+import { NO_REPLY_FROM } from './mail/constants'
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {
@@ -31,14 +32,14 @@ export const authOptions: NextAuthOptions = {
     // }),
     EmailProvider({
       server: {
-        service: 'gmail',
-        port: 587,
+        host: process.env.SMTP_HOST,
+        port: 465,
         auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_PASS
+          user: 'noreply@veronicanutrivet.com.ar',
+          pass: process.env.SMTP_NOREPLY_PASS
         }
       },
-      from: process.env.GMAIL_USER
+      from: NO_REPLY_FROM
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
