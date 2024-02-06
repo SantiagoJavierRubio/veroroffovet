@@ -22,7 +22,8 @@ export async function POST(request: Request) {
       from: NO_REPLY_FROM,
       to: email,
       subject: 'Te invito a mi portal - Verónica Roffo, Nutrivet',
-      html: getInviteHTML()
+      text: `Puedes acceder en ${request.headers.get('host')}/api/auth/signin`,
+      html: getInviteHTML(request.headers.get('origin') || '')
     })
     .then(res => {
       console.log(res)

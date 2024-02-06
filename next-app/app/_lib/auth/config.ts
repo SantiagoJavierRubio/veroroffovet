@@ -9,7 +9,8 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 import { prisma } from '@/prisma/client'
 import { Role } from '@prisma/client'
-import { NO_REPLY_FROM } from './mail/constants'
+import { NO_REPLY_FROM } from '../mail/constants'
+import { customVerificationRequests } from './customVerificationRequest'
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {
@@ -39,7 +40,8 @@ export const authOptions: NextAuthOptions = {
           pass: process.env.SMTP_NOREPLY_PASS
         }
       },
-      from: NO_REPLY_FROM
+      from: NO_REPLY_FROM,
+      sendVerificationRequest: customVerificationRequests
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,

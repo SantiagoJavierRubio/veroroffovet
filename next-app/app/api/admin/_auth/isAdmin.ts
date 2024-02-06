@@ -1,4 +1,4 @@
-import { getServerAuthSession } from '@/app/_lib/auth'
+import { getServerAuthSession } from '@/app/_lib/auth/config'
 
 export async function isAdmin() {
   const session = await getServerAuthSession()

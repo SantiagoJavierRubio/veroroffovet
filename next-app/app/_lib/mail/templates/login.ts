@@ -1,4 +1,4 @@
-export function getInviteHTML(baseUrl: string) {
+export function getLoginHTML(url: string) {
   return `
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -122,7 +122,7 @@ table, td { color: #231955; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://www.veronicanutrivet.com.ar/VR_logo_noback.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 40%;max-width: 192px;" width="192"/>
+      <img align="center" border="0" src="images/image-1.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 40%;max-width: 192px;" width="192"/>
       
     </td>
   </tr>
@@ -139,7 +139,7 @@ table, td { color: #231955; } #u_body a { color: #0000ee; text-decoration: under
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Rubik',sans-serif;" align="left">
         
   <!--[if mso]><table width="100%"><tr><td><![endif]-->
-    <h1 style="margin: 0px; line-height: 140%; text-align: center; word-wrap: break-word; font-family: inherit; font-size: 27px; font-weight: 700;"><span><span><span><span><span>¡Te invito a mi portal!</span></span></span></span></span></h1>
+    <h1 style="margin: 0px; line-height: 140%; text-align: center; word-wrap: break-word; font-size: 25px; font-weight: 700;"><span><span>Ingresa a tu cuenta</span></span></h1>
   <!--[if mso]></td></tr></table><![endif]-->
 
       </td>
@@ -152,10 +152,28 @@ table, td { color: #231955; } #u_body a { color: #0000ee; text-decoration: under
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Rubik',sans-serif;" align="left">
         
+  <table height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 1px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+    <tbody>
+      <tr style="vertical-align: top">
+        <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+          <span>&#160;</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="font-family:'Rubik',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Rubik',sans-serif;" align="left">
+        
   <div style="font-size: 14px; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="line-height: 140%;">Recibiste este correo porque te inscribí en mi portal web, donde podrás encontrar un montón de información útil respecto a la dieta de tu peludo.</p>
-<p style="line-height: 140%;"></p>
-<p style="line-height: 140%;">Para completar el registro hacé click en el siguiente enlace</p>
+    <p style="line-height: 140%;">Podrás acceder a información presonalizada, recursos y mucho más.</p>
   </div>
 
       </td>
@@ -170,9 +188,9 @@ table, td { color: #231955; } #u_body a { color: #0000ee; text-decoration: under
         
   <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
 <div align="center">
-  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://localhost:3000/api/auth/signin" style="height:37px; v-text-anchor:middle; width:100px;" arcsize="11%"  stroke="f" fillcolor="#231955"><w:anchorlock/><center style="color:#FFFFFF;font-family: inherit; "><![endif]-->
-    <a href="${baseUrl}/api/auth/signin" target="_blank" class="v-button" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #231955; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-family: inherit; font-size: 14px;font-weight: 700; ">
-      <span style="display:block;padding:10px 20px;line-height:120%;"><span style="line-height: 16.8px;">Ir al sitio</span></span>
+  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${url}" style="height:44px; v-text-anchor:middle; width:163px;" arcsize="9%"  stroke="f" fillcolor="#231955"><w:anchorlock/><center style="color:#FFFFFF;"><![endif]-->
+    <a href="${url}" target="_self" class="v-button" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #231955; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 20px;font-weight: 700; ">
+      <span style="display:block;padding:10px 20px;line-height:120%;"><span style="line-height: 16.8px;">Inicia sesión</span></span>
     </a>
     <!--[if mso]></center></v:roundrect><![endif]-->
 </div>
@@ -202,6 +220,5 @@ table, td { color: #231955; } #u_body a { color: #0000ee; text-decoration: under
   <!--[if IE]></div><![endif]-->
 </body>
 
-</html>
-    `
+</html>`
 }
