@@ -5,7 +5,8 @@ import { SessionProvider } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { AdminOptions } from './AdminOptions'
+import { SessionButton } from './SessionButton'
+import Nav from './Nav'
 
 interface LinkBtnProps {
   title: string
@@ -18,7 +19,7 @@ const LinkButton = (props: LinkBtnProps) => {
   return (
     <div className="flex h-full max-w-full flex-col items-center justify-center rounded-md px-0 transition-all hover:scale-105 active:scale-95 active:delay-200 sm:flex-row md:gap-4 lg:px-6">
       <div
-        className={`relative aspect-square w-8 shrink-0 p-0 sm:h-9 sm:w-9 sm:bg-transparent sm:ring-0 sm:ring-offset-0 ${
+        className={`relative aspect-square w-8 shrink-0 p-0 sm:h-9 sm:w-9 sm:bg-transparent md:ring-0 md:ring-offset-0 ${
           selected &&
           'ring-offset-primary/80 bg-secondary/10 ring-secondary/40 rounded-full ring-1 ring-offset-8'
         }`}
@@ -49,6 +50,7 @@ function setCurrentPage(loc: string) {
   else if (loc.includes(LOCATIONS.DOMICILIO)) return LOCATIONS.DOMICILIO
   else if (loc.includes(LOCATIONS.RECURSOS)) return LOCATIONS.RECURSOS
   else if (loc.includes(LOCATIONS.ABOUT)) return LOCATIONS.ABOUT
+  else if (loc.includes('/admin') || loc.includes('/user')) return loc
   else return LOCATIONS.INICIO
 }
 
@@ -58,14 +60,9 @@ export default function NavBar() {
   useEffect(() => {
     path && setCurrent(setCurrentPage(path))
   }, [path])
-  const gridCols = `grid-cols-${Object.keys(LOCATIONS).length}`
   return (
     <SessionProvider>
-      <nav
-        className={`bg-primary border-secondary/70 fixed bottom-0 left-0 z-50 grid 
-      min-h-fit w-full grid-flow-col gap-4 border-t-[1px] p-4 shadow-lg lg:gap-6 ${gridCols}
-      sm:absolute sm:top-0 sm:bottom-full sm:border-t-0 sm:border-b-[1px] md:px-12 lg:px-20`}
-      >
+      <Nav locLen={Object.keys(LOCATIONS).length}>
         <Link href="/">
           <LinkButton
             title="Inicio"
@@ -101,8 +98,8 @@ export default function NavBar() {
             selected={current === LOCATIONS.RECURSOS}
           />
         </Link>
-        <AdminOptions />
-      </nav>
+        <SessionButton />
+      </Nav>
     </SessionProvider>
   )
 }
