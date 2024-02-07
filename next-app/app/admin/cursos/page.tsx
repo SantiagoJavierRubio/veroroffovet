@@ -2,19 +2,18 @@
 
 import Container from '@/app/_components/common/Container'
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+import useAdminSession from '@/app/_hooks/sessions/useAdminSession'
 import SendButton from '@/app/_components/common/SendButton'
 import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
-import { FiLoader } from 'react-icons/fi'
 import { BiBookAdd, BiLoaderAlt, BiTrash } from 'react-icons/bi'
 import { useCursos } from '@/app/_queries/admin/cursos'
 
 export type CursoInput = Omit<Curso, 'id'> & { id: string | undefined }
 
 export default function CursosPage() {
-  const { data: session, status } = useSession()
+  const { adminUser, status } = useAdminSession()
   const { get, post, deleteOne } = useCursos()
   const [inputs, setInputs] = useState<CursoInput[]>(get.data ?? [])
 
@@ -87,7 +86,7 @@ export default function CursosPage() {
         </div>
       ) : (
         <>
-          {session === null ? (
+          {!adminUser ? (
             <div className="m-auto text-center text-2xl font-bold text-red-500">
               Unauthorized
             </div>

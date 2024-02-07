@@ -2,7 +2,7 @@
 
 import Container from '@/app/_components/common/Container'
 import { useState, ChangeEvent, FormEvent } from 'react'
-import { useSession } from 'next-auth/react'
+import useAdminSession from '@/app/_hooks/sessions/useAdminSession'
 import SendButton from '@/app/_components/common/SendButton'
 import { Barrio } from '.prisma/client'
 import Link from 'next/link'
@@ -21,7 +21,7 @@ const DEFAULT_BARRIO: Barrio = {
 }
 
 export default function BarriosPage() {
-  const { data: session, status } = useSession()
+  const { adminUser, status } = useAdminSession()
   const { get, post } = useBarrios()
   const [newInput, setNewInput] = useState<Barrio>(DEFAULT_BARRIO)
   const [inputs, setInputs] = useState<Barrio[]>([])
@@ -82,7 +82,7 @@ export default function BarriosPage() {
         </div>
       ) : (
         <>
-          {session === null ? (
+          {!adminUser ? (
             <div className="m-auto text-center text-2xl font-bold text-red-500">
               Unauthorized
             </div>
@@ -156,19 +156,10 @@ export default function BarriosPage() {
                 <select
                   onChange={handleSelectChange}
                   className="bg-secondary rounded-sm p-2 text-white"
+                  defaultValue="caba"
                 >
-                  <option
-                    value="caba"
-                    selected={newInput.distritoName === 'caba'}
-                  >
-                    Caba
-                  </option>
-                  <option
-                    value="provincia"
-                    selected={newInput.distritoName === 'provincia'}
-                  >
-                    Provincia
-                  </option>
+                  <option value="caba">Caba</option>
+                  <option value="provincia">Provincia</option>
                 </select>
                 <button
                   type="button"

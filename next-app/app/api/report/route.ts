@@ -1,3 +1,4 @@
+import { NO_REPLY_FROM } from '@/app/_lib/mail/constants'
 import { getNoReplyTransporter } from '@/app/_lib/mail/noreply'
 import { NextResponse } from 'next/server'
 
@@ -12,7 +13,7 @@ export async function POST(request: Request) {
       `
   return await transporter
     .sendMail({
-      from: 'noreply@veronicanutrivet.com.ar',
+      from: NO_REPLY_FROM,
       to: process.env.DEV_MAIL,
       subject: 'Problem report on VEROROFFOVET',
       html: htmlContent
