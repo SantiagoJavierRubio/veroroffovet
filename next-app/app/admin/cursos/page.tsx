@@ -4,18 +4,18 @@ import Container from '@/app/_components/common/Container'
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import useAdminSession from '@/app/_hooks/sessions/useAdminSession'
 import SendButton from '@/app/_components/common/SendButton'
-import { Curso } from '@prisma/client'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 import { BiBookAdd, BiLoaderAlt, BiTrash } from 'react-icons/bi'
-import { useCursos } from '@/app/_queries/admin/cursos'
-
-export type CursoInput = Omit<Curso, 'id'> & { id: string | undefined }
+import {
+  useEducation,
+  type EducationInput
+} from '@/app/_queries/admin/education'
 
 export default function CursosPage() {
   const { adminUser, status } = useAdminSession()
-  const { get, post, deleteOne } = useCursos()
-  const [inputs, setInputs] = useState<CursoInput[]>(get.data ?? [])
+  const { get, post, deleteOne } = useEducation()
+  const [inputs, setInputs] = useState<EducationInput[]>(get.data ?? [])
 
   useEffect(() => {
     if (get.status == 'success' && get.data) {

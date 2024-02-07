@@ -1,7 +1,7 @@
 import { revalidatePath } from 'next/cache'
 
 import { prisma } from '@/prisma/client'
-import { CursoInput } from '@/app/admin/cursos/page'
+import { EducationInput } from '@/app/_queries/admin/education'
 import { NextResponse } from 'next/server'
 
 import { isAdmin } from '../_auth/isAdmin'
@@ -9,35 +9,35 @@ import { isAdmin } from '../_auth/isAdmin'
 export async function POST(request: Request) {
   if (!(await isAdmin()))
     return NextResponse.json('Unauthorized', { status: 401 })
-  const data = (await request.json()) as CursoInput[]
-  const newCourses = await prisma.$transaction(
-    data.map(course =>
-      prisma.curso.upsert({
+  const data = (await request.json()) as EducationInput[]
+  const newEds = await prisma.$transaction(
+    data.map(ed =>
+      prisma.education.upsert({
         where: {
-          id: course.id ?? ''
+          id: ed.id ?? ''
         },
         update: {
-          type: course.type,
-          title: course.title,
-          institution: course.institution,
-          inCourse: course.inCourse
+          type: ed.type,
+          title: ed.title,
+          institution: ed.institution,
+          inCourse: ed.inCourse
         },
         create: {
-          type: course.type,
-          title: course.title,
-          institution: course.institution,
-          inCourse: course.inCourse
+          type: ed.type,
+          title: ed.title,
+          institution: ed.institution,
+          inCourse: ed.inCourse
         }
       })
     )
   )
   revalidatePath('/about')
-  return NextResponse.json(newCourses)
+  return NextResponse.json(newEds)
 }
 
 export async function GET() {
-  const courses = await prisma.curso.findMany()
-  return NextResponse.json(courses)
+  const education = await prisma.education.findMany()
+  return NextResponse.json(education)
 }
 
 export async function DELETE(request: Request) {
@@ -47,7 +47,7 @@ export async function DELETE(request: Request) {
   const id = searchParams.get('id')
   if (id == undefined) throw new Error('ID required')
 
-  const del = await prisma.curso.delete({
+  const del = await prisma.education.delete({
     where: { id: id.toString() }
   })
 
