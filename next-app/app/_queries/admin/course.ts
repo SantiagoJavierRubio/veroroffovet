@@ -7,8 +7,12 @@ async function getCourses() {
   return (await axios.get<Course[]>('/api/admin/course')).data
 }
 
-async function addOrEditCourse(data: UpsertCourseInput) {
+async function editCourse(data: UpsertCourseInput) {
   return await axios.post<Course>(`/api/admin/course/${data.id}`, data)
+}
+
+async function addCourse(data: Omit<UpsertCourseInput, 'id'>) {
+  return await axios.post<Course>('/api/admin/course', data)
 }
 
 async function deleteCourse(id: string) {
@@ -21,15 +25,25 @@ export const useCourses = () => {
     queryFn: getCourses
   })
 
-  const post = useMutation({
-    mutationKey: ['adminCourses'],
-    mutationFn: addOrEditCourse
+  const edit = useMutation({
+    mutationKey: ['adminCoursesEdit'],
+    mutationFn: editCourse
+  })
+
+  const add = useMutation({
+    mutationKey: ['adminCoursesAdd'],
+    mutationFn: addCourse,
+    onSuccess: () => {
+      get.refetch()
+      setTimeout(() => add.reset(), 900)
+    }
   })
 
   const remove = useMutation({
     mutationKey: ['adminCoursesDelete'],
-    mutationFn: deleteCourse
+    mutationFn: deleteCourse,
+    onSuccess: () => get.refetch()
   })
 
-  return { get, post, remove }
+  return { get, add, edit, remove }
 }

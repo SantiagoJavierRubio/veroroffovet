@@ -7,7 +7,7 @@ export const upsertCourse = z.object({
   image: z.string().optional(),
   attachment: z.string().optional(),
   url: z.string().url().optional(),
-  enabled: z.boolean()
+  enabled: z.coerce.boolean()
 })
 
 export type UpsertCourseInput = z.infer<typeof upsertCourse>

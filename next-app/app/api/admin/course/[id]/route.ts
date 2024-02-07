@@ -19,19 +19,21 @@ export async function POST(request: NextRequest) {
   if (!(await isAdmin()))
     return NextResponse.json('Unauthorized', { status: 401 })
   const data: UpsertCourseInput = await request.json()
-  const course = await prisma.course.upsert({
+  const course = await prisma.course.update({
     where: { id: data.id },
-    update: data,
-    create: data
+    data
   })
   revalidatePath('/cursos')
   return NextResponse.json(course)
 }
 
-export async function DELETE(request: NextRequest) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   if (!(await isAdmin()))
     return NextResponse.json('Unauthorized', { status: 401 })
-  const { id } = await request.json()
+  const id = params.id
   const del = await prisma.course.delete({ where: { id } })
   revalidatePath('/cursos')
   return NextResponse.json(del)
