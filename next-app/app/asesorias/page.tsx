@@ -39,7 +39,7 @@ export interface Honorarios {
 }
 
 function parsePrice(price: number | undefined) {
-  if (price !== undefined) return `$${price}`
+  if (price !== undefined && price !== 0) return `$${price}`
   else
     return (
       <span className="text-base font-normal italic text-red-500">
