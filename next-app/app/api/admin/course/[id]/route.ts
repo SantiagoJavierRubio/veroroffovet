@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { isAdmin } from '../../_auth/isAdmin'
 import { prisma } from '@/prisma/client'
 import { UpsertCourseInput } from '@/app/_lib/schemas/course'
+import { revalidatePath } from 'next/cache'
 
 export async function GET(
   request: NextRequest,
@@ -23,6 +24,7 @@ export async function POST(request: NextRequest) {
     update: data,
     create: data
   })
+  revalidatePath('/cursos')
   return NextResponse.json(course)
 }
 
@@ -31,5 +33,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json('Unauthorized', { status: 401 })
   const { id } = await request.json()
   const del = await prisma.course.delete({ where: { id } })
+  revalidatePath('/cursos')
   return NextResponse.json(del)
 }

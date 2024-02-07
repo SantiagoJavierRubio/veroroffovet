@@ -1,16 +1,16 @@
-interface CursoProps {
+interface EducationProps {
   type: string
   title: string
   institution: string
   inCourse?: boolean
 }
 
-export function Curso({
+export function Education({
   type,
   title,
   institution,
   inCourse = false
-}: CursoProps) {
+}: EducationProps) {
   return (
     <li className="my-14 sm:my-auto">
       {type} <span className="italic">&quot;{title}&quot;</span>
