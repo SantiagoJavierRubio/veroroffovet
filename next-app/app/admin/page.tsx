@@ -41,7 +41,7 @@ export default function Admin() {
                     Honorarios
                   </button>
                 </Link>
-                <Link href="/admin/cursos" className="grow">
+                <Link href="/admin/educacion" className="grow">
                   <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
                     Educacion
                   </button>

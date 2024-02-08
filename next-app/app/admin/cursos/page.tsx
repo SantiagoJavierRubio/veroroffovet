@@ -1,18 +1,36 @@
 'use client'
 
-import React, { FormEvent } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useCourses } from '@/app/_queries/admin/course'
 import useAdminSession from '@/app/_hooks/sessions/useAdminSession'
 
 import Container from '@/app/_components/common/Container'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
-import { BiLoaderAlt, BiEdit, BiTrash } from 'react-icons/bi'
+import {
+  BiLoaderAlt,
+  BiEdit,
+  BiTrash,
+  BiImage,
+  BiLink,
+  BiFile,
+  BiCommentDetail
+} from 'react-icons/bi'
 import { upsertCourse } from '@/app/_lib/schemas/course'
+import { uploadToCloudinary } from '@/app/_queries/admin/uploadToCloudinary'
+
+type Files = {
+  image?: File
+  attachment?: File
+}
 
 export default function Cursos() {
   const { adminUser, status } = useAdminSession()
   const { get, add, remove } = useCourses()
+  const [files, setFiles] = useState<Files>({
+    image: undefined,
+    attachment: undefined
+  })
 
   const handleDelete = (id: string) => {
     if (confirm('Seguro?')) {
@@ -20,9 +38,30 @@ export default function Cursos() {
     }
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const files = e.target.files
+    if ((e.target.name == 'image' || e.target.name == 'attachment') && files) {
+      setFiles(prev => ({
+        ...prev,
+        [e.target.name]: files[0] ?? undefined
+      }))
+    }
+  }
+
+  const uploadFiles = async () => {
+    return Promise.all([
+      uploadToCloudinary(files.image),
+      uploadToCloudinary(files.attachment)
+    ])
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
+    const [image, attachment] = await uploadFiles()
+    formData.set('image', image?.url ?? '')
+    formData.set('attachment', attachment?.url ?? '')
     const parsed = upsertCourse.safeParse(
       Object.fromEntries(formData.entries())
     )
@@ -59,10 +98,34 @@ export default function Cursos() {
               {get.data?.map(course => (
                 <div
                   key={course.id}
-                  className="bg-secondary flex items-center justify-between rounded-sm p-2 md:px-6"
+                  className={`${
+                    course.enabled ? 'bg-secondary/80' : 'bg-gray-500/50'
+                  } flex items-center justify-between rounded-sm p-2 md:px-6`}
                 >
                   <h6 className="font-bold">{course.name}</h6>
                   <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center gap-2 bg-white/20 py-1 px-2">
+                      <BiCommentDetail
+                        size={20}
+                        className={
+                          course.description ? 'text-primary' : 'text-white'
+                        }
+                      />
+                      <BiImage
+                        size={20}
+                        className={course.image ? 'text-primary' : 'text-white'}
+                      />
+                      <BiFile
+                        size={20}
+                        className={
+                          course.attachment ? 'text-primary' : 'text-white'
+                        }
+                      />
+                      <BiLink
+                        size={20}
+                        className={course.url ? 'text-primary' : 'text-white'}
+                      />
+                    </div>
                     <Link href={`/admin/cursos/${course.id}`}>
                       <BiEdit size={28} className="bg-primary rounded-sm p-1" />
                     </Link>
@@ -82,8 +145,19 @@ export default function Cursos() {
               >
                 <input type="text" required id="name" name="name" />
                 <textarea id="description" name="description" />
-                <input type="text" id="image" name="image" />
-                <input type="text" id="attachment" name="attachment" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="image"
+                  name="image"
+                  onChange={handleFileChange}
+                />
+                <input
+                  type="file"
+                  id="attachment"
+                  name="attachment"
+                  onChange={handleFileChange}
+                />
                 <input type="text" id="url" name="url" />
                 <input type="checkbox" id="enabled" name="enabled" />
                 <button

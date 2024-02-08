@@ -35,6 +35,7 @@ model Distrito {
   Barrio Barrio[]
 }
 
+
 model Course {
   id          String @id @unique @default(cuid())
   name        String
