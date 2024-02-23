@@ -1,7 +1,6 @@
 import { z } from 'zod'
 
-export const upsertCourse = z.object({
-  id: z.string().optional(),
+export const addCourse = z.object({
   name: z.string(),
   description: z.string().optional(),
   image: z.string().optional(),
@@ -10,4 +9,11 @@ export const upsertCourse = z.object({
   enabled: z.coerce.boolean()
 })
 
-export type UpsertCourseInput = z.infer<typeof upsertCourse>
+export const editCourse = z
+  .object({
+    id: z.string().min(1)
+  })
+  .and(addCourse.partial())
+
+export type AddCourseInput = z.infer<typeof addCourse>
+export type EditCourseInput = z.infer<typeof editCourse>

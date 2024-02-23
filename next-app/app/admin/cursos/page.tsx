@@ -16,13 +16,8 @@ import {
   BiFile,
   BiCommentDetail
 } from 'react-icons/bi'
-import { upsertCourse } from '@/app/_lib/schemas/course'
-import { uploadToCloudinary } from '@/app/_queries/admin/uploadToCloudinary'
-
-type Files = {
-  image?: File
-  attachment?: File
-}
+import { addCourse } from '@/app/_lib/schemas/course'
+import { Files, uploadFiles } from './utils'
 
 export default function Cursos() {
   const { adminUser, status } = useAdminSession()
@@ -49,22 +44,13 @@ export default function Cursos() {
     }
   }
 
-  const uploadFiles = async () => {
-    return Promise.all([
-      uploadToCloudinary(files.image),
-      uploadToCloudinary(files.attachment)
-    ])
-  }
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const [image, attachment] = await uploadFiles()
+    const [image, attachment] = await uploadFiles(files)
     formData.set('image', image?.url ?? '')
     formData.set('attachment', attachment?.url ?? '')
-    const parsed = upsertCourse.safeParse(
-      Object.fromEntries(formData.entries())
-    )
+    const parsed = addCourse.safeParse(Object.fromEntries(formData.entries()))
     if (parsed.success) {
       add.mutate(parsed.data)
     } else {
@@ -104,26 +90,30 @@ export default function Cursos() {
                 >
                   <h6 className="font-bold">{course.name}</h6>
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center gap-2 bg-white/20 py-1 px-2">
+                    <div className="flex items-center justify-center gap-2 rounded-md bg-white/30 py-1 px-2">
                       <BiCommentDetail
                         size={20}
                         className={
-                          course.description ? 'text-primary' : 'text-white'
+                          course.description ? 'text-primary' : 'text-white/60'
                         }
                       />
                       <BiImage
                         size={20}
-                        className={course.image ? 'text-primary' : 'text-white'}
+                        className={
+                          course.image ? 'text-primary' : 'text-white/60'
+                        }
                       />
                       <BiFile
                         size={20}
                         className={
-                          course.attachment ? 'text-primary' : 'text-white'
+                          course.attachment ? 'text-primary' : 'text-white/60'
                         }
                       />
                       <BiLink
                         size={20}
-                        className={course.url ? 'text-primary' : 'text-white'}
+                        className={
+                          course.url ? 'text-primary' : 'text-white/60'
+                        }
                       />
                     </div>
                     <Link href={`/admin/cursos/${course.id}`}>

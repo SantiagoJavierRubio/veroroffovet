@@ -1,7 +1,7 @@
 import { prisma } from '@/prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 import { isAdmin } from '../_auth/isAdmin'
-import { UpsertCourseInput } from '@/app/_lib/schemas/course'
+import { AddCourseInput } from '@/app/_lib/schemas/course'
 import { revalidatePath } from 'next/cache'
 
 export async function GET() {
@@ -14,7 +14,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   if (!(await isAdmin()))
     return NextResponse.json('Unauthorized', { status: 401 })
-  const data: Omit<UpsertCourseInput, 'id'> = await request.json()
+  const data: AddCourseInput = await request.json()
   const course = await prisma.course.create({
     data
   })

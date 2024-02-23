@@ -1,17 +1,21 @@
 import axios from 'axios'
 import { Course } from '@prisma/client'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { UpsertCourseInput } from '@/app/_lib/schemas/course'
+import { AddCourseInput, EditCourseInput } from '@/app/_lib/schemas/course'
 
 async function getCourses() {
   return (await axios.get<Course[]>('/api/admin/course')).data
 }
 
-async function editCourse(data: UpsertCourseInput) {
+async function getOneCourse(id?: string) {
+  return (await axios.get<Course>('/api/admin/course/' + id)).data
+}
+
+async function editCourse(data: EditCourseInput) {
   return await axios.post<Course>(`/api/admin/course/${data.id}`, data)
 }
 
-async function addCourse(data: Omit<UpsertCourseInput, 'id'>) {
+async function addCourse(data: AddCourseInput) {
   return await axios.post<Course>('/api/admin/course', data)
 }
 
@@ -19,15 +23,22 @@ async function deleteCourse(id: string) {
   return await axios.delete(`/api/admin/course/${id}`)
 }
 
-export const useCourses = () => {
+export const useCourses = (id?: string) => {
   const get = useQuery({
     queryKey: ['adminCourses'],
     queryFn: getCourses
   })
 
+  const getOne = useQuery({
+    queryKey: ['adminCourses', id],
+    queryFn: () => getOneCourse(id),
+    enabled: !!id
+  })
+
   const edit = useMutation({
     mutationKey: ['adminCoursesEdit'],
-    mutationFn: editCourse
+    mutationFn: editCourse,
+    onSuccess: () => getOne.refetch()
   })
 
   const add = useMutation({
@@ -45,5 +56,5 @@ export const useCourses = () => {
     onSuccess: () => get.refetch()
   })
 
-  return { get, add, edit, remove }
+  return { get, getOne, add, edit, remove }
 }
