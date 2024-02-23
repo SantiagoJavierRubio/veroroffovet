@@ -20,7 +20,11 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     type: 'article'
   },
-  manifest: '/site.webmanifest'
+  manifest: '/site.webmanifest',
+  authors: {
+    name: 'Santiago Javier Rubio',
+    url: 'https://github.com/SantiagoJavierRubio'
+  }
 }
 
 const rubik = Rubik({

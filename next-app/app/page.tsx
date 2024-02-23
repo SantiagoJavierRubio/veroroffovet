@@ -2,6 +2,7 @@ import Container from '@/app/_components/common/Container'
 import Image from 'next/image'
 import Link from 'next/link'
 import Testimonios from '@/app/_components/testimonios/Testimonios'
+import Credit from './_components/common/Credit'
 
 export default function Home() {
   return (
@@ -21,12 +22,14 @@ export default function Home() {
             <div className="text-primary flex flex-col items-center justify-evenly gap-6 text-xl">
               <div className="flex items-center gap-4 pt-4">
                 <div className="relative h-16 w-16">
+                  <Credit text="Soco St - https://soco-st.com/?ref=svgrepo.com in CC Attribution License via SVGRepo" />
                   <Image src="/svgs/online.svg" fill alt="consultas online" />
                 </div>
                 <p>Online desde cualquier lugar del mundo</p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="relative h-16 w-16">
+                  <Credit text="Pabla Marmolejo - https://pablamarmolejo.netlify.app/ in CC Attribution License via SVGRepo" />
                   <Image
                     src="/svgs/dry-dog-food.svg"
                     fill
@@ -40,10 +43,12 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4 ">
                 <div className="relative h-8 w-8">
+                  <Credit text="Aslan Almukhambetov - https://dribbble.com/reggid?ref=svgrepo.com in CC Attribution License via SVGRepo" />
                   <Image src="/svgs/cat.svg" fill alt="consultas online" />
                 </div>
                 <p>Consultas personalizadas, materiales y recursos útiles</p>
                 <div className="relative h-8 w-8">
+                  <Credit text="Aslan Almukhambetov - https://dribbble.com/reggid?ref=svgrepo.com in CC Attribution License via SVGRepo" />
                   <Image src="/svgs/husky.svg" fill alt="consultas online" />
                 </div>
               </div>
@@ -57,6 +62,7 @@ export default function Home() {
               <div>
                 <div className="flex items-center gap-4">
                   <div className="relative h-16 w-16">
+                    <Credit text="Soco St - https://soco-st.com/?ref=svgrepo.com in CC Attribution License via SVGRepo" />
                     <Image
                       src="/svgs/female-doctor.svg"
                       fill

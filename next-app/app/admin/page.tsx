@@ -35,20 +35,25 @@ export default function Admin() {
             </>
           ) : (
             <>
-              <div className="mt-6 flex w-full items-center justify-evenly gap-4 p-4">
+              <div className="mt-6 flex w-full flex-wrap items-center justify-evenly gap-4 p-4">
                 <Link href="/admin/honorarios" className="grow">
                   <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
                     Honorarios
                   </button>
                 </Link>
-                <Link href="/admin/cursos" className="grow">
+                <Link href="/admin/educacion" className="grow">
                   <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
-                    Cursos
+                    Educacion
                   </button>
                 </Link>
                 <Link href="/admin/barrios" className="grow">
                   <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
                     Barrios
+                  </button>
+                </Link>
+                <Link href="/admin/cursos" className="grow">
+                  <button className="bg-secondary/80 hover:bg-secondary w-full cursor-pointer rounded-lg p-6 text-2xl font-bold transition-all hover:shadow-lg hover:shadow-stone-500/50 active:shadow-none">
+                    Cursos
                   </button>
                 </Link>
                 <Link href="/admin/add_client" className="grow">

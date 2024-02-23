@@ -14,7 +14,7 @@ model Price {
   updatedAt DateTime @default(now()) @updatedAt
 }
 
-model Curso {
+model Education {
   id          String  @id @unique @default(cuid())
   type        String
   title       String
@@ -33,6 +33,17 @@ model Barrio {
 model Distrito {
   name   String   @id @unique
   Barrio Barrio[]
+}
+
+
+model Course {
+  id          String @id @unique @default(cuid())
+  name        String
+  description String?
+  image       String?
+  attachment  String?
+  url         String?
+  enabled     Boolean @default(true)
 }
 
 // Auth management

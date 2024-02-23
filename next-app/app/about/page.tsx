@@ -1,7 +1,7 @@
 import Container from '@/app/_components/common/Container'
 import Photo from '@/app/_components/common/Photo'
 import IgLogo from '../../public/svgs/ig_logo.svg'
-import { Curso } from './_components/Curso'
+import { Education } from './_components/Education'
 import { prisma } from '@/prisma/client'
 import { Metadata } from 'next'
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function About() {
-  const courses = await prisma.curso.findMany()
+  const education = await prisma.education.findMany()
   return (
     <>
       <h1 className="text-primary mb-0 text-center text-5xl font-bold sm:text-6xl">
@@ -52,13 +52,13 @@ export default async function About() {
             Algunos cursos y capacitaciones en los que participé:
           </p>
           <ul className="pl-2 sm:list-disc sm:pl-8">
-            {courses.map(course => (
-              <Curso
-                type={course.type}
-                title={course.title}
-                institution={course.institution}
-                inCourse={course.inCourse}
-                key={course.id}
+            {education.map(ed => (
+              <Education
+                type={ed.type}
+                title={ed.title}
+                institution={ed.institution}
+                inCourse={ed.inCourse}
+                key={ed.id}
               />
             ))}
           </ul>
