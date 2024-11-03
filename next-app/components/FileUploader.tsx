@@ -70,7 +70,7 @@ export default function FileUploader<T extends MinimalFileData | null>({
         />
       ) : (
         <>
-          <p className="hidden text-center text-xl font-bold sm:block">
+          <p className="hidden text-center text-xl font-bold sm:!block">
             {dropInstruction
               ? dropInstruction
               : multiple

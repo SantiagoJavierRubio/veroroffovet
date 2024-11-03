@@ -3,7 +3,7 @@ import { MdOutlineReportProblem } from 'react-icons/md'
 
 export default function Footer() {
   return (
-    <footer className="to-terciary from-terciary/10 text-primary relative mt-8 hidden h-24 w-full flex-col items-center justify-start bg-gradient-to-b p-6 sm:flex">
+    <footer className="to-terciary from-terciary/10 text-primary relative mt-8 hidden h-24 w-full flex-col items-center justify-start bg-gradient-to-b p-6 sm:!flex">
       <p>Verónica Roffo - Veterinaria MN 10468</p>
       <p>&copy; 2023 - Buenos Aires, Argentina</p>
       <div className="absolute bottom-0 left-1 flex flex-col items-start text-right text-xs">

@@ -119,7 +119,7 @@ export default function Home() {
         </div>
         <Testimonios />
       </Container>
-      <aside className="pointer-events-none fixed -right-10 -bottom-6 z-20 hidden rounded-full sm:block md:h-56 md:w-56 lg:-right-8 lg:h-72 lg:w-72 xl:-bottom-4 xl:-right-6">
+      <aside className="pointer-events-none fixed -right-10 -bottom-6 z-20 hidden rounded-full sm:!block md:h-56 md:w-56 lg:-right-8 lg:h-72 lg:w-72 xl:-bottom-4 xl:-right-6">
         <Image
           src="/VR_logo_noback.png"
           fill

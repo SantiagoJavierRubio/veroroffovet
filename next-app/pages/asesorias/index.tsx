@@ -63,7 +63,7 @@ export default function Asesorias({ prices }: { prices: Price[] }) {
       <Container>
         <h2 className="text-primary mt-6 text-xl font-bold sm:px-4 sm:text-2xl">
           Tipos de dietas para caninos y felinos
-          <span className="hidden sm:inline">:</span>
+          <span className="hidden sm:!inline">:</span>
         </h2>
         <ul className={styles.dietList}>
           <li className={styles.listElement}>
