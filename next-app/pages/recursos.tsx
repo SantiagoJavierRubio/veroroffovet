@@ -1,8 +1,14 @@
 import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
 import ImageDisplayer from '@/components/ImageDisplayer'
+import { v2 as cloudinary } from 'cloudinary'
 
-export default function Recursos() {
+type ResourceImages = {
+  secure_url: string
+  filename: string
+}[]
+
+export default function Recursos({ images }: { images: ResourceImages }) {
   return (
     <Layout title="Recursos">
       <Container>
@@ -21,9 +27,13 @@ export default function Recursos() {
                 </h6>
                 <div className="m-auto w-full max-w-sm">
                   <ImageDisplayer
-                    imageList={new Array(14)
-                      .fill('')
-                      .map((_, i) => `/resources/curso_1/${i + 1}.png`)}
+                    imageList={images
+                      .sort(
+                        (a, b) =>
+                          Number(a.filename.split('_')[0]) -
+                          Number(b.filename.split('_')[0])
+                      )
+                      .map(im => im.secure_url)}
                   />
                 </div>
               </div>
@@ -42,4 +52,32 @@ export default function Recursos() {
       </Container>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  try {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+      secure: true
+    })
+    const { resources } = await cloudinary.search
+      .expression('folder:curso_1/*')
+      .fields(['secure_url', 'filename'])
+      .max_results(50)
+      .execute()
+    return {
+      props: {
+        images: resources
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    return {
+      props: {
+        images: []
+      }
+    }
+  }
 }

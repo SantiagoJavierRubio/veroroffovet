@@ -2,12 +2,12 @@ import Layout from '@/components/Layout/Layout'
 import Container from '@/components/Container'
 import Photo from '@/components/Photo'
 import IgLogo from '../public/svgs/ig_logo.svg'
-import { Curso } from '@prisma/client'
+import { Curso as CursoEntity } from '@prisma/client'
 import { prisma } from '@/prisma/client'
 import { FC } from 'react'
 
 interface AboutProps {
-  courses: Curso[]
+  courses: CursoEntity[]
 }
 
 export default function About({ courses }: AboutProps) {
