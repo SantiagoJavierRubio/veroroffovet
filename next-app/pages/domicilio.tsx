@@ -42,7 +42,7 @@ export default function Domicilio({ barrios }: DomicilioProps) {
           <Photo
             src="/photos/veroycabra.jpeg"
             alt="con un paciente"
-            className="border-terciary absolute top-0 right-6 w-32 border-2 shadow-2xl sm:w-64 md:w-72"
+            className="border-terciary absolute right-6 top-0 w-32 border-2 shadow-2xl sm:w-64 md:w-72"
           />
         </article>
         <article className="text-primary mb-8 sm:mx-8">
@@ -135,6 +135,8 @@ const ContactForm = () => {
   const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined)
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+    alert('En este momento no estoy tomando turnos')
+    return
     setSendingStatus(SENDING_STATUS.SENDING)
     fetch('/api/clinica', {
       method: 'POST',
@@ -165,7 +167,10 @@ const ContactForm = () => {
     setData(prevData => ({ ...prevData, [key]: e.target.value }))
   }
   return (
-    <form onSubmit={handleSubmit} className="text-primary sm:ml-8">
+    <form
+      onSubmit={handleSubmit}
+      className="text-primary disabled pointer-events-none opacity-50 sm:ml-8"
+    >
       <h3 className="text-3xl underline">Contacto</h3>
       <div className="m-auto my-2 grid max-w-sm auto-cols-auto text-lg font-semibold">
         <label htmlFor="nombre">Nombre y apellido</label>
