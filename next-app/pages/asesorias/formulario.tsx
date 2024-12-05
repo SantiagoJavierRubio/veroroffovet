@@ -137,6 +137,11 @@ export default function Formulario({ api_uri }: { api_uri: string }) {
 
   return (
     <Layout title="Asesorias nutricionales - Formulario">
+      <h2>No disponible</h2>
+    </Layout>
+  )
+  return (
+    <Layout title="Asesorias nutricionales - Formulario">
       <div
         className={`${
           loader !== 'none' ? 'flex' : 'hidden'
